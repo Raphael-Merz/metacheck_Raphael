@@ -39,7 +39,7 @@ Module designers can include any information in the returned output, but we sugg
 So most modules output a list with the following named items: module, title, table, report, traffic_light, summary_text, summary_table, paper. You probably don't need to worry about any of this unless you are designing modules or using metacheck for metascience -- the `report()` function takes care of displaying everything for you when you need to assess a single paper. 
 
 ```{r}
-paper <- read(demoxml())
+paper <- demopaper()
 mo <- module_run(paper, "stat_p_exact")
 ```
 

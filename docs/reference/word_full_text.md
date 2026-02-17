@@ -5,7 +5,7 @@ Get full text from Word
 ## Usage
 
 ``` r
-word_full_text(filename)
+word_text(filename)
 ```
 
 ## Arguments

@@ -587,7 +587,7 @@ the `ref` column of a paper’s bib table), bibtex text, or plain text.
 
 ``` r
 # get refs from a paper
-paper <- read(demoxml())
+paper <- demopaper()
 format_ref(paper$bib$ref[2])
 ```
 

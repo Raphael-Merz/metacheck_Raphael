@@ -5,7 +5,7 @@ Get full text from TEI type XML
 ## Usage
 
 ``` r
-tei_full_text(xml)
+tei_text(xml)
 ```
 
 ## Arguments

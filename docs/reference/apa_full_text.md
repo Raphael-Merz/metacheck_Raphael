@@ -5,7 +5,7 @@ Get full text from JATS APA-DTD type XML
 ## Usage
 
 ``` r
-apa_full_text(xml)
+apa_text(xml)
 ```
 
 ## Arguments

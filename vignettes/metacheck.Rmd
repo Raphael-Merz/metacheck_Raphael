@@ -162,7 +162,7 @@ concat_tables(psychsci[1:40], "xrefs") |>
 
 ## Search Text
 
-You can access a parsed table of the full text of the paper via `paper$full_text`, but you may find it more convenient to use the function `search_text()`. The defaults return a data table of each sentence, with the section type, header, div, paragraph and sentence numbers, and file name. (The section type is a best guess from the headers, so may not always be accurate.)
+You can access a parsed table of the full text of the paper via `paper$text`, but you may find it more convenient to use the function `search_text()`. The defaults return a data table of each sentence, with the section type, header, div, paragraph and sentence numbers, and file name. (The section type is a best guess from the headers, so may not always be accurate.)
 
 ```{r}
 text <- search_text(paper)

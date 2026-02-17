@@ -136,10 +136,10 @@ dplyr::filter(xrefs, xref_id == "b5")
 
 ### Full Text
 
-The `full_text` item is a table containing each sentence from the main text (`text`). The heading text (`header`) is used to automatically determine if the `section` is abstract, intro, method, results, or discussion. Each section has a unique sequential `div` number, and each paragraph (`p`) within the section and eeach sentence (`s`) within each paragraph are also sequentially numbered (e.g., div = 1, p = 2, s = 3 is the third sentence of the second paragraph of the first section after the abstract).
+The `text` item is a table containing each sentence from the main text (`text`). The heading text (`header`) is used to automatically determine if the `section` is abstract, intro, method, results, or discussion. Each section has a unique sequential `div` number, and each paragraph (`p`) within the section and eeach sentence (`s`) within each paragraph are also sequentially numbered (e.g., div = 1, p = 2, s = 3 is the third sentence of the second paragraph of the first section after the abstract).
 
 ```{r}
-paper$full_text |> names()
+paper$text |> names()
 ```
 
 
@@ -147,7 +147,7 @@ paper$full_text |> names()
 
 The `search_text()` function helps you search the text of a paper or list of papers.
 
-The default arguments give you a data frame containing a row for every sentence in every paper in the set. The data frame has the same column structure as the `full_text` table above, so that you can easily chain text searches.
+The default arguments give you a data frame containing a row for every sentence in every paper in the set. The data frame has the same column structure as the `text` table above, so that you can easily chain text searches.
 
 ```{r}
 all_sentences <- search_text(papers)

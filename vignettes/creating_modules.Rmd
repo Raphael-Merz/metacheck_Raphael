@@ -393,7 +393,7 @@ In order to keep references displayed consistently, use the `format_ref()` funct
 ```{r}
 #| results: 'asis'
 # get refs from a paper
-paper <- read(demoxml())
+paper <- demopaper()
 format_ref(paper$bib$ref[2])
 ```
 
