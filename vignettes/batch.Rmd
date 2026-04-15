@@ -43,7 +43,7 @@ To start, read in all of the PDF files from a directory called "pdf", and save t
 ```{r}
 #| eval: false
 
-bibr_convert(filename = "pdf", 
+convert_bibr(filename = "pdf", 
              save_path = "bibr")
 ```
 
@@ -57,7 +57,7 @@ Read in all of the PDF files from a directory called "pdf", process them with a 
 ```{r}
 #| eval: false
 
-grobid_convert(filename = "pdf", 
+convert_grobid(filename = "pdf", 
                save_path = "xml", 
                api_url = "http://localhost:8070")
 ```
