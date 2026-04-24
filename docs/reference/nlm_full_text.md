@@ -5,7 +5,7 @@ Get full text from JATS NLM-DTD type XML
 ## Usage
 
 ``` r
-nlm_full_text(xml)
+nlm_text(xml)
 ```
 
 ## Arguments

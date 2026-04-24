@@ -272,7 +272,7 @@ concat_tables(psychsci[1:40], "xrefs") |>
 ## Search Text
 
 You can access a parsed table of the full text of the paper via
-`paper$full_text`, but you may find it more convenient to use the
+`paper$text`, but you may find it more convenient to use the
 function
 [`search_text()`](https://scienceverse.github.io/metacheck/reference/search_text.md).
 The defaults return a data table of each sentence, with the section

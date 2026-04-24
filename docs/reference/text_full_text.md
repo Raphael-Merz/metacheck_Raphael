@@ -5,7 +5,7 @@ Get full text from plain text
 ## Usage
 
 ``` r
-text_full_text(xml)
+text_text(xml)
 ```
 
 ## Arguments

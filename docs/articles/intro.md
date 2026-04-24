@@ -97,7 +97,7 @@ tools (e.g., checks for retracted articles, Statcheck, etc).
 ## An example of the “stat_p_exact” module
 
 ``` r
-paper <- read(demoxml())
+paper <- demopaper()
 module_run(paper, "stat_p_exact")
 ```
 

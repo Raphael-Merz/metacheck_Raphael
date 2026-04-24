@@ -15,7 +15,7 @@ knitr::opts_chunk$set(
 ```
 
 ```{r setup}
-library(metacheck)
+devtools::load_all(".")
 ```
 
 Modules are user-created patterns for checking a paper or set of papers. Module specifications are written in the same format as functions in R packages, using roxygen2 for documentation. 
@@ -393,7 +393,7 @@ In order to keep references displayed consistently, use the `format_ref()` funct
 ```{r}
 #| results: 'asis'
 # get refs from a paper
-paper <- read(demoxml())
+paper <- demopaper()
 format_ref(paper$bib$ref[2])
 ```
 

@@ -36,6 +36,6 @@ author.
 ## Examples
 
 ``` r
-paper <- read(demoxml())
+paper <- demopaper()
 p_values <- extract_p_values(paper)
 ```

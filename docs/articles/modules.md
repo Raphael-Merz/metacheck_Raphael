@@ -82,7 +82,7 @@ function takes care of displaying everything for you when you need to
 assess a single paper.
 
 ``` r
-paper <- read(demoxml())
+paper <- demopaper()
 mo <- module_run(paper, "stat_p_exact")
 ```
 
