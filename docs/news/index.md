@@ -1,7 +1,34 @@
 # Changelog
 
+## metacheck 0.0.0.9070
+
+- Major updates to replace grobid functions with bibr
+- Remove `author_table()`, as this is just `concat_tables()` now
+
+## metacheck 0.0.0.9069
+
+- Updated osf\_\* and rb\_\* functions to use progress bars instead of
+  messages
+- New logging functions:
+  [`logger()`](https://scienceverse.github.io/metacheck/reference/logger.md)
+  and
+  [`lastlog()`](https://scienceverse.github.io/metacheck/reference/lastlog.md)
+  inspired by [@levibaruch](https://github.com/levibaruch)
+- New
+  [`test_paper()`](https://scienceverse.github.io/metacheck/reference/test_paper.md)
+  for creating paper objects with specific test text
+- `summarize_contents()` changed to
+  [`file_category()`](https://scienceverse.github.io/metacheck/reference/file_category.md)
+  and now works with a vector of file names, as well as a data frame
+- `compare_tables()`, `text_features()` and `distinctive_words()` now
+  deprecated
+- [`validate()`](https://scienceverse.github.io/metacheck/reference/validate.md)
+  function simplified
+
 ## metacheck 0.0.0.9068
 
+- FReD replication database and associated functions now renamed to
+  [`FLoRA()`](https://scienceverse.github.io/metacheck/reference/FLoRA.md)
 - Various bug fixes discovered when running modules on large numbers of
   papers (e.g., handling when zero references have DOIs)
 - Modules “function_check” and “coi_check” reverted to the rtransparent
@@ -133,7 +160,7 @@
   [`collapse_section()`](https://scienceverse.github.io/metacheck/reference/collapse_section.md),
   [`link()`](https://scienceverse.github.io/metacheck/reference/link.md),
   [`plural()`](https://scienceverse.github.io/metacheck/reference/plural.md),
-  [`pb()`](https://scienceverse.github.io/metacheck/reference/pb.md)
+  `pb()`
 
 ## metacheck 0.0.0.9059
 

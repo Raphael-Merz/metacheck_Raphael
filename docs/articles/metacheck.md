@@ -6,122 +6,78 @@ You can install the development version of metacheck from
 [GitHub](https://github.com/scienceverse/metacheck) with:
 
 ``` r
+
 # install.packages("devtools")
 devtools::install_github("scienceverse/metacheck")
 ```
 
 ``` r
+
 library(metacheck)
-```
-
-    #> 
-    #> 
-    #> *******************************************
-    #> ✅ Welcome to metacheck
-    #> For support and examples visit:
-    #> https://scienceverse.github.io/metacheck/
-    #> 
-    #> ⚠️ Set an email to use APIs like OpenAlex
-    #> metacheck::email('your@address.org')
-    #> 
-    #> ‼️ This is alpha software; please check any
-    #> results. False positives and negatives will
-    #> occur at unknown rates.
-    #> *******************************************
-
-You can launch an interactive shiny app version of the code below with:
-
-``` r
-metacheck_app()
 ```
 
 ### Load from PDF
 
 The function
-[`pdf2grobid()`](https://scienceverse.github.io/metacheck/reference/pdf2grobid.md)
-can read PDF files and save them in the [TEI](https://tei-c.org/) format
-created by [grobid](https://grobid.readthedocs.io/). This requires an
-internet connection and takes a few seconds per paper, so should only be
-done once and the results saved for later use.
-
-If the server is unavailable, you can [use a grobid web
-interface](https://huggingface.co/spaces/kermitt2/grobid).
+[`convert()`](https://scienceverse.github.io/metacheck/reference/convert.md)
+can read PDF files and save them in [JSON
+format](https://www.scienceverse.org/schema/paper.json). This requires
+an internet connection and takes a few seconds per paper, so should only
+be done once and the results saved for later use.
 
 ``` r
-pdf_file <- demopdf()
-xml_file <- pdf2grobid(pdf_file)
+
+pdf_file <- demofile("pdf")
+json_file <- convert(file_path = pdf_file, save_path = "converted")
 ```
 
 You can set up your own local grobid server following instructions from
 <https://grobid.readthedocs.io/>. The easiest way is to use Docker.
 
 ``` bash
-docker run --rm --init --ulimit core=0 -p 8070:8070 lfoppiano/grobid:0.8.2
+docker run --rm --init --ulimit core=0 -p 8070:8070 lfoppiano/grobid:0.9.0
 ```
 
-Then you can set your grobid_url to the local path
-<http://localhost:8070>.
+Then you can set your api_url to the local path <http://localhost:8070>.
 
 ``` r
-xml_file <- pdf2grobid(pdf_file, grobid_url = "http://localhost:8070")
+
+json_file <- convert(file_path = pdf_file, 
+                     save_path = "converted",
+                     method = "grobid",
+                     api_url = "http://localhost:8070")
 ```
 
-### Load from XML
+### Load from JSON
 
 The function
 [`read()`](https://scienceverse.github.io/metacheck/reference/read.md)
-can read XML files parsed by grobid or cermine, plus any XML files in
-JATS-DTD APA or NLM formats.
+can read converted JSON files.
 
 ``` r
-paper <- read(xml_file)
-```
 
-XML files parsed by [cermine](http://cermine.ceon.pl) are not as good as
-grobid at parsing papers, and omits figure and table captions.
-
-``` r
-cermine_xml_file <- system.file("psychsci/0956797620955209.cermine.xml",
-                                package = "metacheck")
-paper <- read(cermine_xml_file)
+paper <- read(json_file)
 ```
 
 ### Load from non-PDF document
 
 To take advantage of grobid’s ability to parse references and other
 aspects of papers, for now the best way is to convert your papers to
-PDF. However, metacheck can read in plain text from a text/docx file
-with
-[`read()`](https://scienceverse.github.io/metacheck/reference/read.md).
-
-``` r
-filename <- system.file("extdata/to_err_is_human.docx", 
-                        package = "metacheck")
-paper_from_doc <- read_text(filename)
-```
+PDF. We will introduce our custom backend, bibr, soon and this will be
+able to convert DOC and DOCX files directly.
 
 ### Batch Processing
 
 The functions
-[`pdf2grobid()`](https://scienceverse.github.io/metacheck/reference/pdf2grobid.md)
+[`convert()`](https://scienceverse.github.io/metacheck/reference/convert.md)
 and
 [`read()`](https://scienceverse.github.io/metacheck/reference/read.md)
-also work on a folder of files, returning a list of XML file paths or
+also work on a folder of files, returning a list of JSON file paths or
 paper objects, respectively. The functions
 [`search_text()`](https://scienceverse.github.io/metacheck/reference/search_text.md),
 [`expand_text()`](https://scienceverse.github.io/metacheck/reference/expand_text.md)
 and [`llm()`](https://scienceverse.github.io/metacheck/reference/llm.md)
 also work on a list of paper objects.
-
-``` r
-grobid_dir <- demodir()
-
-papers <- read(grobid_dir)
-
-hypotheses <- search_text(papers, "hypothesi", 
-                          section = "intro", 
-                          return = "paragraph")
-```
 
 ## Paper Components
 
@@ -131,41 +87,35 @@ references, and citations.
 ### Info
 
 ``` r
+
 paper$info
 ```
 
-    #> $title
-    #> [1] "To Err is Human: An Empirical Investigation"
-    #> 
-    #> $description
-    #> [1] "This paper demonstrates some good and poor practices for use with the {metacheck} R package and Shiny app. All data are simulated. The paper shows examples of (1) open and closed OSF links; (2a) citation of retracted papers, (2b) citations without a doi, (2c) citations with Pubpeer comments, (2d) citations in the FORTT replication database, and (2e) missing/mismatched/incorrect citations and references; (3a) R files with code on GitHub that do not load libraries in one location, (3b) load files that are not shared in the repository, (3c) lack comments, and (3d) have hard-coded files, (4) imprecise reporting of non-significant pvalues; (5) tests with and without effect sizes, (6) use of \"marginally significant\" to describe non-significant findings, and (7) retrieving information from preregistrations."
-    #> 
-    #> $keywords
-    #> [1] ""
-    #> 
-    #> $doi
-    #> [1] ""
-    #> 
-    #> $submission
-    #> [1] ""
-    #> 
-    #> $filename
-    #> [1] "/private/var/folders/t6/7x6md_5s2j5bfb324s784yzw0000gn/T/RtmpiPaWWJ/temp_libpath1edb7d40e629/metacheck/extdata/to_err_is_human.xml"
+    #>                                         title     keywords  doi
+    #> 1 To Err is Human: An Empirical Investigation list(list()) <NA>
+    #>          file_hash input_format           file_name bibr_version paper_type
+    #> 1 a26373a4f28e3718          pdf to_err_is_human.pdf         10.0  empirical
+    #>   paper_type_confidence         oecd_l1                           oecd_l2
+    #> 1                     0 Social Sciences Psychology and Cognitive Sciences
+    #>   oecd_confidence
+    #> 1              NA
 
 ### Bibliography
 
 The bibliography is provided in a tabular format.
 
 ``` r
+
 paper$bib
 ```
 
-| xref_id | ref | doi | bibtype | title | journal | year | authors | id |
-|:---|:---|:---|:---|:---|:---|:---|:---|:---|
-| b0 | 10.1098/rspb.1998.0380 , Menstrual cycle variation in women’s preferences for the scent of symmetrical men, S , W , Gangestad , R , Thornhill , Proceedings Biological Sciences , 1998 , 22 , 927-933 | 10.1098/rspb.1998.0380 | Article | Menstrual cycle variation in women’s preferences for the scent of symmetrical men | Proceedings Biological Sciences | 1998 | S W Gangestad, R Thornhill | to_err_is_human |
-| b1 | 10.1177/0956797614520714 , Evil Genius? How Dishonesty Can Lead to Greater Creativity, F , Gino , S , S , Wiltermuth , Psychological Science , 2014 , 25 , 4 , 973-981 | 10.1177/0956797614520714 | Article | Evil Genius? How Dishonesty Can Lead to Greater Creativity | Psychological Science | 2014 | F Gino, S S Wiltermuth | to_err_is_human |
-| b2 | 10.0000/0123456789 , Human error is a symptom of a poor design, F , Smith , Journal of Journals , 2021 , 0 , 0 , 0 | 10.0000/0123456789 | Article | Human error is a symptom of a poor design | Journal of Journals | 2021 | F Smith | to_err_is_human |
-| b3 | Equivalence testing for psychological research , D , Lakens , Advances in Methods and Practices in Psychological Science, 2018 , 1 , 259-270 | NA | Article | Equivalence testing for psychological research | Advances in Methods and Practices in Psychological Science | 2018 | D Lakens | to_err_is_human |
+| bib_id | text_id | bib_type | doi | title | authors | year | container | volume | issue | first_page | last_page |
+|---:|---:|:---|:---|:---|:---|---:|:---|:---|:---|:---|:---|
+| 1 | 29 | misc | 10.5281/zenodo.2669586 | Faux: Simulation for Factorial Designs | DeBruine, Lisa | 2025 |  | NA | NA | NA | NA |
+| 2 | 30 | article | 10.1037/0003-066x.54.6.408 | The Origins of Sex Differences in Human Behavior: Evolved Dispositions Versus Social Roles | Eagly, Alice H., and Wendy Wood | 1999 | American Psychologist | 54 | 6 | 408 | 423 |
+| 3 | 31 | article | 10.1177/0956797614520714 | Evil Genius? How Dishonesty Can Lead to Greater Creativity | Gino, Francesca, and Scott S. Wiltermuth | 2014 | Psychological Science | 25 | 4 | 973 | 981 |
+| 4 | 32 | article |  | Equivalence Testing for Psychological Research | Lakens, Daniël | 2018 | Advances in Methods and Practices in Psychological Science | 1 | NA | 259 | 270 |
+| 5 | 33 | article | 10.0000/0123456789 | Human Error Is a Symptom of a Poor Design | Smith, F. | 2021 | Journal of Journals | NA | NA | NA | NA |
 
 ### Cross-References
 
@@ -173,13 +123,20 @@ Cross-references are also provided in a tabular format, with `xref_id`
 to match the bibliography table.
 
 ``` r
-paper$xrefs
+
+paper$xref
 ```
 
-| xref_id | type | contents | text | id | section | div | p | s |
-|:---|:---|:---|:---|:---|:---|---:|---:|---:|
-| b1 | bibr | (Gino & Wiltermuth, 2014) | Although intentional dishonestly might be a successful way to boost creativity (Gino & Wiltermuth, 2014), it is safe to say most mistakes researchers make are unintentional. | to_err_is_human | intro | 1 | 1 | 1 |
-| NA | bibr | (Smithy, 2020) | From a human factors perspective, human error is a symptom of a poor design (Smithy, 2020). | to_err_is_human | intro | 1 | 1 | 2 |
+| xref_id | xref_type | contents                   | text_id |
+|--------:|:----------|:---------------------------|--------:|
+|       1 | table     | Table 1                    |      20 |
+|       1 | figure    | Figure 1                   |      20 |
+|       2 | figure    | Figure 2                   |      23 |
+|       1 | foot      | 1                          |      10 |
+|       2 | foot      | 2                          |      19 |
+|       3 | bib       | (Gino and Wiltermuth 2014) |       6 |
+|      NA | bib       | (Smithy, 2020)             |       7 |
+|       1 | bib       | (DeBruine 2025)            |      20 |
 
 ### Batch
 
@@ -188,44 +145,36 @@ like the `psychsci` built-in dataset of 250 open access papers from
 Psychological Science.
 
 ``` r
-info_table(psychsci[1:5], c("title", "doi"))
+
+paper_table(psychsci[1:5], "info", c("title", "doi"))
 ```
 
-    #> # A tibble: 5 × 3
-    #>   id               title                                                   doi  
-    #>   <chr>            <chr>                                                   <chr>
-    #> 1 0956797613520608 Continuous Theta-Burst Stimulation Demonstrates a Caus… 10.1…
-    #> 2 0956797614522816 Beyond Gist: Strategic and Incremental Information Acc… 10.1…
-    #> 3 0956797614527830 Serotonin and Social Norms: Tryptophan Depletion Impai… 10.1…
-    #> 4 0956797614557697 Action-Specific Disruption of Perceptual Confidence     10.1…
-    #> 5 0956797614560771 Emotional Vocalizations Are Recognized Across Cultures… 10.1…
+    #>                                                                                                                                                                                                                              title
+    #> 1 Mirror neurons, originally discovered in macaque monkeys using single-cell recordings, are active when an animal is either performing a particular action or observing another agent performing the same or a similar action (di
+    #> 2                                                                                                                                         Beyond Gist: Strategic and Incremental Information Accumulation for Scene Categorization
+    #> 3                                                                                      Serotonin and Social Norms: Tryptophan Depletion Impairs Social Comparison and Leads to Resource Depletion in a Multiplayer Harvesting Game
+    #> 4                                                                                                                                                                              Action-Specific Disruption of Perceptual Confidence
+    #> 5                                                                                                                                  Emotional Vocalizations Are Recognized Across Cultures Regardless of the Valence of Distractors
+    #>                        doi         paper_id
+    #> 1 10.1177/0956797613520608 0956797613520608
+    #> 2 10.1177/0956797614522816 0956797614522816
+    #> 3 10.1177/0956797614527830 0956797614527830
+    #> 4 10.1177/0956797614557697 0956797614557697
+    #> 5 10.1177/0956797614560771 0956797614560771
 
 ``` r
-concat_tables(psychsci[1:5], "bib") |>
-  dplyr::filter(!is.na(doi))
+
+paper_table(psychsci[1:5], "bib") |>
+  dplyr::filter(!is.na(doi), doi != "")
 ```
 
-    #>   xref_id
-    #> 1     b40
-    #> 2      b0
-    #> 3      b1
-    #> 4      b2
-    #> 5      b3
-    #> 6      b4
-    #>                                                                                                                                                                                                                                     ref
-    #> 1                                                        10.3389/fnint.2012.00079/full, The construction of confidence in a perceptual decision, A, Zylberberg, P, Barttfeld, M, Sigman, Frontiers in Integrative Neuroscience, 2012, 6
-    #> 2                                                             10.1037/0033-2909.115, Strong evidence for universals in facial expressions: A reply to Russell's mistaken critique, P, Ekman, Psychological Bulletin, 1994, 115, 268-287
-    #> 3                                         10.1177/0956797613517239, Cultural relativity in perceiving emotion from vocalizations, M, Gendron, D, Roberson, J, M, Van Der Vyver, L, F, Barrett, Psychological Science, 2014, 25, 911-920
-    #> 4                                      10.1037/0033-2909.115.1.102, Is there universal recognition of emotion from facial expression? A review of the cross-cultural studies, J, A, Russell, Psychological Bulletin, 1994, 115, 102-141
-    #> 5                      10.1080/17470211003721642, Perceptual cues in non-verbal vocal expressions of emotion, D, A, Sauter, F, Eisner, A, J, Calder, S, K, Scott, The Quarterly Journal of Experimental Psychology, 2010, 63, 2251-2272
-    #> 6 10.1073/pnas.0908239106, Crosscultural recognition of basic emotions through nonverbal emotional vocalizations, D, A, Sauter, F, Eisner, P, Ekman, S, K, Scott, Proceedings of the National Academy of Sciences, 2010, 107, 2408-2412
-    #>                             doi bibtype
-    #> 1 10.3389/fnint.2012.00079/full Article
-    #> 2         10.1037/0033-2909.115 Article
-    #> 3      10.1177/0956797613517239 Article
-    #> 4   10.1037/0033-2909.115.1.102 Article
-    #> 5     10.1080/17470211003721642 Article
-    #> 6       10.1073/pnas.0908239106 Article
+    #>   bib_type                           doi
+    #> 1  article 10.3389/fnint.2012.00079/full
+    #> 2  article         10.1037/0033-2909.115
+    #> 3  article      10.1177/0956797613517239
+    #> 4  article   10.1037/0033-2909.115.1.102
+    #> 5  article     10.1080/17470211003721642
+    #> 6  article       10.1073/pnas.0908239106
     #>                                                                                                      title
     #> 1                                                  The construction of confidence in a perceptual decision
     #> 2             Strong evidence for universals in facial expressions: A reply to Russell's mistaken critique
@@ -233,47 +182,39 @@ concat_tables(psychsci[1:5], "bib") |>
     #> 4 Is there universal recognition of emotion from facial expression? A review of the cross-cultural studies
     #> 5                                               Perceptual cues in non-verbal vocal expressions of emotion
     #> 6                    Crosscultural recognition of basic emotions through nonverbal emotional vocalizations
-    #>                                            journal year
-    #> 1            Frontiers in Integrative Neuroscience 2012
-    #> 2                           Psychological Bulletin 1994
-    #> 3                            Psychological Science 2014
-    #> 4                           Psychological Bulletin 1994
-    #> 5 The Quarterly Journal of Experimental Psychology 2010
-    #> 6  Proceedings of the National Academy of Sciences 2010
-    #>                                                 authors               id
-    #> 1                   A Zylberberg, P Barttfeld, M Sigman 0956797614557697
-    #> 2                                               P Ekman 0956797614560771
-    #> 3 M Gendron, D Roberson, J M Van Der Vyver, L F Barrett 0956797614560771
-    #> 4                                           J A Russell 0956797614560771
-    #> 5           D A Sauter, F Eisner, A J Calder, S K Scott 0956797614560771
-    #> 6              D A Sauter, F Eisner, P Ekman, S K Scott 0956797614560771
-
-``` r
-concat_tables(psychsci[1:40], "xrefs") |>
-  dplyr::filter(grepl("replicat", text)) |>
-  dplyr::count(id, text)
-```
-
-    #> # A tibble: 11 × 3
-    #>    id               text                                                       n
-    #>    <chr>            <chr>                                                  <int>
-    #>  1 0956797614560771 1 We reanalyzed the data from the 29 Himba participan…     1
-    #>  2 0956797615617779 Experiment 1b replicated the results of Experiment 1a…     1
-    #>  3 0956797616647519 Note that the average expected ES found in Study 1 is…     1
-    #>  4 0956797616647519 This is worrisome, as the results of our first study …     2
-    #>  5 0956797616665351 At a group level, therefore, the perceptual data repl…     5
-    #>  6 0956797617693326 Experiment 2 replicated Experiment 1 under conditions…     1
-    #>  7 0956797617693326 Experiment 2 replicated these findings on a separate …     4
-    #>  8 0956797617702699 A study by Papesh (2015) is particularly relevant: Sh…     2
-    #>  9 0956797617705667 Experiment 3 therefore replicated the effects in a mi…     1
-    #> 10 0956797617705667 This replicates the main finding of Beck et al. (2012…     1
-    #> 11 0956797617716922 Though we await replication of our findings, we see t…     1
+    #>                                                     authors editors publisher
+    #> 1                    Zylberberg, A; Barttfeld, P; Sigman, M                  
+    #> 2                                                  Ekman, P                  
+    #> 3 Gendron, M; Roberson, D; Van Der Vyver, J M; Barrett, L F                  
+    #> 4                                              Russell, J A                  
+    #> 5           Sauter, D A; Eisner, F; Calder, A J; Scott, S K                  
+    #> 6              Sauter, D A; Eisner, F; Ekman, P; Scott, S K                  
+    #>   year volume issue first_page last_page
+    #> 1 2012      6             <NA>      <NA>
+    #> 2 1994    115              268       287
+    #> 3 2014     25              911       920
+    #> 4 1994    115              102       141
+    #> 5 2010     63             2251      2272
+    #> 6 2010    107             2408      2412
+    #>                                          container bib_id year_suffix text_id
+    #> 1            Frontiers in Integrative Neuroscience     40                 276
+    #> 2                           Psychological Bulletin      0                  53
+    #> 3                            Psychological Science      1                  54
+    #> 4                           Psychological Bulletin      2                  55
+    #> 5 The Quarterly Journal of Experimental Psychology      3                  56
+    #> 6  Proceedings of the National Academy of Sciences      4                  57
+    #>           paper_id
+    #> 1 0956797614557697
+    #> 2 0956797614560771
+    #> 3 0956797614560771
+    #> 4 0956797614560771
+    #> 5 0956797614560771
+    #> 6 0956797614560771
 
 ## Search Text
 
 You can access a parsed table of the full text of the paper via
-`paper$full_text`, but you may find it more convenient to use the
-function
+`paper$text`, but you may find it more convenient to use the function
 [`search_text()`](https://scienceverse.github.io/metacheck/reference/search_text.md).
 The defaults return a data table of each sentence, with the section
 type, header, div, paragraph and sentence numbers, and file name. (The
@@ -281,16 +222,18 @@ section type is a best guess from the headers, so may not always be
 accurate.)
 
 ``` r
+
 text <- search_text(paper)
 ```
 
-| text | section | header | div | p | s | id |
-|:---|:---|:---|---:|---:|---:|:---|
-| This paper demonstrates some good and poor practices for use with the {metacheck} R package and Shiny app. | abstract | Abstract | 0 | 1 | 1 | to_err_is_human |
-| Although intentional dishonestly might be a successful way to boost creativity (Gino & Wiltermuth, 2014), it is safe to say most mistakes researchers make are unintentional. | intro | Introduction | 1 | 1 | 1 | to_err_is_human |
-| In this study we examine whether automated checks reduce the amount of errors that researchers make in scientific manuscripts. | method | Method and Participants | 2 | 1 | 1 | to_err_is_human |
-| On average researchers in the experimental condition found the app marginally significantly more useful (M = 5.06) than researchers in the control condition found the checklist (M = 4.5), t(97.2) = -1.96, p = 0.152. | results | Results | 3 | 1 | 1 | to_err_is_human |
-| It seems automated tools can help prevent errors by providing researchers with feedback about potential mistakes, and researchers feel the app is useful. | discussion | Discussion | 4 | 1 | 1 | to_err_is_human |
+| text_id | section_id | paragraph_id | text | formatted | page_number | paper_id | header | section_type |
+|---:|---:|---:|:---|:---|---:|:---|:---|:---|
+| 1 | 1 | 1 | Daniel Lakens Lisa DeBruine Jakub Werner | NA | 1 | to_err_is_human | To Err is Human: An Empirical Investigation | unknown |
+| 2 | 1 | 2 | 2026-02-22 | NA | 1 | to_err_is_human | To Err is Human: An Empirical Investigation | unknown |
+| 3 | 2 | 3 | This paper demonstrates some good and poor practices for use with the {metacheck} R package. | NA | 1 | to_err_is_human | Abstract | abstract |
+| 4 | 2 | 3 | All data are simulated. | NA | 1 | to_err_is_human | Abstract | abstract |
+| 5 | 2 | 3 | The paper shows examples of (1) open and closed OSF links; (2a) citation of retracted papers, (2b) citations without a doi, (2c) citations with Pubpeer comments, (2d) citations in the FLoRA replication database, and (2e) missing/mismatched/incorrect citations and references; (3a) R files with code on GitHub that do not load libraries in one location, (3b) load files that are not shared in the repository, (3c) lack comments, and (3d) have absolute file paths; (4) imprecise reporting of non-significant p-values; (5) tests with and without effect sizes; (6) use of “marginally significant” to describe non-significant findings; (7) a power analysis reporting some of the essential attributes; and (8) retrieving information from preregistrations. | NA | 1 | to_err_is_human | Abstract | abstract |
+| 6 | 3 | 4 | Although intentional dishonesty might be a successful way to boost creativity (Gino and Wiltermuth 2014), it is safe to say most mistakes researchers make are unintentional. | NA | 1 | to_err_is_human |  | intro |
 
 ### Pattern
 
@@ -299,26 +242,14 @@ argument. The pattern is a regex string by default; set `fixed = TRUE`
 if you want to find exact text matches.
 
 ``` r
+
 text <- search_text(paper, pattern = "metacheck")
 ```
 
-| text | section | header | div | p | s | id |
-|:---|:---|:---|---:|---:|---:|:---|
-| This paper demonstrates some good and poor practices for use with the {metacheck} R package and Shiny app. | abstract | Abstract | 0 | 1 | 1 | to_err_is_human |
-| In this study we examine the usefulness of metacheck to improve best practices. | intro | Introduction | 1 | 1 | 4 | to_err_is_human |
-
-### Section
-
-Set `section` to a vector of the sections to search in.
-
-``` r
-text <- search_text(paper, "metacheck", 
-                    section = "abstract")
-```
-
-| text | section | header | div | p | s | id |
-|:---|:---|:---|---:|---:|---:|:---|
-| This paper demonstrates some good and poor practices for use with the {metacheck} R package and Shiny app. | abstract | Abstract | 0 | 1 | 1 | to_err_is_human |
+| text_id | section_id | paragraph_id | text | formatted | page_number | paper_id | header | section_type |
+|---:|---:|---:|:---|:---|---:|:---|:---|:---|
+| 3 | 2 | 3 | This paper demonstrates some good and poor practices for use with the {metacheck} R package. | NA | 1 | to_err_is_human | Abstract | abstract |
+| 9 | 3 | 4 | In this study we examine the usefulness of metacheck to improve best practices. | NA | 1 | to_err_is_human |  | intro |
 
 ### Return
 
@@ -326,14 +257,15 @@ Set `return` to one of “sentence”, “paragraph”, “section”, or “mat
 control what gets returned.
 
 ``` r
-text <- search_text(paper, "metacheck", 
-                    section = "intro", 
+
+text <- search_text(paper, "GitHub", 
                     return = "paragraph")
 ```
 
-| text | section | header | div | p | s | id |
-|:---|:---|:---|---:|---:|:---|:---|
-| Although intentional dishonestly might be a successful way to boost creativity (Gino & Wiltermuth, 2014), it is safe to say most mistakes researchers make are unintentional. From a human factors perspective, human error is a symptom of a poor design (Smithy, 2020). Automation can be used to check for errors in scientific manuscripts, and inform authors about possible corrections. In this study we examine the usefulness of metacheck to improve best practices. | intro | Introduction | 1 | 1 | NA | to_err_is_human |
+| text_id | section_id | paragraph_id | text | formatted | page_number | paper_id | header | section_type |
+|:---|---:|---:|:---|:---|:---|:---|:---|:---|
+| NA | 2 | 3 | This paper demonstrates some good and poor practices for use with the {metacheck} R package. All data are simulated. The paper shows examples of (1) open and closed OSF links; (2a) citation of retracted papers, (2b) citations without a doi, (2c) citations with Pubpeer comments, (2d) citations in the FLoRA replication database, and (2e) missing/mismatched/incorrect citations and references; (3a) R files with code on GitHub that do not load libraries in one location, (3b) load files that are not shared in the repository, (3c) lack comments, and (3d) have absolute file paths; (4) imprecise reporting of non-significant p-values; (5) tests with and without effect sizes; (6) use of “marginally significant” to describe non-significant findings; (7) a power analysis reporting some of the essential attributes; and (8) retrieving information from preregistrations. | NA | NA | to_err_is_human | Abstract | abstract |
+| NA | 6 | 7 | Data and analysis code is available on GitHub from <https://github.com/Lakens/to_err_is_human> and from <https://researchbox.org/4377>. Data is also available from <https://osf.io/5tbm9> and code is also available from <https://osf.io/629bx>. | NA | NA | to_err_is_human | Data Availability | endnote |
 
 ### Regex matches
 
@@ -344,21 +276,25 @@ are passed to [`grep()`](https://rdrr.io/r/base/grep.html), so
 `perl = TRUE` allows you to use more complex regex, like below.
 
 ``` r
+
 pattern <- "[a-zA-Z]\\S*\\s*(=|<)\\s*[0-9\\.,-]*\\d"
 text <- search_text(paper, pattern, return = "match", perl = TRUE)
 ```
 
-| text            | section | header                  | div |   p |   s | id              |
-|:----------------|:--------|:------------------------|----:|----:|----:|:----------------|
-| M = 9.12        | method  | Method and Participants |   2 |   1 |  11 | to_err_is_human |
-| M = 10.9        | method  | Method and Participants |   2 |   1 |  11 | to_err_is_human |
-| t(97.7) = 2.9   | method  | Method and Participants |   2 |   1 |  11 | to_err_is_human |
-| p = 0.005       | method  | Method and Participants |   2 |   1 |  11 | to_err_is_human |
-| d = 0.59        | method  | Method and Participants |   2 |   1 |  11 | to_err_is_human |
-| M = 5.06        | results | Results                 |   3 |   1 |   1 | to_err_is_human |
-| M = 4.5         | results | Results                 |   3 |   1 |   1 | to_err_is_human |
-| t(97.2) = -1.96 | results | Results                 |   3 |   1 |   1 | to_err_is_human |
-| p = 0.152       | results | Results                 |   3 |   1 |   1 | to_err_is_human |
+| text_id | section_id | paragraph_id | text | formatted | page_number | paper_id | header | section_type |
+|---:|---:|---:|:---|:---|---:|:---|:---|:---|
+| 19 | 7 | 8 | N=50 | NA | 2 | to_err_is_human | Power Analysis | method |
+| 21 | 8 | 10 | M=9.12 | NA | 3 | to_err_is_human | Results | results |
+| 21 | 8 | 10 | M=10.9 | NA | 3 | to_err_is_human | Results | results |
+| 21 | 8 | 10 | t(97.7)=2.9 | NA | 3 | to_err_is_human | Results | results |
+| 21 | 8 | 10 | p=0.005 | NA | 3 | to_err_is_human | Results | results |
+| 21 | 8 | 10 | d=0.59 | NA | 3 | to_err_is_human | Results | results |
+| 22 | 8 | 11 | M=5.06 | NA | 3 | to_err_is_human | Results | results |
+| 22 | 8 | 11 | M=4.5 | NA | 3 | to_err_is_human | Results | results |
+| 22 | 8 | 11 | t(97.2)=-1.96 | NA | 3 | to_err_is_human | Results | results |
+| 22 | 8 | 11 | p=0.152 | NA | 3 | to_err_is_human | Results | results |
+| 39 | 16 | 25 | pwr::pwr.t.test(n = 50 | NA | 2 | to_err_is_human | Footnote 2 | footnote |
+| 39 | 16 | 25 | power = 0.8 | NA | 2 | to_err_is_human | Footnote 2 | footnote |
 
 ### Expand Text
 
@@ -368,6 +304,7 @@ or a module with
 [`expand_text()`](https://scienceverse.github.io/metacheck/reference/expand_text.md).
 
 ``` r
+
 marginal <- search_text(paper, "marginal") |>
   expand_text(paper, plus = 1, minus = 1)
 
@@ -387,7 +324,8 @@ supported by [ellmer](https://ellmer.tidyverse.org/).
 
 ### Setup
 
-You will need to get your own API key from your preferred provider
+You will need to get **your own API key** (the one below is a fake
+example) from your preferred provider
 (e.g. <https://console.groq.com/keys>). To avoid having to type it out,
 add it to the .Renviron file in the following format (you can use
 [`usethis::edit_r_environ()`](https://usethis.r-lib.org/reference/edit.html)
@@ -398,6 +336,7 @@ GROQ_GPT_KEY="sk-proj-abcdefghijklmnopqrs0123456789ABCDEFGHIJKLMNOPQRS"
 ```
 
 ``` r
+
 # useful if you aren't sure where this file is
 usethis::edit_r_environ()
 ```
@@ -409,11 +348,11 @@ and access a list of the current available models using
 
 | platform | id | object | owned_by | context_window | max_completion_tokens | created_at |
 |:---|:---|:---|:---|---:|---:|:---|
-| groq | llama-3.1-8b-instant | model | Meta | 131072 | 131072 | 2023-09-03 |
-| groq | openai/gpt-oss-20b | model | OpenAI | 131072 | 65536 | 2025-08-05 |
-| groq | moonshotai/kimi-k2-instruct-0905 | model | Moonshot AI | 262144 | 16384 | 2025-09-05 |
-| groq | meta-llama/llama-prompt-guard-2-22m | model | Meta | 512 | 512 | 2025-05-30 |
-| groq | groq/compound-mini | model | Groq | 131072 | 8192 | 2025-09-04 |
+| groq | groq/compound | model | Groq | 131072 | 8192 | 2025-09-04 |
+| groq | meta-llama/llama-prompt-guard-2-86m | model | Meta | 512 | 512 | 2025-05-30 |
+| groq | qwen/qwen3-32b | model | Alibaba Cloud | 131072 | 40960 | 2025-05-28 |
+| groq | canopylabs/orpheus-v1-english | model | Canopy Labs | 4000 | 50000 | 2025-12-19 |
+| groq | openai/gpt-oss-safeguard-20b | model | OpenAI | 131072 | 65536 | 2025-10-29 |
 
 When you start metacheck for the first time, it will check for relevant
 API keys in your Renviron and automatically set the model to use. You
@@ -421,9 +360,10 @@ can get or set this with
 [`llm_model()`](https://scienceverse.github.io/metacheck/reference/llm_model.md).
 
 ``` r
+
 llm_model() # get current model
-llm_model("openai") # set to ellmer's default openai model
-llm_model("openai/gpt-4.1") # set to specific openai model
+llm_model("groq") # set to ellmer's default groq model
+llm_model("groq/llama-3.3-70b-versatile") # set to specific openai model
 ```
 
 ### LLM Queries
@@ -436,15 +376,16 @@ settings.
 Use
 [`search_text()`](https://scienceverse.github.io/metacheck/reference/search_text.md)
 first to narrow down the text into what you want to query. Below, we
-limited search to the first ten papers’ method sections, and returned
-sentences that contains the word “power” and at least one number. Then
-we asked an LLM to determine if this is an a priori power analysis, and
-if so, to return some relevant values in a JSON-structured format.
+limited search to the first ten papers, and returned sentences that
+contains the word “power” and at least one number. Then we asked an LLM
+to determine if this is an a priori power analysis, and if so, to return
+some relevant values in a JSON-structured format.
 
 ``` r
+
 power <- psychsci[1:10] |>
   # sentences containing the word power
-  search_text("power", section = "method") |>
+  search_text("power") |>
   # and containing at least one number
   search_text("[0-9]") 
 
@@ -479,21 +420,26 @@ deals with it gracefully (sets an ‘error’ column to “parsing error”) if
 there are errors. It also fixes column data types, if possible.
 
 ``` r
+
 llm_response <- json_expand(llm_power, "answer") |>
   dplyr::select(text, apriori:es_metric)
 ```
 
 | text | apriori | test | sample | alpha | power | es | es_metric |
-|:---|:---|:---|---:|---:|---:|:---|:---|
-| Sample size was calculated with an a priori power analysis, using the effect sizes reported by Küpper et al. (2014), who used identical procedures, materials, and dependent measures. | TRUE |  | NA | NA | NA | NA | NA |
-| We determined that a minimum sample size of 7 per group would be necessary for 95% power to detect an effect. | TRUE |  | 7 | NA | 0.95 | NA | NA |
+|:---|:---|:---|---:|---:|---:|---:|:---|
+| It is possible that less-consistent effects were observed on trials with errors because of reduced power to detect an effect on these trials, which by design were less numerous (~25%). | FALSE | NA | NA | NA | NA | NA | NA |
+| Figure 1 shows that CY had very little predictive power for CLIM, but the fit in the transposed plot has an obvious bell-shaped curve. | FALSE | NA | NA | NA | NA | NA | NA |
+| Sample size was calculated with an a priori power analysis, using the effect sizes reported by Küpper et al. (2014), who used identical procedures, materials, and dependent measures. | TRUE | NA | NA | NA | NA | NA | NA |
+| We determined that a minimum sample size of 7 per group would be necessary for 95% power to detect an effect. | TRUE | t-test | 7 | 0.050 | 0.95 | NA | NA |
 | For the first part of the task, 11 static visual images, one from each of the scenes in the film were presented once each on a black background for 2 s using Power-Point. | FALSE | NA | NA | NA | NA | NA | NA |
-| A sample size of 26 per group was required to ensure 80% power to detect this difference at the 5% significance level. | TRUE |  | 26 | 0.050 | 0.80 | NA | NA |
-| A sample size of 18 per condition was required in order to ensure an 80% power to detect this difference at the 5% significance level. | TRUE |  | 18 | 0.050 | 0.80 | NA | NA |
-| The 13,500 selected loan requests conservatively achieved a power of .98 for an effect size of .07 at an alpha level of .05. | FALSE | NA | NA | NA | NA | NA | NA |
-| On the basis of simulations over a range of expected effect sizes for contrasts of fMRI activity, we estimated that a sample size of 24 would provide .80 power at a conservative brainwide alpha threshold of .002 (although such thresholds ideally should be relaxed for detecting activity in regions where an effect is predicted). | TRUE | contrasts of fMRI activity | 24 | 0.002 | 0.80 | NA | NA |
-| Stimulus sample size was determined via power analysis of the sole existing similar study, which used neural activity to predict Internet downloads of music (Berns & Moore, 2012). | TRUE |  | NA | NA | NA | NA | NA |
+| A sample size of 26 per group was required to ensure 80% power to detect this difference at the 5% significance level. | TRUE | two-sample t-test | 26 | 0.050 | 0.80 | NA | NA |
+| A sample size of 18 per condition was required in order to ensure an 80% power to detect this difference at the 5% significance level. | TRUE | t-test | 18 | 0.050 | 0.80 | NA | NA |
+| The 13,500 selected loan requests conservatively achieved a power of .98 for an effect size of .07 at an alpha level of .05. | TRUE |  | 13500 | 0.050 | 0.98 | 0.07 | NA |
+| On the basis of simulations over a range of expected effect sizes for contrasts of fMRI activity, we estimated that a sample size of 24 would provide .80 power at a conservative brainwide alpha threshold of .002 (although such thresholds ideally should be relaxed for detecting activity in regions where an effect is predicted). | TRUE | fMRI activity contrast | 24 | 0.002 | 0.80 | NA | NA |
+| Stimulus sample size was determined via power analysis of the sole existing similar study, which used neural activity to predict Internet downloads of music (Berns & Moore, 2012). | TRUE | NA | NA | NA | NA | NA | NA |
 | The effect size from that study implied that a sample size of 72 loan requests would be required to achieve .80 power at an alpha level of .05. | TRUE |  | 72 | 0.050 | 0.80 | NA | NA |
+| Categorical ratings of the emotional expressions in the loan photographs had a similarly powerful impact on loan-request success; requests with “happy” photographs received \$5.15 more per hour than requests with “sad” photographs, on average; they achieved full funding in 7.6% less time. | FALSE | NA | NA | NA | NA | NA | NA |
+| Although previous research has provided mixed evidence about the impact of positive versus negative affect on charitable giving (Andreoni, 1990;Small & Verrochi, 2009), by simultaneously assessing affect at both Internet-aggregate and laboratory-sample levels of analysis, our studies provide consistent evidence that photograph-elicited positive arousal most powerfully promoted lending rates and outcomes (Tables 1 and 2, Fig. 2a, and Fig. | FALSE | NA | NA | NA | NA | NA | NA |
 
 ### Rate Limiting
 
@@ -505,6 +451,7 @@ your code, we set the default limits to 30 queries at a time, but you
 can change this:
 
 ``` r
+
 llm_max_calls(30)
 ```
 
@@ -518,17 +465,15 @@ archived on the Open Science Framework.
 Get any OSF links from a paper or list of papers.
 
 ``` r
+
 links <- osf_links(psychsci)
 
 links$text |> unique() |> head()
 ```
 
-    #> [1] "osf.io/e2aks"                                             
-    #> [2] "osf.io/tvyxz/"                                            
-    #> [3] "osf.io/t9j8e/? view_only=f171281f212f4435917b16a9e581a73b"
-    #> [4] "osf .io/ideta"                                            
-    #> [5] "osf.io/eky4s"                                             
-    #> [6] "osf.io/xgwhk"
+    #> [1] "osf.io/e2aks"                  "osf.io/tvyxz/"                
+    #> [3] "osf.io/t9j8e/? view_only=f171" "osf .io/ideta"                
+    #> [5] "osf.io/tvyxz/ "                "osf.io/eky4s"
 
 You can see that some of them have rogue spaces or view-only links. The
 function
@@ -538,6 +483,7 @@ as well as the 25-character waterbutler IDs) and converts them to short
 IDs.
 
 ``` r
+
 osf_ids <- osf_check_id(links$text) |> unique()
 
 head(osf_ids)
@@ -557,34 +503,21 @@ osf_type (nodes, files, preprints, registrations, users, set to
 the ), whether it is public
 
 ``` r
-info <- osf_retrieve(links[1:6, ])
-```
 
-    #> Starting OSF retrieval for 4 URLs...
+info <- osf_retrieve(links[1:6, "text"])
 
-    #> * Retrieving info from e2aks...
-
-    #> * Retrieving info from tvyxz...
-
-    #> * Retrieving info from t9j8e...
-
-    #> * Retrieving info from ideta...
-
-    #> ...OSF retrieval complete!
-
-``` r
 info[, c("text","osf_id", "osf_type", "public", "category")]
 ```
 
     #> # A tibble: 6 × 5
-    #>   text                                           osf_id osf_type public category
-    #>   <chr>                                          <chr>  <chr>    <lgl>  <chr>   
-    #> 1 osf.io/e2aks                                   e2aks  nodes    TRUE   project 
-    #> 2 osf.io/tvyxz/                                  tvyxz  nodes    TRUE   project 
-    #> 3 osf.io/tvyxz/                                  tvyxz  nodes    TRUE   project 
-    #> 4 osf.io/t9j8e/? view_only=f171281f212f4435917b… t9j8e  private  FALSE  NA      
-    #> 5 osf .io/ideta                                  ideta  nodes    TRUE   project 
-    #> 6 osf.io/tvyxz/                                  tvyxz  nodes    TRUE   project
+    #>   text                            osf_id osf_type public category
+    #>   <chr>                           <chr>  <chr>    <lgl>  <chr>   
+    #> 1 "osf.io/e2aks"                  e2aks  nodes    TRUE   project 
+    #> 2 "osf.io/tvyxz/"                 tvyxz  nodes    TRUE   project 
+    #> 3 "osf.io/tvyxz/"                 tvyxz  nodes    TRUE   project 
+    #> 4 "osf.io/t9j8e/? view_only=f171" t9j8e  private  FALSE  NA      
+    #> 5 "osf .io/ideta"                 ideta  nodes    TRUE   project 
+    #> 6 "osf.io/tvyxz/ "                tvyxz  nodes    TRUE   project
 
 For now, the OSF API does not let us retrieve any information about
 view-only links. They may be viewable by you in the web browser if the
@@ -595,31 +528,9 @@ You can set the argument `recursive = TRUE` to also retrieve information
 about all nodes and files that are contained by the OSF link.
 
 ``` r
+
 osf_api_calls(0)
 all_contents <- osf_retrieve(links$text[1], recursive = TRUE)
-```
-
-    #> Starting OSF retrieval for 1 URL...
-
-    #> * Retrieving info from e2aks...
-
-    #> ...Main retrieval complete
-
-    #> Starting retrieval of children...
-
-    #> * Retrieving children for e2aks...
-
-    #> * Retrieving children for pj4e8, 7jh5v...
-
-    #> * Retrieving files for e2aks...
-
-    #> * Retrieving files for pj4e8...
-
-    #> * Retrieving files for 7jh5v...
-
-    #> ...OSF retrieval complete!
-
-``` r
 n_calls <- osf_api_calls()
 ```
 
@@ -630,15 +541,11 @@ reset. You can see that the project osf.io/e2aks had 3 nodes and 6
 files, which required 10 API calls.
 
 ``` r
+
 sum(all_contents$osf_type == "nodes")
 ```
 
     #> [1] 3
-
-The OSF API does not (yet) have a way to find out what type of thing a
-URL represents, so we may have to make a few API calls to figure out if
-a URL represents a node, a file, a preprint, a preregistration, a user,
-or is an invalid URL (e.g., a typo or an object that has been deleted).
 
 ### Download OSF Files
 
@@ -656,6 +563,7 @@ component names and downloading all files smaller than `max_file_size`
 to 100 MB).
 
 ``` r
+
 osf_file_download(osf_id = "pngda",
                   download_to = ".", 
                   max_file_size = 1, 
@@ -667,6 +575,7 @@ osf_file_download(osf_id = "pngda",
     Downloading files [=====================] 24/24 00:00:35
 
 ``` r
+
 list.files("pngda", recursive = TRUE)
 ```
 
@@ -705,46 +614,48 @@ will share more modules.
 You can see the list of built-in modules with the function below.
 
 ``` r
+
 module_list()
 ```
 
-    #>  
-    #> *** GENERAL ***
-    #>  * all_urls: List all the URLs in the main text.
-    #>  * coi_check: Identify and extract Conflicts of Interest (COI) statements.
-    #>  * coi_check_oi: Identify and extract Conflicts of Interest (COI) statements.
-    #>  * funding_check: Identify and extract funding statements.
-    #>  * funding_check_oi: Identify and extract funding statements.
-    #>  * open_practices: This module incorporates ODDPub into metacheck. ODDPub is a text mining algorithm that detects which publications disseminated Open Data or Open Code together with the publication.
-    #>  
-    #> *** METHOD ***
-    #>  * causal_claims: Aims to identify the presence of random assignment, and lists sentences that make causal claims in title or abstract.
-    #>  * power: This module uses a large language module (LLM) to extract information reported in power analyses, including the statistical test, sample size, alpha level, desired level of power,and magnitude and type of effect size.
     #> 
-    #> If you have not set llm_use(TRUE) and supplied a groq API, the module will return paragraphs that potentially contain power analyses, based on a regular expression search.
-    #>  * prereg_check: Retrieve information from preregistrations in a standardised way,
+    #> *** GENERAL ***
+    #> 
+    #> * all_urls: List all the URLs in the main text.
+    #> * coi_check: Identify and extract Conflicts of Interest (COI) statements.
+    #> * coi_check_oi: Identify and extract Conflicts of Interest (COI) statements.
+    #> * funding_check: Identify and extract funding statements.
+    #> * funding_check_oi: Identify and extract funding statements.
+    #> * open_practices: This module incorporates ODDPub into metacheck. ODDPub is a text mining algorithm that detects which publications disseminated Open Data or Open Code together with the publication.
+    #> 
+    #> *** METHOD ***
+    #> 
+    #> * causal_claims: Aims to identify the presence of random assignment, and lists sentences that make causal claims in title or abstract.
+    #> * power: This module uses uses regular expressions to identify sentences that contain a statistical power analysis. If specified by the user, it also uses a large language module (LLM) to extract information reported in power analyses, including the statistical test, sample size, alpha level, desired level of power, and magnitude and type of effect size.
+    #> * prereg_check: Retrieve information from preregistrations in a standardised way,
     #> and make them easier to check.
-    #>  
+    #> 
     #> *** RESULTS ***
-    #>  * all_p_values: List all p-values in the text, returning the matched text (e.g., 'p = 0.04') and document location in a table.
-    #>  * code_check: This module retrieves information from repositories checked by repo_check about code files (R, SAS, SPSS, Stata).
-    #>  * marginal: List all sentences that describe an effect as 'marginally significant'.
-    #>  * repo_check: This module retrieves information from repositories.
-    #>  * stat_check: Check consistency of p-values and test statistics
-    #>  * stat_effect_size: The Effect Size module checks for effect sizes in t-tests and F-tests.
-    #>  * stat_p_exact: List any p-values reported with insufficient precision (e.g., p < .05 or p = n.s.)
-    #>  * stat_p_nonsig: This module checks for imprecisely reported p values. If p > .05 is detected, it warns for misinterpretations.
-    #>  
+    #> 
+    #> * all_p_values: List all p-values in the text, returning the matched text (e.g., 'p = 0.04') and document location in a table.
+    #> * code_check: This module retrieves information from repositories checked by repo_check about code files (R, SAS, SPSS, Stata).
+    #> * marginal: List all sentences that describe an effect as 'marginally significant'.
+    #> * repo_check: This module retrieves information from repositories.
+    #> * stat_check: Check consistency of p-values and test statistics
+    #> * stat_effect_size: The Effect Size module checks for effect sizes in t-tests and F-tests.
+    #> * stat_p_exact: List any p-values reported with insufficient precision (e.g., p < .05 or p = n.s.)
+    #> * stat_p_nonsig: This module checks for imprecisely reported p values. If p > .05 is detected, it warns for misinterpretations.
+    #> 
     #> *** REFERENCE ***
-    #>  * ref_accuracy: This module checks references for mismatches with CrossRef.
-    #>  * ref_consistency: Check if all references are cited and all citations are referenced
-    #>  * ref_doi_check: This module checks references for missing DOIs or DOIs with an invalid format.
-    #>  * ref_miscitation: Check for frequently miscited papers. This module is just a proof of concept -- the miscite database is not yet populated with real examples.
-    #>  * ref_pubpeer: This module checks references and warns for citations that have comments on pubpeer (excluding Statcheck comments).
-    #>  * ref_replication: This module checks references and warns for citations of original studies for which replication studies exist in the Replication Database.
-    #>  * ref_retraction: This module checks references and warns for citations in the RetractionWatch Database.
-    #>  * ref_summary: Summarise information about each reference in a paper.
-    #>  
+    #> 
+    #> * ref_accuracy: This module checks references for mismatches with CrossRef.
+    #> * ref_consistency: Check if all references are cited and all citations are referenced
+    #> * ref_miscitation: Check for frequently miscited papers. This module is just a proof of concept -- the miscite database is not yet populated with real examples.
+    #> * ref_pubpeer: This module checks references and warns for citations that have comments on pubpeer (excluding Statcheck comments).
+    #> * ref_replication: This module checks references and warns for citations of original studies for which replication or reproduction studies exist in the FLoRA database.
+    #> * ref_retraction: This module checks references and warns for citations in the RetractionWatch Database.
+    #> * ref_summary: Summarise information about each reference in a paper.
+    #> 
     #> Use `module_help("module_name")` for help with a specific module
 
 ### Running modules
@@ -752,14 +663,15 @@ module_list()
 To run a built-in module on a paper, you can reference it by name.
 
 ``` r
+
 p <- module_run(paper, "all_p_values")
 ```
 
-| text | section | header | div | p | s | id | p_comp | p_value |
-|:---|:---|:---|---:|---:|---:|:---|:---|---:|
-| p = 0.005 | method | Method and Participants | 2 | 1 | 11 | to_err_is_human | = | 0.005 |
-| p = 0.152 | results | Results | 3 | 1 | 1 | to_err_is_human | = | 0.152 |
-| p \> .05 | results | Results | 3 | 1 | 2 | to_err_is_human | \> | 0.050 |
+| text_id | section_id | paragraph_id | text | formatted | page_number | paper_id | header | section_type | p_comp | p_value |
+|---:|---:|---:|:---|:---|---:|:---|:---|:---|:---|---:|
+| 21 | 8 | 10 | p=0.005 | NA | 3 | to_err_is_human | Results | results | = | 0.005 |
+| 22 | 8 | 11 | p=0.152 | NA | 3 | to_err_is_human | Results | results | = | 0.152 |
+| 23 | 8 | 12 | p \> .05 | NA | 3 | to_err_is_human | Results | results | \> | 0.050 |
 
 ### Creating modules
 
@@ -776,11 +688,12 @@ You can generate a report from any set of modules. Check the function
 help for the default set.
 
 ``` r
+
 report(paper, output_format = "qmd")
 ```
 
 See the [example
-report](https://scienceverse.github.io/metacheck/articles/report-example.md).
+report](https://scienceverse.github.io/metacheck/report-example.md).
 
 [^1]: Using the parallel functions in ellmer can be more efficient, but
     currently doesn’t do a good job of associating structured output to

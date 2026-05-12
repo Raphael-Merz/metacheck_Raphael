@@ -13,7 +13,8 @@ osf_file_download(
   max_file_size = 10,
   max_download_size = 100,
   max_folder_length = Inf,
-  ignore_folder_structure = FALSE
+  ignore_folder_structure = FALSE,
+  pb = NULL
 )
 ```
 
@@ -45,6 +46,10 @@ osf_file_download(
 
   if TRUE, download all files into a single folder
 
+- pb:
+
+  a progress bar passed from another function
+
 ## Value
 
 data frame of file info
@@ -66,7 +71,5 @@ the downloaded column value set to FALSE.
 ``` r
 # \donttest{
 osf_file_download("6nt4v")
-#> Starting retrieval for 6nt4v
-#> - Created directory /Users/debruine/rproj/scienceverse/metacheck/docs/reference/6nt4v
 # }
 ```

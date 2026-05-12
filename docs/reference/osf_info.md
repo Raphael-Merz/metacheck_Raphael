@@ -5,10 +5,14 @@ Retrieve info from the OSF by ID
 ## Usage
 
 ``` r
-osf_info(osf_id)
+osf_info(osf_ids, pb = NULL)
 ```
 
 ## Arguments
+
+- pb:
+
+  a progress bar passed from another function
 
 - osf_id:
 

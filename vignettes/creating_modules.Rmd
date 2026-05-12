@@ -15,7 +15,7 @@ knitr::opts_chunk$set(
 ```
 
 ```{r setup}
-library(metacheck)
+devtools::load_all(".")
 ```
 
 Modules are user-created patterns for checking a paper or set of papers. Module specifications are written in the same format as functions in R packages, using roxygen2 for documentation. 
@@ -165,6 +165,20 @@ If you want to display progress for a long module, you can use the `pb()` functi
 steps <- c("beginning", "middle", "end")
 pb <- pb(length(steps),
            ":what [:bar] :current/:total :elapsedfull")
+
+for (step in steps) {
+  pb$tick(tokens = list(what = step))
+  Sys.sleep(2)
+}
+```
+
+If you dn't know how many steps there will be in a process, you can use the spinner version:
+
+```{r}
+#| eval: false
+
+steps <- c("beginning", "middle", "end")
+pb <- pb(NA, "(:spin) :what")
 
 for (step in steps) {
   pb$tick(tokens = list(what = step))
@@ -379,7 +393,7 @@ In order to keep references displayed consistently, use the `format_ref()` funct
 ```{r}
 #| results: 'asis'
 # get refs from a paper
-paper <- read(demoxml())
+paper <- demopaper()
 format_ref(paper$bib$ref[2])
 ```
 

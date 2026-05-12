@@ -5,7 +5,7 @@ Retrieve info from ResearchBox by URL
 ## Usage
 
 ``` r
-rbox_retrieve(rb_url, id_col = 1)
+rbox_retrieve(rb_url, id_col = 1, pb = NULL)
 ```
 
 ## Arguments
@@ -19,6 +19,10 @@ rbox_retrieve(rb_url, id_col = 1)
 
   the index or name of the column that contains ResearchBox URLs, if id
   is a table
+
+- pb:
+
+  a progress bar passed from another function
 
 ## Value
 

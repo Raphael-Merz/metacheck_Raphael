@@ -1,32 +1,35 @@
 # Package index
 
-## App
-
-- [`metacheck_app()`](https://scienceverse.github.io/metacheck/reference/metacheck_app.md)
-  : Launch Shiny App
-
 ## Reading in Papers
 
-- [`pdf2grobid()`](https://scienceverse.github.io/metacheck/reference/pdf2grobid.md)
+- [`convert()`](https://scienceverse.github.io/metacheck/reference/convert.md)
+  : Convert documents
+- [`convert_bibr()`](https://scienceverse.github.io/metacheck/reference/convert_bibr.md)
+  : Convert documents using bibr
+- [`convert_grobid()`](https://scienceverse.github.io/metacheck/reference/convert_grobid.md)
   : Convert a PDF to Grobid XML
+- [`grobid_to_bibr()`](https://scienceverse.github.io/metacheck/reference/grobid_to_bibr.md)
+  : Convert Grobid TEI XML file to bibr format
 - [`read()`](https://scienceverse.github.io/metacheck/reference/read.md)
-  [`read_grobid()`](https://scienceverse.github.io/metacheck/reference/read.md)
-  [`read_cermine()`](https://scienceverse.github.io/metacheck/reference/read.md)
-  [`read_text()`](https://scienceverse.github.io/metacheck/reference/read.md)
-  : Get paper from XML or text file
-- [`paper_validate()`](https://scienceverse.github.io/metacheck/reference/paper_validate.md)
-  : Validate Papers
-
-## Demo Resources
-
-- [`demoxml()`](https://scienceverse.github.io/metacheck/reference/demoxml.md)
-  : Get demo XML file
-- [`demopdf()`](https://scienceverse.github.io/metacheck/reference/demopdf.md)
-  : Get demo PDF file
-- [`demodir()`](https://scienceverse.github.io/metacheck/reference/demodir.md)
-  : Get demo directory of grobid XML files
+  : Read in grobid XML or bibr JSON
+- [`demopaper()`](https://scienceverse.github.io/metacheck/reference/demopaper.md)
+  : Get demo paper
+- [`demofile()`](https://scienceverse.github.io/metacheck/reference/demofile.md)
+  : Get a demo file
 - [`psychsci`](https://scienceverse.github.io/metacheck/reference/psychsci.md)
-  : Psychologial Science Open Access Paper Set
+  : Psychological Science Open Access Paper Set
+- [`test_paper()`](https://scienceverse.github.io/metacheck/reference/test_paper.md)
+  : Test paper
+- [`paper_id()`](https://scienceverse.github.io/metacheck/reference/paper_id.md)
+  : Get Paper IDs
+- [`paper_coerce()`](https://scienceverse.github.io/metacheck/reference/paper_coerce.md)
+  : Coerce paper object types
+- [`paper_schema()`](https://scienceverse.github.io/metacheck/reference/paper_schema.md)
+  : Get paper schema
+- [`paper_write()`](https://scienceverse.github.io/metacheck/reference/paper_write.md)
+  : Write paper
+- [`paper_validate()`](https://scienceverse.github.io/metacheck/reference/paper_validate.md)
+  : Validate a Paper Object
 
 ## Search Papers
 
@@ -34,12 +37,10 @@
   : Search text
 - [`expand_text()`](https://scienceverse.github.io/metacheck/reference/expand_text.md)
   : Expand text
-- [`concat_tables()`](https://scienceverse.github.io/metacheck/reference/concat_tables.md)
-  : Concatenate tables
-- [`info_table()`](https://scienceverse.github.io/metacheck/reference/info_table.md)
-  : Get paper information in a table
-- [`author_table()`](https://scienceverse.github.io/metacheck/reference/author_table.md)
-  : Get author information in a table
+- [`paper_table()`](https://scienceverse.github.io/metacheck/reference/paper_table.md)
+  : Paper tables
+- [`ref_table()`](https://scienceverse.github.io/metacheck/reference/ref_table.md)
+  : Reference and DOI table
 
 ## Module Functions
 
@@ -77,12 +78,18 @@ text.
   : Pluralise
 - [`link()`](https://scienceverse.github.io/metacheck/reference/link.md)
   : Make an html link
+- [`logger()`](https://scienceverse.github.io/metacheck/reference/logger.md)
+  : Log messages
+- [`lastlog()`](https://scienceverse.github.io/metacheck/reference/lastlog.md)
+  : Get the last log
 - [`format_ref()`](https://scienceverse.github.io/metacheck/reference/format_ref.md)
   : Format Reference
-- [`pb()`](https://scienceverse.github.io/metacheck/reference/pb.md) :
-  Progress Bar
 - [`get_prev_outputs()`](https://scienceverse.github.io/metacheck/reference/get_prev_outputs.md)
   : Get Previous Outputs
+- [`format_bib_authors()`](https://scienceverse.github.io/metacheck/reference/format_bib_authors.md)
+  : Format Bib Authors
+- [`fig_image_view()`](https://scienceverse.github.io/metacheck/reference/fig_image_view.md)
+  : View a figure image
 
 ## LLM Functions
 
@@ -101,22 +108,28 @@ text.
 
 ## References/Citations
 
+- [`add_bib_match()`](https://scienceverse.github.io/metacheck/reference/add_bib_match.md)
+  : Match table from bib table
 - [`crossref_doi()`](https://scienceverse.github.io/metacheck/reference/crossref_doi.md)
   : CrossRef Info from DOI
 - [`crossref_query()`](https://scienceverse.github.io/metacheck/reference/crossref_query.md)
   : Look up Reference in CrossRef
+- [`datacite_doi()`](https://scienceverse.github.io/metacheck/reference/datacite_doi.md)
+  : Doi.org Info from DataCite
 - [`doi_clean()`](https://scienceverse.github.io/metacheck/reference/doi_clean.md)
   : Clean DOIs
+- [`doi_lookup()`](https://scienceverse.github.io/metacheck/reference/doi_lookup.md)
+  : Doi.org Info from DOI
 - [`doi_valid_format()`](https://scienceverse.github.io/metacheck/reference/doi_valid_format.md)
   : Validate DOI format
 - [`doi_resolves()`](https://scienceverse.github.io/metacheck/reference/doi_resolves.md)
   : Check whether a DOI resolves
-- [`FReD()`](https://scienceverse.github.io/metacheck/reference/FReD.md)
-  : FORRT Replication Database
-- [`FReD_update()`](https://scienceverse.github.io/metacheck/reference/FReD_update.md)
-  : Update FReD
-- [`FReD_date()`](https://scienceverse.github.io/metacheck/reference/FReD_date.md)
-  : Get date FReD was updated
+- [`FLoRA()`](https://scienceverse.github.io/metacheck/reference/FLoRA.md)
+  : FORRT Replication Database (FLoRA)
+- [`FLoRA_update()`](https://scienceverse.github.io/metacheck/reference/FLoRA_update.md)
+  : Update FLoRA
+- [`FLoRA_date()`](https://scienceverse.github.io/metacheck/reference/FLoRA_date.md)
+  : Get date FLoRA was updated
 - [`openalex_doi()`](https://scienceverse.github.io/metacheck/reference/openalex_doi.md)
   : OpenAlex info from DOI
 - [`openalex_query()`](https://scienceverse.github.io/metacheck/reference/openalex_query.md)
@@ -133,6 +146,8 @@ text.
 
 ## OSF Functions
 
+- [`osf_api_calls()`](https://scienceverse.github.io/metacheck/reference/osf_api_calls.md)
+  : Get/set the OSF API Call Count
 - [`osf_api_check()`](https://scienceverse.github.io/metacheck/reference/osf_api_check.md)
   : Check OSF API Server Status
 - [`osf_check_id()`](https://scienceverse.github.io/metacheck/reference/osf_check_id.md)
@@ -141,18 +156,16 @@ text.
   : Set the OSF delay
 - [`osf_file_download()`](https://scienceverse.github.io/metacheck/reference/osf_file_download.md)
   : Download all OSF Project Files
+- [`osf_get_all_pages()`](https://scienceverse.github.io/metacheck/reference/osf_get_all_pages.md)
+  : Get All OSF API Query Pages
 - [`osf_links()`](https://scienceverse.github.io/metacheck/reference/osf_links.md)
   : Find OSF Links in Papers
+- [`osf_preprint_list()`](https://scienceverse.github.io/metacheck/reference/osf_preprint_list.md)
+  : Get A list of preprints from the OSF
 - [`osf_retrieve()`](https://scienceverse.github.io/metacheck/reference/osf_retrieve.md)
   : Retrieve info from the OSF by ID
 - [`osf_type()`](https://scienceverse.github.io/metacheck/reference/osf_type.md)
   : Get OSF GUID Type
-- [`osf_get_all_pages()`](https://scienceverse.github.io/metacheck/reference/osf_get_all_pages.md)
-  : Get All OSF API Query Pages
-- [`osf_api_calls()`](https://scienceverse.github.io/metacheck/reference/osf_api_calls.md)
-  : Get/set the OSF API Call Count
-- [`osf_preprint_list()`](https://scienceverse.github.io/metacheck/reference/osf_preprint_list.md)
-  : Get A list of preprints from the OSF
 
 ## GitHub Functions
 
@@ -188,36 +201,22 @@ text.
   : Set or get email
 - [`filetype()`](https://scienceverse.github.io/metacheck/reference/filetype.md)
   : Get file Type from Extension
-- [`summarize_contents()`](https://scienceverse.github.io/metacheck/reference/summarize_contents.md)
-  : Summarize Directory Contents
+- [`file_category()`](https://scienceverse.github.io/metacheck/reference/file_category.md)
+  : Categorise files
 - [`causal_relations()`](https://scienceverse.github.io/metacheck/reference/causal_relations.md)
   : Extract causal relations from sentence(s) via a Hugging Face Space
-- [`check_orcid()`](https://scienceverse.github.io/metacheck/reference/check_orcid.md)
-  : Check validity of ORCiD
-- [`get_orcid()`](https://scienceverse.github.io/metacheck/reference/get_orcid.md)
-  : Get ORCiD from Name
-- [`orcid_person()`](https://scienceverse.github.io/metacheck/reference/orcid_person.md)
-  : Get Person Details for ORCiD
-- [`credit_roles()`](https://scienceverse.github.io/metacheck/reference/credit_roles.md)
-  : CRediT Roles
-- [`online()`](https://scienceverse.github.io/metacheck/reference/online.md)
-  : Check if the host of a URL is online
 
 ## Validation Functions
 
-- [`compare_tables()`](https://scienceverse.github.io/metacheck/reference/compare_tables.md)
-  : Compare Tables for Validation
+- [`validate()`](https://scienceverse.github.io/metacheck/reference/validate.md)
+  : Validate
 - [`accuracy()`](https://scienceverse.github.io/metacheck/reference/accuracy.md)
   : Accuracy
-- [`text_features()`](https://scienceverse.github.io/metacheck/reference/text_features.md)
-  : Text features
-- [`distinctive_words()`](https://scienceverse.github.io/metacheck/reference/distinctive_words.md)
-  : Get Distinctive Words
 
 ## Extras
 
-- [`verbose()`](https://scienceverse.github.io/metacheck/reference/verbose.md)
-  : Set or get metacheck verbosity
+- [`extract_equations()`](https://scienceverse.github.io/metacheck/reference/extract_equations.md)
+  : Extract P-Values
 - [`extract_p_values()`](https://scienceverse.github.io/metacheck/reference/extract_p_values.md)
   : Extract P-Values
 - [`extract_urls()`](https://scienceverse.github.io/metacheck/reference/extract_urls.md)

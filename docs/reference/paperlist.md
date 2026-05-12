@@ -6,7 +6,7 @@ paper objects
 ## Usage
 
 ``` r
-paperlist(..., merge_duplicates = TRUE)
+paperlist(..., merge_duplicates = FALSE)
 ```
 
 ## Arguments
@@ -26,9 +26,11 @@ An object with class scivrs_paperlist
 ## Examples
 
 ``` r
+
 p1 <- psychsci[[1]]
 p2 <- psychsci[[2]]
 plist <- paperlist(p1, p2)
 
-merged <- paperlist(psychsci[1:2], psychsci[2:3])
+merged <- paperlist(psychsci[1:2], psychsci[2:3],
+                    merge_duplicates = TRUE)
 ```

@@ -50,12 +50,12 @@ a results table with the expanded text
 
 ``` r
 # single paper search
-paper <- demoxml() |> read()
+paper <- demopaper()
 res_tbl <- search_text(paper, "p =", return = "match")
 expanded <- expand_text(res_tbl, paper)
 
 # multiple paper search
-papers <- demodir() |> read()
-res_tbl <- search_text(papers, "replicate", return = "sentence")
+papers <- psychsci
+res_tbl <- search_text(papers, "replicate")
 expanded <- expand_text(res_tbl, papers, plus = 1, minus = 1)
 ```

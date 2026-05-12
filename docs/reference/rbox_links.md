@@ -22,10 +22,10 @@ a table with the ResearchBox url in the first (text) column
 
 ``` r
 rbox_links(psychsci)
-#> # A tibble: 3 × 7
-#>   text                                    section header   div     p     s id   
-#>   <chr>                                   <chr>   <chr>  <dbl> <dbl> <int> <chr>
-#> 1 https://researchbox.org/801             intro   State…     3     3     1 0956…
-#> 2 https://researchbox.org/801             funding Open …    18     1     1 0956…
-#> 3 https://researchbox.org/1150&PEER_REVI… funding Open …    29     1     2 0956…
+#> # A tibble: 2 × 9
+#>   text_id paragraph_id section_id text     page_number paper_id formatted header
+#>     <int>        <int>      <int> <chr>          <int> <chr>    <chr>     <chr> 
+#> 1      48           17          4 https:/…          NA 0956797… NA        State…
+#> 2     309          108         31 https:/…          NA 0956797… NA        Open …
+#> # ℹ 1 more variable: section_type <chr>
 ```

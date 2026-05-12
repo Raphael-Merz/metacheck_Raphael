@@ -49,6 +49,7 @@ object using GROBID. There are 250 open access papers in the metacheck
 object `psychsci`; we will choose one for this example.
 
 ``` r
+
 # paper to use in this example
 paper <- psychsci[[250]]
 ```
@@ -73,6 +74,7 @@ an error, so scripts where you are checking many URLs can take a long
 time before you realise they aren’t working.
 
 ``` r
+
 osf_api_check()
 #> [1] "ok"
 ```
@@ -87,20 +89,21 @@ interpreted as being split across sentences. This function is our best
 attempt at catching and fixing them all.
 
 ``` r
+
 links <- osf_links(paper)
 ```
 
-| text         | section |
-|:-------------|:--------|
-| osf.io/hv29w | method  |
-| osf.io/2es6n | method  |
-| osf.io/jpm5a | method  |
-| osf.io/aux7s | method  |
-| osf.io/nw3mc | method  |
-| osf.io/ks639 | method  |
-| osf.io/y75nu | method  |
-| OSF.IO/4TYM7 | funding |
-| OSF.IO/X4T9A | funding |
+| text          | section_type |
+|:--------------|:-------------|
+| osf .io/hv29w | method       |
+| osf.io/2es6n  | method       |
+| osf.io/jpm5a  | method       |
+| osf.io/aux7s  | method       |
+| osf.io/nw3mc  | method       |
+| osf.io/ks639  | method       |
+| osf.io/y75nu  | method       |
+| OSF.IO/4TYM7  | funding      |
+| OSF.IO/X4T9A  | funding      |
 
 ### Retrieve Link Info
 
@@ -125,30 +128,11 @@ only get the contents for each item once. If you set the argument
 links (but this requires more API calls).
 
 ``` r
-info <- osf_retrieve(links, recursive = TRUE, find_project = TRUE)
-#> Starting OSF retrieval for 9 URLs...
-#> * Retrieving info from hv29w...
-#> * Retrieving info from 2es6n...
-#> * Retrieving info from jpm5a...
-#> * Retrieving info from aux7s...
-#> * Retrieving info from nw3mc...
-#> * Retrieving info from ks639...
-#> * Retrieving info from y75nu...
-#> * Retrieving info from 4tym7...
-#> * Retrieving info from x4t9a...
-#> ...Main retrieval complete
-#> Starting retrieval of children...
-#> * Retrieving children for x4t9a...
-#> * Retrieving files for x4t9a...
-#> * Retrieving files for 6621454e716cb7048fa45a2a...
-#> * Retrieving files for 6293d1cab59d5f1df8720db5...
-#> * Retrieving files for 6293d1bfbbdcde278f4269ed...
-#> * Retrieving files for 6293d1c5bbdcde278f4269f7...
-#> * Retrieving files for 6339c10031d65306e12de5a2...
-#> * Retrieving files for 6293d2e3b59d5f1df0720c6b...
-#> * Retrieving files for 64f0ac666d1e8905f21516b2...
-#> * Retrieving files for 64f0ab59f3dcd105d7ddd40b...
-#> ...OSF retrieval complete!
+
+info <- osf_retrieve(links, 
+                     id_col = "text", 
+                     recursive = TRUE, 
+                     find_project = TRUE)
 ```
 
 | osf_id | name                                   | osf_type      | project |
@@ -180,128 +164,154 @@ determine file types using extensions.
 | nw3mc                    | suppleVideo4_objlocPlane.mp4          | video    |
 | ks639                    | suppleVideo5_triangleSph.mp4          | video    |
 | y75nu                    | suppleVideo6_trianglePlane.mp4        | video    |
-| f8kbn                    | virtualizerStudy1-main.zip            | archive  |
-| huf2p                    | ReadMe.txt                            | text     |
-| aygpc                    | main_analyseTriangleComple_20230423.m | code     |
-| fkh7w                    | main_simulate_objlocTraj.m            | code     |
-| rz2dy                    | supple_learningTrajectory.m           | code     |
-| 8y2rs                    | poweranalysis_sph.R                   | code     |
-| zd7j6                    | supple_sphWithVariousRadius_clean.m   | code     |
-| xyh32                    | main_analyseObjLocTest.m              | code     |
+| avwq5                    | suppleMovie_legend.txt                | text     |
 | jpm5a                    | suppleVideo2_learnPlane.mp4           | video    |
-| aux7s                    | suppleVideo3_objlocSph.mp4            | video    |
-| y75nu                    | suppleVideo6_trianglePlane.mp4        | video    |
 | 2es6n                    | suppleVideo1_learnSph.mp4             | video    |
 | nw3mc                    | suppleVideo4_objlocPlane.mp4          | video    |
 | ks639                    | suppleVideo5_triangleSph.mp4          | video    |
-| avwq5                    | suppleMovie_legend.txt                | text     |
-| 6k4ma                    | sumDemograph.csv                      | data     |
-| p6y4b                    | rawdata_plane_triangle.csv            | data     |
-| uw23q                    | rawdata_sph_objlocTest.csv            | data     |
-| hwmkb                    | rawdata_sph_triangle.csv              | data     |
-| xhdju                    | cleanData_combine.mat                 | code     |
-| z374c                    | pilotData_triangle_combine_clean.csv  | data     |
+| aux7s                    | suppleVideo3_objlocSph.mp4            | video    |
+| y75nu                    | suppleVideo6_trianglePlane.mp4        | video    |
 | ye56f                    | rawdata_plane_objlocIdentity.csv      | data     |
 | ej3dc                    | rawdata_sph_objlocIdentity.csv        | data     |
 | vj8c2                    | rawdata_plane_objlocTest.csv          | data     |
+| uw23q                    | rawdata_sph_objlocTest.csv            | data     |
+| p6y4b                    | rawdata_plane_triangle.csv            | data     |
+| hwmkb                    | rawdata_sph_triangle.csv              | data     |
+| 6k4ma                    | sumDemograph.csv                      | data     |
+| z374c                    | pilotData_triangle_combine_clean.csv  | data     |
+| xhdju                    | cleanData_combine.mat                 | code     |
+| 8y2rs                    | poweranalysis_sph.R                   | code     |
+| xyh32                    | main_analyseObjLocTest.m              | code     |
+| aygpc                    | main_analyseTriangleComple_20230423.m | code     |
+| fkh7w                    | main_simulate_objlocTraj.m            | code     |
+| rz2dy                    | supple_learningTrajectory.m           | code     |
+| zd7j6                    | supple_sphWithVariousRadius_clean.m   | code     |
 | hv29w                    | Kim,Doeller_Prereg_OSF.pdf            | text     |
-| br82f                    | findShortcut.m                        | code     |
+| f8kbn                    | virtualizerStudy1-main.zip            | archive  |
+| huf2p                    | ReadMe.txt                            | text     |
+| 633c29a131d65309592dd266 | Kim,Doeller_Prereg_OSF.pdf            | text     |
+| 633c29a131d65309592dd269 | main_analyseTriangleComple.m          | code     |
+| 633c29a131d65309592dd26b | main_analyseObjLocTest.m              | code     |
+| 633c29a231d65309592dd27f | poweranalysis_sph.R                   | code     |
+| 633c29a231d65309592dd283 | sumDemograph.csv                      | data     |
+| ukcf2                    | rawdata_sph_triangle.csv              | data     |
+| 633c29a331d65309592dd287 | rawdata_sph_objlocTest.csv            | data     |
+| 633c29a331d65309592dd289 | rawdata_sph_objlocIdentity.csv        | data     |
+| 633c29a331d65309592dd28b | rawdata_plane_triangle.csv            | data     |
+| 633c29a331d65309592dd28d | rawdata_plane_objlocIdentity.csv      | data     |
+| 633c29a331d65309592dd28f | rawdata_plane_objlocTest.csv          | data     |
+| 633c29a331d65309592dd292 | suppleVideo6_trianglePlane.mp4        | video    |
+| 633c29a331d65309592dd294 | suppleVideo3_objlocSph.mp4            | video    |
+| 633c29a331d65309592dd297 | suppleVideo5_triangleSph.mp4          | video    |
+| 633c29a331d65309592dd299 | suppleVideo4_objlocPlane.mp4          | video    |
+| 633c29a331d65309592dd29b | suppleVideo1_learnSph.mp4             | video    |
+| 633c29a331d65309592dd29d | suppleVideo2_learnPlane.mp4           | video    |
+| 633c29a431d65309592dd29f | suppleMovie_legend.txt                | text     |
+| 64f0ac98d9f2c905a4d04981 | psub03_objLearn_Sph_traj.tsv          | data     |
+| 64f0ac9bd9f2c905a5d04a2c | psub04_objLearn_Sph_traj.tsv          | data     |
+| myb2c                    | psub04_objLearn_Plane_traj.tsv        | data     |
+| 64f0ac9fd9f2c905a4d04983 | psub05_objLearn_Plane_traj.tsv        | data     |
+| qkrzx                    | psub05_objLearn_Sph_traj.tsv          | data     |
+| k75rx                    | psub06_objLearn_Plane_traj.tsv        | data     |
+| y3hcd                    | psub06_objLearn_Sph_traj.tsv          | data     |
+| a2z7f                    | psub08_objLearn_Plane_traj.tsv        | data     |
+| c7ryq                    | psub08_objLearn_Sph_traj.tsv          | data     |
+| 9fcnv                    | psub03_objLearn_Plane_traj.tsv        | data     |
+| 6qk9u                    | psub09_objLearn_Sph_traj.tsv          | data     |
+| fyeck                    | psub10_objLearn_Plane_traj.tsv        | data     |
+| 64f0acac6c0f5a0650d059a9 | psub10_objLearn_Sph_traj.tsv          | data     |
+| 64f0acaed9f2c905a4d049aa | psub11_objLearn_Plane_traj.tsv        | data     |
+| wr9z7                    | psub11_objLearn_Sph_traj.tsv          | data     |
+| 64f0acb1f3dcd105d6ddd37c | psub12_objLearn_Plane_traj.tsv        | data     |
+| 64f0acb36c0f5a0650d059ab | psub12_objLearn_Sph_traj.tsv          | data     |
+| 64f0acb4989de605c2dd1588 | psub13_objLearn_Plane_traj.tsv        | data     |
+| 64f0acb7f3dcd105d7ddd44e | psub13_objLearn_Sph_traj.tsv          | data     |
+| 9fcnv                    | psub03_objLearn_Plane_traj.tsv        | data     |
+| symgt                    | psub14_objLearn_Sph_traj.tsv          | data     |
+| 64f0acbc6d1e8905ee1515d8 | psub15_objLearn_Plane_traj.tsv        | data     |
+| 64f0acbd6c0f5a064cd05891 | psub15_objLearn_Sph_traj.tsv          | data     |
+| zd273                    | psub16_objLearn_Plane_traj.tsv        | data     |
+| 64f0acc0989de605bfdd1603 | psub16_objLearn_Sph_traj.tsv          | data     |
+| 5mn3g                    | psub17_objLearn_Sph_traj.tsv          | data     |
+| 64f0acc3989de605c3dd1622 | psub17_objLearn_Plane_traj.tsv        | data     |
+| 64f0acc6d9f2c905a4d049b3 | psub19_objLearn_Sph_traj.tsv          | data     |
+| j2hm8                    | psub19_objLearn_Plane_traj.tsv        | data     |
+| 9fcnv                    | psub03_objLearn_Plane_traj.tsv        | data     |
+| 64f0acc9989de605bfdd160a | psub20_objLearn_Sph_traj.tsv          | data     |
+| 64f0acc9f3dcd105dbddd4a6 | psub20_objLearn_Plane_traj.tsv        | data     |
+| 4bze7                    | psub21_objLearn_Plane_traj.tsv        | data     |
+| 64f0accd6c0f5a064fd058f0 | psub21_objLearn_Sph_traj.tsv          | data     |
+| 5s4hq                    | psub22_objLearn_Sph_traj.tsv          | data     |
+| 64f0acd36c0f5a0650d059c3 | psub22_objLearn_Plane_traj.tsv        | data     |
+| 36nrk                    | psub23_objLearn_Sph_traj.tsv          | data     |
+| 64f0acd6f3dcd105d3ddd39b | psub23_objLearn_Plane_traj.tsv        | data     |
+| d934m                    | psub24_objLearn_Plane_traj.tsv        | data     |
+| 64f0acd9d9f2c905a4d049c3 | psub24_objLearn_Sph_traj.tsv          | data     |
+| wcp42                    | psub25_objLearn_Plane_traj.tsv        | data     |
+| 64f0acdc6d1e8905f2151737 | psub25_objLearn_Sph_traj.tsv          | data     |
+| 64f0acded9f2c905a4d049c8 | psub26_objLearn_Plane_traj.tsv        | data     |
+| 64f0acdff3dcd105daddd561 | psub26_objLearn_Sph_traj.tsv          | data     |
+| 64f0ace16c0f5a0650d059c8 | psub27_objLearn_Plane_traj.tsv        | data     |
+| 64f0ace3f3dcd105dbddd4b8 | psub27_objLearn_Sph_traj.tsv          | data     |
+| 64f0ace5989de605c3dd163d | psub28_objLearn_Plane_traj.tsv        | data     |
+| 64f0ace7d9f2c905a4d049cc | psub28_objLearn_Sph_traj.tsv          | data     |
+| 64f0ace8989de605c3dd163f | psub30_objLearn_Plane_traj.tsv        | data     |
+| ns9d3                    | psub30_objLearn_Sph_traj.tsv          | data     |
+| 64f0aceb989de605c3dd1642 | psub31_objLearn_Plane_traj.tsv        | data     |
+| 64f0acefd9f2c905a5d04a56 | psub31_objLearn_Sph_traj.tsv          | data     |
+| 64f0acef6d1e8905ee1515e2 | psub32_objLearn_Plane_traj.tsv        | data     |
+| 64f0acf2d9f2c905a0d048d2 | psub32_objLearn_Sph_traj.tsv          | data     |
+| 64f0acf36d1e8905f315176e | psub33_objLearn_Plane_traj.tsv        | data     |
+| pr4km                    | psub33_objLearn_Sph_traj.tsv          | data     |
+| 64f0acf6d9f2c905a5d04a58 | psub34_objLearn_Plane_traj.tsv        | data     |
+| kbghd                    | psub34_objLearn_Sph_traj.tsv          | data     |
+| m28av                    | psub35_objLearn_Plane_traj.tsv        | data     |
+| f538v                    | psub37_objLearn_Plane_traj.tsv        | data     |
+| 64f0acfd6d1e8905f3151776 | psub35_objLearn_Sph_traj.tsv          | data     |
+| 64f0acfe989de605c3dd164d | psub37_objLearn_Sph_traj.tsv          | data     |
+| 64f0ad00d9f2c905a4d049d6 | psub38_objLearn_Plane_traj.tsv        | data     |
+| 64f0ad016d1e8905f3151778 | psub38_objLearn_Sph_traj.tsv          | data     |
+| m3g6x                    | psub40_objLearn_Plane_traj.tsv        | data     |
+| ef3hq                    | psub40_objLearn_Sph_traj.tsv          | data     |
+| 64f0ad06989de605badd1471 | psub41_objLearn_Plane_traj.tsv        | data     |
+| 64f0ad08989de605c3dd1650 | psub41_objLearn_Sph_traj.tsv          | data     |
+| 64f0ad0ad9f2c9059dd0482b | psub42_objLearn_Plane_traj.tsv        | data     |
+| 27fxk                    | psub42_objLearn_Sph_traj.tsv          | data     |
+| 9vzb4                    | psub44_objLearn_Plane_traj.tsv        | data     |
+| w7v9f                    | psub44_objLearn_Sph_traj.tsv          | data     |
+| 3jr6q                    | psub46_objLearn_Plane_traj.tsv        | data     |
+| gdqnv                    | psub46_objLearn_Sph_traj.tsv          | data     |
+| dpxwh                    | psub47_objLearn_Plane_traj.tsv        | data     |
+| gtmjp                    | psub47_objLearn_Sph_traj.tsv          | data     |
+| fwkg6                    | rotAroundU.m                          | code     |
 | vbfwm                    | sph2cartFn.m                          | code     |
+| 8c3as                    | cart2sphFn.m                          | code     |
+| fmcr3                    | northVecFn.m                          | code     |
 | x62av                    | drawGeodesic.m                        | code     |
 | mq6g2                    | sph2cartMKunity.m                     | code     |
 | g8qd9                    | translateOnSphere.m                   | code     |
-| fmcr3                    | northVecFn.m                          | code     |
 | zqdms                    | ttestplotMK2.m                        | code     |
-| 8c3as                    | cart2sphFn.m                          | code     |
-| fwkg6                    | rotAroundU.m                          | code     |
-| wr9z7                    | psub11_objLearn_Sph_traj.tsv          | data     |
-| zd273                    | psub16_objLearn_Plane_traj.tsv        | data     |
-| y3hcd                    | psub06_objLearn_Sph_traj.tsv          | data     |
-| wcp42                    | psub25_objLearn_Plane_traj.tsv        | data     |
-| myb2c                    | psub04_objLearn_Plane_traj.tsv        | data     |
-| 5mn3g                    | psub17_objLearn_Sph_traj.tsv          | data     |
-| fyeck                    | psub10_objLearn_Plane_traj.tsv        | data     |
-| a2z7f                    | psub08_objLearn_Plane_traj.tsv        | data     |
-| symgt                    | psub14_objLearn_Sph_traj.tsv          | data     |
-| 6qk9u                    | psub09_objLearn_Sph_traj.tsv          | data     |
-| 64f0ace16c0f5a0650d059c8 | psub27_objLearn_Plane_traj.tsv        | data     |
-| 64f0acf2d9f2c905a0d048d2 | psub32_objLearn_Sph_traj.tsv          | data     |
-| 64f0acef6d1e8905ee1515e2 | psub32_objLearn_Plane_traj.tsv        | data     |
-| 64f0accd6c0f5a064fd058f0 | psub21_objLearn_Sph_traj.tsv          | data     |
-| 64f0acb36c0f5a0650d059ab | psub12_objLearn_Sph_traj.tsv          | data     |
-| 64f0ad06989de605badd1471 | psub41_objLearn_Plane_traj.tsv        | data     |
-| 64f0acd6f3dcd105d3ddd39b | psub23_objLearn_Plane_traj.tsv        | data     |
-| w7v9f                    | psub44_objLearn_Sph_traj.tsv          | data     |
-| 64f0acc3989de605c3dd1622 | psub17_objLearn_Plane_traj.tsv        | data     |
-| 6qk9u                    | psub09_objLearn_Sph_traj.tsv          | data     |
-| k75rx                    | psub06_objLearn_Plane_traj.tsv        | data     |
-| f538v                    | psub37_objLearn_Plane_traj.tsv        | data     |
-| ns9d3                    | psub30_objLearn_Sph_traj.tsv          | data     |
-| 36nrk                    | psub23_objLearn_Sph_traj.tsv          | data     |
-| 9fcnv                    | psub03_objLearn_Plane_traj.tsv        | data     |
-| 27fxk                    | psub42_objLearn_Sph_traj.tsv          | data     |
-| ef3hq                    | psub40_objLearn_Sph_traj.tsv          | data     |
-| qkrzx                    | psub05_objLearn_Sph_traj.tsv          | data     |
-| m3g6x                    | psub40_objLearn_Plane_traj.tsv        | data     |
-| 6qk9u                    | psub09_objLearn_Sph_traj.tsv          | data     |
-| 5s4hq                    | psub22_objLearn_Sph_traj.tsv          | data     |
-| dpxwh                    | psub47_objLearn_Plane_traj.tsv        | data     |
-| 64f0acc9f3dcd105dbddd4a6 | psub20_objLearn_Plane_traj.tsv        | data     |
-| gdqnv                    | psub46_objLearn_Sph_traj.tsv          | data     |
-| gtmjp                    | psub47_objLearn_Sph_traj.tsv          | data     |
-| 64f0ad016d1e8905f3151778 | psub38_objLearn_Sph_traj.tsv          | data     |
-| 64f0acac6c0f5a0650d059a9 | psub10_objLearn_Sph_traj.tsv          | data     |
-| 64f0acb8f3dcd105dbddd49e | psub14_objLearn_Plane_traj.tsv        | data     |
-| 64f0acc6d9f2c905a4d049b3 | psub19_objLearn_Sph_traj.tsv          | data     |
-| kbghd                    | psub34_objLearn_Sph_traj.tsv          | data     |
-| 64f0acfe989de605c3dd164d | psub37_objLearn_Sph_traj.tsv          | data     |
-| 64f0acf36d1e8905f315176e | psub33_objLearn_Plane_traj.tsv        | data     |
-| 64f0ace3f3dcd105dbddd4b8 | psub27_objLearn_Sph_traj.tsv          | data     |
-| 64f0acbc6d1e8905ee1515d8 | psub15_objLearn_Plane_traj.tsv        | data     |
-| 64f0acc9989de605bfdd160a | psub20_objLearn_Sph_traj.tsv          | data     |
-| 64f0aca8d9f2c905a0d048b8 | psub09_objLearn_Plane_traj.tsv        | data     |
-| 64f0ad00d9f2c905a4d049d6 | psub38_objLearn_Plane_traj.tsv        | data     |
-| 64f0acb1f3dcd105d6ddd37c | psub12_objLearn_Plane_traj.tsv        | data     |
-| 64f0ac98d9f2c905a4d04981 | psub03_objLearn_Sph_traj.tsv          | data     |
-| 64f0acfd6d1e8905f3151776 | psub35_objLearn_Sph_traj.tsv          | data     |
-| 3jr6q                    | psub46_objLearn_Plane_traj.tsv        | data     |
-| 64f0ace8989de605c3dd163f | psub30_objLearn_Plane_traj.tsv        | data     |
-| 64f0acd36c0f5a0650d059c3 | psub22_objLearn_Plane_traj.tsv        | data     |
-| 64f0acb7f3dcd105d7ddd44e | psub13_objLearn_Sph_traj.tsv          | data     |
-| 64f0acc0989de605bfdd1603 | psub16_objLearn_Sph_traj.tsv          | data     |
-| 64f0ac9bd9f2c905a5d04a2c | psub04_objLearn_Sph_traj.tsv          | data     |
-| 64f0ad0ad9f2c9059dd0482b | psub42_objLearn_Plane_traj.tsv        | data     |
-| 64f0acdc6d1e8905f2151737 | psub25_objLearn_Sph_traj.tsv          | data     |
-| 64f0ac9fd9f2c905a4d04983 | psub05_objLearn_Plane_traj.tsv        | data     |
-| 9vzb4                    | psub44_objLearn_Plane_traj.tsv        | data     |
-| 64f0acded9f2c905a4d049c8 | psub26_objLearn_Plane_traj.tsv        | data     |
-| 64f0acf6d9f2c905a5d04a58 | psub34_objLearn_Plane_traj.tsv        | data     |
-| 64f0acb4989de605c2dd1588 | psub13_objLearn_Plane_traj.tsv        | data     |
-| 64f0ad08989de605c3dd1650 | psub41_objLearn_Sph_traj.tsv          | data     |
-| 64f0aceb989de605c3dd1642 | psub31_objLearn_Plane_traj.tsv        | data     |
-| 64f0acd9d9f2c905a4d049c3 | psub24_objLearn_Sph_traj.tsv          | data     |
-| 64f0acbd6c0f5a064cd05891 | psub15_objLearn_Sph_traj.tsv          | data     |
-| 64f0acaed9f2c905a4d049aa | psub11_objLearn_Plane_traj.tsv        | data     |
-| 64f0ace5989de605c3dd163d | psub28_objLearn_Plane_traj.tsv        | data     |
-| 64f0ace7d9f2c905a4d049cc | psub28_objLearn_Sph_traj.tsv          | data     |
-| 4bze7                    | psub21_objLearn_Plane_traj.tsv        | data     |
-| c7ryq                    | psub08_objLearn_Sph_traj.tsv          | data     |
-| j2hm8                    | psub19_objLearn_Plane_traj.tsv        | data     |
-| m28av                    | psub35_objLearn_Plane_traj.tsv        | data     |
-| pr4km                    | psub33_objLearn_Sph_traj.tsv          | data     |
-| d934m                    | psub24_objLearn_Plane_traj.tsv        | data     |
+| br82f                    | findShortcut.m                        | code     |
+| 633c29a131d65309592dd26e | ttestplotMK2.m                        | code     |
+| 633c29a131d65309592dd270 | translateOnSphere.m                   | code     |
+| 633c29a131d65309592dd272 | sph2cartMKunity.m                     | code     |
+| 633c29a231d65309592dd274 | drawGeodesic.m                        | code     |
+| 633c29a231d65309592dd276 | northVecFn.m                          | code     |
+| 633c29a231d65309592dd278 | cart2sphFn.m                          | code     |
+| 633c29a231d65309592dd27a | sph2cartFn.m                          | code     |
+| 633c29a231d65309592dd27d | rotAroundU.m                          | code     |
+| 64f0ab6e989de605bedd146d | combvec.m                             | code     |
+| 64f0ab6fd9f2c905a5d04929 | icosahedron.m                         | code     |
+| 64f0ab71f3dcd105d7ddd40c | isface.m                              | code     |
+| 64f0ab72989de605c3dd155d | istriequal.m                          | code     |
 | 64f0ab74989de605c2dd14eb | LICENSE                               | NA       |
 | 64f0ab746d1e8905ef1515e8 | mapface2edge.m                        | code     |
-| 64f0ab7c989de605c2dd14f0 | sortrowstol.m                         | code     |
+| 64f0ab78f3dcd105d6ddd35b | shrinkfacetri.m                       | code     |
+| xuvp9                    | README.md                             | text     |
 | 64f0ab7c6c0f5a0650d05905 | spheretri.m                           | code     |
+| 64f0ab7c989de605c2dd14f0 | sortrowstol.m                         | code     |
 | 64f0ab7ff3dcd105dbddd3db | SphereTriTestCase.m                   | code     |
 | 64f0ab7f6d1e8905ee15157d | spheretribydepth.m                    | code     |
-| 64f0ab72989de605c3dd155d | istriequal.m                          | code     |
-| xuvp9                    | README.md                             | text     |
-| 64f0ab78f3dcd105d6ddd35b | shrinkfacetri.m                       | code     |
-| 64f0ab6e989de605bedd146d | combvec.m                             | code     |
-| 64f0ab71f3dcd105d7ddd40c | isface.m                              | code     |
-| 64f0ab6fd9f2c905a5d04929 | icosahedron.m                         | code     |
 
 We can then use this information to determine if, for each file, the
 information about the files contains text that makes it easy to
@@ -311,7 +321,8 @@ ways that these words can be written) is used to automatically detect
 what is shared.
 
 ``` r
-osf_files_summary <- summarize_contents(info)
+
+osf_files_summary <- file_category(info)
 ```
 
 | name                                  | filetype | file_category |
@@ -323,128 +334,154 @@ osf_files_summary <- summarize_contents(info)
 | suppleVideo4_objlocPlane.mp4          | video    | NA            |
 | suppleVideo5_triangleSph.mp4          | video    | NA            |
 | suppleVideo6_trianglePlane.mp4        | video    | NA            |
-| virtualizerStudy1-main.zip            | archive  | NA            |
-| ReadMe.txt                            | text     | readme        |
-| main_analyseTriangleComple_20230423.m | code     | code          |
-| main_simulate_objlocTraj.m            | code     | code          |
-| supple_learningTrajectory.m           | code     | code          |
-| poweranalysis_sph.R                   | code     | code          |
-| supple_sphWithVariousRadius_clean.m   | code     | code          |
-| main_analyseObjLocTest.m              | code     | code          |
+| suppleMovie_legend.txt                | text     | NA            |
 | suppleVideo2_learnPlane.mp4           | video    | NA            |
-| suppleVideo3_objlocSph.mp4            | video    | NA            |
-| suppleVideo6_trianglePlane.mp4        | video    | NA            |
 | suppleVideo1_learnSph.mp4             | video    | NA            |
 | suppleVideo4_objlocPlane.mp4          | video    | NA            |
 | suppleVideo5_triangleSph.mp4          | video    | NA            |
-| suppleMovie_legend.txt                | text     | NA            |
-| sumDemograph.csv                      | data     | data          |
-| rawdata_plane_triangle.csv            | data     | data          |
-| rawdata_sph_objlocTest.csv            | data     | data          |
-| rawdata_sph_triangle.csv              | data     | data          |
-| cleanData_combine.mat                 | code     | code          |
-| pilotData_triangle_combine_clean.csv  | data     | data          |
+| suppleVideo3_objlocSph.mp4            | video    | NA            |
+| suppleVideo6_trianglePlane.mp4        | video    | NA            |
 | rawdata_plane_objlocIdentity.csv      | data     | data          |
 | rawdata_sph_objlocIdentity.csv        | data     | data          |
 | rawdata_plane_objlocTest.csv          | data     | data          |
+| rawdata_sph_objlocTest.csv            | data     | data          |
+| rawdata_plane_triangle.csv            | data     | data          |
+| rawdata_sph_triangle.csv              | data     | data          |
+| sumDemograph.csv                      | data     | data          |
+| pilotData_triangle_combine_clean.csv  | data     | data          |
+| cleanData_combine.mat                 | code     | code          |
+| poweranalysis_sph.R                   | code     | code          |
+| main_analyseObjLocTest.m              | code     | code          |
+| main_analyseTriangleComple_20230423.m | code     | code          |
+| main_simulate_objlocTraj.m            | code     | code          |
+| supple_learningTrajectory.m           | code     | code          |
+| supple_sphWithVariousRadius_clean.m   | code     | code          |
 | Kim,Doeller_Prereg_OSF.pdf            | text     | NA            |
-| findShortcut.m                        | code     | code          |
+| virtualizerStudy1-main.zip            | archive  | NA            |
+| ReadMe.txt                            | text     | readme        |
+| Kim,Doeller_Prereg_OSF.pdf            | text     | NA            |
+| main_analyseTriangleComple.m          | code     | code          |
+| main_analyseObjLocTest.m              | code     | code          |
+| poweranalysis_sph.R                   | code     | code          |
+| sumDemograph.csv                      | data     | data          |
+| rawdata_sph_triangle.csv              | data     | data          |
+| rawdata_sph_objlocTest.csv            | data     | data          |
+| rawdata_sph_objlocIdentity.csv        | data     | data          |
+| rawdata_plane_triangle.csv            | data     | data          |
+| rawdata_plane_objlocIdentity.csv      | data     | data          |
+| rawdata_plane_objlocTest.csv          | data     | data          |
+| suppleVideo6_trianglePlane.mp4        | video    | NA            |
+| suppleVideo3_objlocSph.mp4            | video    | NA            |
+| suppleVideo5_triangleSph.mp4          | video    | NA            |
+| suppleVideo4_objlocPlane.mp4          | video    | NA            |
+| suppleVideo1_learnSph.mp4             | video    | NA            |
+| suppleVideo2_learnPlane.mp4           | video    | NA            |
+| suppleMovie_legend.txt                | text     | NA            |
+| psub03_objLearn_Sph_traj.tsv          | data     | data          |
+| psub04_objLearn_Sph_traj.tsv          | data     | data          |
+| psub04_objLearn_Plane_traj.tsv        | data     | data          |
+| psub05_objLearn_Plane_traj.tsv        | data     | data          |
+| psub05_objLearn_Sph_traj.tsv          | data     | data          |
+| psub06_objLearn_Plane_traj.tsv        | data     | data          |
+| psub06_objLearn_Sph_traj.tsv          | data     | data          |
+| psub08_objLearn_Plane_traj.tsv        | data     | data          |
+| psub08_objLearn_Sph_traj.tsv          | data     | data          |
+| psub03_objLearn_Plane_traj.tsv        | data     | data          |
+| psub09_objLearn_Sph_traj.tsv          | data     | data          |
+| psub10_objLearn_Plane_traj.tsv        | data     | data          |
+| psub10_objLearn_Sph_traj.tsv          | data     | data          |
+| psub11_objLearn_Plane_traj.tsv        | data     | data          |
+| psub11_objLearn_Sph_traj.tsv          | data     | data          |
+| psub12_objLearn_Plane_traj.tsv        | data     | data          |
+| psub12_objLearn_Sph_traj.tsv          | data     | data          |
+| psub13_objLearn_Plane_traj.tsv        | data     | data          |
+| psub13_objLearn_Sph_traj.tsv          | data     | data          |
+| psub03_objLearn_Plane_traj.tsv        | data     | data          |
+| psub14_objLearn_Sph_traj.tsv          | data     | data          |
+| psub15_objLearn_Plane_traj.tsv        | data     | data          |
+| psub15_objLearn_Sph_traj.tsv          | data     | data          |
+| psub16_objLearn_Plane_traj.tsv        | data     | data          |
+| psub16_objLearn_Sph_traj.tsv          | data     | data          |
+| psub17_objLearn_Sph_traj.tsv          | data     | data          |
+| psub17_objLearn_Plane_traj.tsv        | data     | data          |
+| psub19_objLearn_Sph_traj.tsv          | data     | data          |
+| psub19_objLearn_Plane_traj.tsv        | data     | data          |
+| psub03_objLearn_Plane_traj.tsv        | data     | data          |
+| psub20_objLearn_Sph_traj.tsv          | data     | data          |
+| psub20_objLearn_Plane_traj.tsv        | data     | data          |
+| psub21_objLearn_Plane_traj.tsv        | data     | data          |
+| psub21_objLearn_Sph_traj.tsv          | data     | data          |
+| psub22_objLearn_Sph_traj.tsv          | data     | data          |
+| psub22_objLearn_Plane_traj.tsv        | data     | data          |
+| psub23_objLearn_Sph_traj.tsv          | data     | data          |
+| psub23_objLearn_Plane_traj.tsv        | data     | data          |
+| psub24_objLearn_Plane_traj.tsv        | data     | data          |
+| psub24_objLearn_Sph_traj.tsv          | data     | data          |
+| psub25_objLearn_Plane_traj.tsv        | data     | data          |
+| psub25_objLearn_Sph_traj.tsv          | data     | data          |
+| psub26_objLearn_Plane_traj.tsv        | data     | data          |
+| psub26_objLearn_Sph_traj.tsv          | data     | data          |
+| psub27_objLearn_Plane_traj.tsv        | data     | data          |
+| psub27_objLearn_Sph_traj.tsv          | data     | data          |
+| psub28_objLearn_Plane_traj.tsv        | data     | data          |
+| psub28_objLearn_Sph_traj.tsv          | data     | data          |
+| psub30_objLearn_Plane_traj.tsv        | data     | data          |
+| psub30_objLearn_Sph_traj.tsv          | data     | data          |
+| psub31_objLearn_Plane_traj.tsv        | data     | data          |
+| psub31_objLearn_Sph_traj.tsv          | data     | data          |
+| psub32_objLearn_Plane_traj.tsv        | data     | data          |
+| psub32_objLearn_Sph_traj.tsv          | data     | data          |
+| psub33_objLearn_Plane_traj.tsv        | data     | data          |
+| psub33_objLearn_Sph_traj.tsv          | data     | data          |
+| psub34_objLearn_Plane_traj.tsv        | data     | data          |
+| psub34_objLearn_Sph_traj.tsv          | data     | data          |
+| psub35_objLearn_Plane_traj.tsv        | data     | data          |
+| psub37_objLearn_Plane_traj.tsv        | data     | data          |
+| psub35_objLearn_Sph_traj.tsv          | data     | data          |
+| psub37_objLearn_Sph_traj.tsv          | data     | data          |
+| psub38_objLearn_Plane_traj.tsv        | data     | data          |
+| psub38_objLearn_Sph_traj.tsv          | data     | data          |
+| psub40_objLearn_Plane_traj.tsv        | data     | data          |
+| psub40_objLearn_Sph_traj.tsv          | data     | data          |
+| psub41_objLearn_Plane_traj.tsv        | data     | data          |
+| psub41_objLearn_Sph_traj.tsv          | data     | data          |
+| psub42_objLearn_Plane_traj.tsv        | data     | data          |
+| psub42_objLearn_Sph_traj.tsv          | data     | data          |
+| psub44_objLearn_Plane_traj.tsv        | data     | data          |
+| psub44_objLearn_Sph_traj.tsv          | data     | data          |
+| psub46_objLearn_Plane_traj.tsv        | data     | data          |
+| psub46_objLearn_Sph_traj.tsv          | data     | data          |
+| psub47_objLearn_Plane_traj.tsv        | data     | data          |
+| psub47_objLearn_Sph_traj.tsv          | data     | data          |
+| rotAroundU.m                          | code     | code          |
 | sph2cartFn.m                          | code     | code          |
+| cart2sphFn.m                          | code     | code          |
+| northVecFn.m                          | code     | code          |
 | drawGeodesic.m                        | code     | code          |
 | sph2cartMKunity.m                     | code     | code          |
 | translateOnSphere.m                   | code     | code          |
-| northVecFn.m                          | code     | code          |
 | ttestplotMK2.m                        | code     | code          |
+| findShortcut.m                        | code     | code          |
+| ttestplotMK2.m                        | code     | code          |
+| translateOnSphere.m                   | code     | code          |
+| sph2cartMKunity.m                     | code     | code          |
+| drawGeodesic.m                        | code     | code          |
+| northVecFn.m                          | code     | code          |
 | cart2sphFn.m                          | code     | code          |
+| sph2cartFn.m                          | code     | code          |
 | rotAroundU.m                          | code     | code          |
-| psub11_objLearn_Sph_traj.tsv          | data     | data          |
-| psub16_objLearn_Plane_traj.tsv        | data     | data          |
-| psub06_objLearn_Sph_traj.tsv          | data     | data          |
-| psub25_objLearn_Plane_traj.tsv        | data     | data          |
-| psub04_objLearn_Plane_traj.tsv        | data     | data          |
-| psub17_objLearn_Sph_traj.tsv          | data     | data          |
-| psub10_objLearn_Plane_traj.tsv        | data     | data          |
-| psub08_objLearn_Plane_traj.tsv        | data     | data          |
-| psub14_objLearn_Sph_traj.tsv          | data     | data          |
-| psub09_objLearn_Sph_traj.tsv          | data     | data          |
-| psub27_objLearn_Plane_traj.tsv        | data     | data          |
-| psub32_objLearn_Sph_traj.tsv          | data     | data          |
-| psub32_objLearn_Plane_traj.tsv        | data     | data          |
-| psub21_objLearn_Sph_traj.tsv          | data     | data          |
-| psub12_objLearn_Sph_traj.tsv          | data     | data          |
-| psub41_objLearn_Plane_traj.tsv        | data     | data          |
-| psub23_objLearn_Plane_traj.tsv        | data     | data          |
-| psub44_objLearn_Sph_traj.tsv          | data     | data          |
-| psub17_objLearn_Plane_traj.tsv        | data     | data          |
-| psub09_objLearn_Sph_traj.tsv          | data     | data          |
-| psub06_objLearn_Plane_traj.tsv        | data     | data          |
-| psub37_objLearn_Plane_traj.tsv        | data     | data          |
-| psub30_objLearn_Sph_traj.tsv          | data     | data          |
-| psub23_objLearn_Sph_traj.tsv          | data     | data          |
-| psub03_objLearn_Plane_traj.tsv        | data     | data          |
-| psub42_objLearn_Sph_traj.tsv          | data     | data          |
-| psub40_objLearn_Sph_traj.tsv          | data     | data          |
-| psub05_objLearn_Sph_traj.tsv          | data     | data          |
-| psub40_objLearn_Plane_traj.tsv        | data     | data          |
-| psub09_objLearn_Sph_traj.tsv          | data     | data          |
-| psub22_objLearn_Sph_traj.tsv          | data     | data          |
-| psub47_objLearn_Plane_traj.tsv        | data     | data          |
-| psub20_objLearn_Plane_traj.tsv        | data     | data          |
-| psub46_objLearn_Sph_traj.tsv          | data     | data          |
-| psub47_objLearn_Sph_traj.tsv          | data     | data          |
-| psub38_objLearn_Sph_traj.tsv          | data     | data          |
-| psub10_objLearn_Sph_traj.tsv          | data     | data          |
-| psub14_objLearn_Plane_traj.tsv        | data     | data          |
-| psub19_objLearn_Sph_traj.tsv          | data     | data          |
-| psub34_objLearn_Sph_traj.tsv          | data     | data          |
-| psub37_objLearn_Sph_traj.tsv          | data     | data          |
-| psub33_objLearn_Plane_traj.tsv        | data     | data          |
-| psub27_objLearn_Sph_traj.tsv          | data     | data          |
-| psub15_objLearn_Plane_traj.tsv        | data     | data          |
-| psub20_objLearn_Sph_traj.tsv          | data     | data          |
-| psub09_objLearn_Plane_traj.tsv        | data     | data          |
-| psub38_objLearn_Plane_traj.tsv        | data     | data          |
-| psub12_objLearn_Plane_traj.tsv        | data     | data          |
-| psub03_objLearn_Sph_traj.tsv          | data     | data          |
-| psub35_objLearn_Sph_traj.tsv          | data     | data          |
-| psub46_objLearn_Plane_traj.tsv        | data     | data          |
-| psub30_objLearn_Plane_traj.tsv        | data     | data          |
-| psub22_objLearn_Plane_traj.tsv        | data     | data          |
-| psub13_objLearn_Sph_traj.tsv          | data     | data          |
-| psub16_objLearn_Sph_traj.tsv          | data     | data          |
-| psub04_objLearn_Sph_traj.tsv          | data     | data          |
-| psub42_objLearn_Plane_traj.tsv        | data     | data          |
-| psub25_objLearn_Sph_traj.tsv          | data     | data          |
-| psub05_objLearn_Plane_traj.tsv        | data     | data          |
-| psub44_objLearn_Plane_traj.tsv        | data     | data          |
-| psub26_objLearn_Plane_traj.tsv        | data     | data          |
-| psub34_objLearn_Plane_traj.tsv        | data     | data          |
-| psub13_objLearn_Plane_traj.tsv        | data     | data          |
-| psub41_objLearn_Sph_traj.tsv          | data     | data          |
-| psub31_objLearn_Plane_traj.tsv        | data     | data          |
-| psub24_objLearn_Sph_traj.tsv          | data     | data          |
-| psub15_objLearn_Sph_traj.tsv          | data     | data          |
-| psub11_objLearn_Plane_traj.tsv        | data     | data          |
-| psub28_objLearn_Plane_traj.tsv        | data     | data          |
-| psub28_objLearn_Sph_traj.tsv          | data     | data          |
-| psub21_objLearn_Plane_traj.tsv        | data     | data          |
-| psub08_objLearn_Sph_traj.tsv          | data     | data          |
-| psub19_objLearn_Plane_traj.tsv        | data     | data          |
-| psub35_objLearn_Plane_traj.tsv        | data     | data          |
-| psub33_objLearn_Sph_traj.tsv          | data     | data          |
-| psub24_objLearn_Plane_traj.tsv        | data     | data          |
+| combvec.m                             | code     | code          |
+| icosahedron.m                         | code     | code          |
+| isface.m                              | code     | code          |
+| istriequal.m                          | code     | code          |
 | LICENSE                               | NA       | NA            |
 | mapface2edge.m                        | code     | code          |
-| sortrowstol.m                         | code     | code          |
+| shrinkfacetri.m                       | code     | code          |
+| README.md                             | text     | readme        |
 | spheretri.m                           | code     | code          |
+| sortrowstol.m                         | code     | code          |
 | SphereTriTestCase.m                   | code     | code          |
 | spheretribydepth.m                    | code     | code          |
-| istriequal.m                          | code     | code          |
-| README.md                             | text     | readme        |
-| shrinkfacetri.m                       | code     | code          |
-| combvec.m                             | code     | code          |
-| isface.m                              | code     | code          |
-| icosahedron.m                         | code     | code          |
 
 ### Report Text
 
@@ -464,6 +501,7 @@ realize that the data repository can be improved by more clearly naming
 folders and files.
 
 ``` r
+
 osf_report <- function(summary) {
   files <- dplyr::filter(summary, osf_type == "files")
   data <- dplyr::filter(files, file_category == "data") |> nrow()
@@ -514,6 +552,7 @@ osf_report <- function(summary) {
 ```
 
 ``` r
+
 report <- osf_report(osf_files_summary) 
 
 # print the report into a file
@@ -561,14 +600,15 @@ computer that the analyses were performed on. In R, this can be achieved
 by:
 
 ``` r
+
 sessionInfo()
-#> R version 4.5.2 (2025-10-31)
-#> Platform: aarch64-apple-darwin20
+#> R version 4.6.0 (2026-04-24)
+#> Platform: aarch64-apple-darwin23
 #> Running under: macOS Sequoia 15.5
 #> 
 #> Matrix products: default
-#> BLAS:   /System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/libBLAS.dylib 
-#> LAPACK: /Library/Frameworks/R.framework/Versions/4.5-arm64/Resources/lib/libRlapack.dylib;  LAPACK version 3.12.1
+#> BLAS:   /Library/Frameworks/R.framework/Versions/4.6/Resources/lib/libRblas.0.dylib 
+#> LAPACK: /Library/Frameworks/R.framework/Versions/4.6/Resources/lib/libRlapack.dylib;  LAPACK version 3.12.1
 #> 
 #> locale:
 #> [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
@@ -580,25 +620,27 @@ sessionInfo()
 #> [1] stats     graphics  grDevices utils     datasets  methods   base     
 #> 
 #> other attached packages:
-#>  [1] lubridate_1.9.4      forcats_1.0.1        stringr_1.6.0       
-#>  [4] dplyr_1.1.4          purrr_1.2.1          readr_2.1.6         
-#>  [7] tidyr_1.3.2          tibble_3.3.1         ggplot2_4.0.1       
-#> [10] tidyverse_2.0.0      metacheck_0.0.0.9068
+#>  [1] lubridate_1.9.5      forcats_1.0.1        stringr_1.6.0       
+#>  [4] dplyr_1.2.1          purrr_1.2.2          readr_2.2.0         
+#>  [7] tidyr_1.3.2          tibble_3.3.1         ggplot2_4.0.3       
+#> [10] tidyverse_2.0.0      metacheck_0.0.0.9100
 #> 
 #> loaded via a namespace (and not attached):
-#>  [1] sass_0.4.10        generics_0.1.4     stringi_1.8.7      hms_1.1.4         
-#>  [5] digest_0.6.39      magrittr_2.0.4     timechange_0.3.0   evaluate_1.0.5    
-#>  [9] grid_4.5.2         RColorBrewer_1.1-3 fastmap_1.2.0      jsonlite_2.0.0    
-#> [13] httr_1.4.7         scales_1.4.0       textshaping_1.0.4  jquerylib_0.1.4   
-#> [17] cli_3.6.5          rlang_1.1.7        oddpub_7.2.3       withr_3.0.2       
-#> [21] cachem_1.1.0       yaml_2.3.12        otel_0.2.0         tools_4.5.2       
-#> [25] tzdb_0.5.0         DT_0.34.0          curl_7.0.0         vctrs_0.7.0       
-#> [29] R6_2.6.1           lifecycle_1.0.5    fs_1.6.6           htmlwidgets_1.6.4 
-#> [33] ragg_1.5.0         pkgconfig_2.0.3    desc_1.4.3         pkgdown_2.2.0     
-#> [37] bslib_0.9.0        pillar_1.11.1      gtable_0.3.6       glue_1.8.0        
-#> [41] systemfonts_1.3.1  xfun_0.56          tidyselect_1.2.1   rstudioapi_0.18.0 
-#> [45] knitr_1.51         farver_2.1.2       htmltools_0.5.9    rmarkdown_2.30    
-#> [49] compiler_4.5.2     S7_0.2.1
+#>  [1] rappdirs_0.3.4     sass_0.4.10        generics_0.1.4     stringi_1.8.7     
+#>  [5] hms_1.1.4          digest_0.6.39      magrittr_2.0.5     timechange_0.4.0  
+#>  [9] evaluate_1.0.5     grid_4.6.0         RColorBrewer_1.1-3 fastmap_1.2.0     
+#> [13] jsonlite_2.0.0     progress_1.2.3     urltools_1.7.3.1   svutils_0.0.0.9002
+#> [17] scales_1.4.0       httr2_1.2.2        textshaping_1.0.5  jquerylib_0.1.4   
+#> [21] cli_3.6.6          crayon_1.5.3       rlang_1.2.0        oddpub_7.2.3      
+#> [25] triebeard_0.4.1    withr_3.0.2        cachem_1.1.0       yaml_2.3.12       
+#> [29] otel_0.2.0         tools_4.6.0        tzdb_0.5.0         DT_0.34.0         
+#> [33] curl_7.1.0         vctrs_0.7.3        R6_2.6.1           lifecycle_1.0.5   
+#> [37] fs_2.1.0           htmlwidgets_1.6.4  ragg_1.5.2         pkgconfig_2.0.3   
+#> [41] desc_1.4.3         pkgdown_2.2.0      bslib_0.10.0       pillar_1.11.1     
+#> [45] gtable_0.3.6       glue_1.8.1         Rcpp_1.1.1-1.1     systemfonts_1.3.2 
+#> [49] xfun_0.57          tidyselect_1.2.1   rstudioapi_0.18.0  knitr_1.51        
+#> [53] farver_2.1.2       htmltools_0.5.9    rmarkdown_2.31     compiler_4.6.0    
+#> [57] prettyunits_1.2.0  S7_0.2.2
 ```
 
 As most scientists have not been taught how to code explicitly, it is
@@ -612,6 +654,7 @@ checks is to have algorithms that capture expertise make recommendations
 that improve how we currently work.
 
 ``` r
+
 check_r_files <- function(summary) {
   r_files <- summary |>
     dplyr::filter(osf_type == "files",
@@ -669,11 +712,15 @@ check_r_files <- function(summary) {
 ```
 
 ``` r
+
 r_file_results <- check_r_files(osf_files_summary)
 ```
 
 | name                | report  | feedback                                     |
 |:--------------------|:--------|:---------------------------------------------|
+| poweranalysis_sph.R | abs     | ✅ No absolute paths were detected           |
+| poweranalysis_sph.R | pkg     | ✅ Packages are loaded in a single block.    |
+| poweranalysis_sph.R | session | ❌️ No session info was found in this script. |
 | poweranalysis_sph.R | abs     | ✅ No absolute paths were detected           |
 | poweranalysis_sph.R | pkg     | ✅ Packages are loaded in a single block.    |
 | poweranalysis_sph.R | session | ❌️ No session info was found in this script. |
@@ -684,12 +731,15 @@ Let’s put everything together in one block of code, and perform all
 automated checks for another open access paper in Psychological Science.
 
 ``` r
+
 # Add this and the custom functions to a file called osf_file_check.R
 
 osf_file_check <- function(paper) {
   links <- osf_links(paper)
-  info <- osf_retrieve(links, recursive = TRUE)
-  osf_files_summary <- summarize_contents(info)
+  info <- osf_retrieve(links, 
+                       id_col = "text", 
+                       recursive = TRUE)
+  osf_files_summary <- file_category(info)
   report <- osf_report(osf_files_summary)
   r_file_results <- check_r_files(osf_files_summary)  
   
@@ -703,23 +753,17 @@ osf_file_check <- function(paper) {
 ```
 
 ``` r
-module_results <- module_run(psychsci$`0956797620955209`, "osf_file_check.R")
-#> Starting OSF retrieval for 1 URL...
-#> * Retrieving info from k2dbf...
-#> ...Main retrieval complete
-#> Starting retrieval of children...
-#> * Retrieving children for k2dbf...
-#> * Retrieving files for k2dbf...
-#> * Retrieving files for 5e344fb4f6631d013e5a48c9...
-#> * Retrieving files for 5b88067b7b17570016f95389...
-#> ...OSF retrieval complete!
+
+paper <- psychsci$`0956797620955209`
+module_results <- module_run(paper, "osf_file_check.R")
 ```
 
 ``` r
+
 module_report(module_results, header = 4) |> cat()
 ```
 
-#### 🔍 Module Title
+#### 🔍 OSF File Check
 
 ⚠️ No README files were identified. A read me is best practice to
 facilitate re-use. If you have a README, please name it explicitly
@@ -742,7 +786,7 @@ Learn more about reproducible data practices:
 
 A short description of the module
 
-This module was developed by Author Name
+This module was developed by Daniel Lakens
 
 ## Future Developments
 
@@ -765,12 +809,11 @@ many such field-dependent checks that can be automated, as the ability
 to automatically examine and/or retrieve files that are linked to in a
 paper should be useful for a large range of use-cases.
 
-**These examples were created using papercheck version 0.0.0.9068.**
+**These examples were created using papercheck version 0.0.0.9100.**
 
 ## References
 
-Ferguson, Joel, Rebecca Littman, Garret Christensen, Elizabeth Levy
-Paluck, Nicholas Swanson, Zenan Wang, Edward Miguel, David Birke, and
-John-Henry Pezzuto. 2023. “Survey of Open Science Practices and
-Attitudes in the Social Sciences.” *Nature Communications* 14 (11):
-5401. <https://doi.org/10.1038/s41467-023-41111-1>.
+Ferguson, Joel, Rebecca Littman, Garret Christensen, et al. 2023.
+“Survey of Open Science Practices and Attitudes in the Social Sciences.”
+*Nature Communications* 14 (11): 5401.
+<https://doi.org/10.1038/s41467-023-41111-1>.

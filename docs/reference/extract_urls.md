@@ -22,6 +22,6 @@ a table
 ## Examples
 
 ``` r
-paper <- read(demoxml())
+paper <- demopaper()
 urls <- extract_urls(paper)
 ```

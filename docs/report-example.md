@@ -1,5 +1,6 @@
-[MetaCheck](http://www.scienceverse.org/metacheck) version 0.0.0.9067  
-Report Created: 2026-01-31  
+[MetaCheck](http://www.scienceverse.org/metacheck) version 0.0.1.9003  
+Report Created: 2026-04-17  
+NA
 
 [Metacheck](https://www.scienceverse.org/metacheck/) is a tool that
 screens scientific manuscripts and aims to identify potential issues for
@@ -33,35 +34,28 @@ suggestions for improvement or feedback can be sent to D.Lakens@tue.nl.
 
 ## Summary
 
-- ⚠️ [COI Check](#coi-check): No conflict of interest statement was
-  detected.  
 - ⚠️ [Funding Check](#funding-check): No funding statement was
   detected.  
 - ✅️ [Open Practices Check](#open-practices-check): Shared data and code
   detected.  
-- ⚠️ [Power Analysis Check](#power-analysis-check): We detected 1
-  potential power analysis.  
-- ✅️ [Randomization and Causal
-  Claims](#randomization-and-causal-claims):
-  - We identified 1 sentence describing randomization.
-  - No causal claims were observed in the title.
-  - No causal claims were observed in the abstract.  
-- ℹ️ [Preregistration Check](#preregistration-check): We found 2
-  preregistrations.  
+- ✅️ [COI Check](#coi-check): A conflict of interest statement was
+  detected.  
+- ⚠️ [Power Analysis Check](#power-analysis-check): We detected 2
+  potential power analyses.  
 - ⚠️ [Exact P-Values](#exact-p-values): We found 1 imprecise *p* value
   out of 3 detected.  
 - ⚠️ [Marginal Significance](#marginal-significance): You described 2
   effects with terms related to ‘marginally significant’.  
-- ⚠️ [Effect Sizes in t-tests and
-  F-tests](#effect-sizes-in-t-tests-and-f-tests): We found 1 t-test
-  and/or F-test where effect sizes are not reported.  
 - ⚠️ [StatCheck](#statcheck): 1 possible error in t-tests or F-tests  
 - 🔍 [Non-Significant P Value Check](#non-significant-p-value-check): We
   found 2 non-significant p values that should be checked for
   appropriate interpretation.  
+- 🔍 [Effect Sizes in t-tests and
+  F-tests](#effect-sizes-in-t-tests-and-f-tests): We found 1 t-test
+  and/or F-test where effect sizes are not reported.  
 - 🔍 [Repository Check](#repository-check):
-  - We found 13 files in 3 repositories.
-  - We found 0 README files and 3 repositories without READMEs.
+  - We found 9 files in 3 repositories.
+  - We found 1 README file and 2 repositories without READMEs.
   - We found 1 archive file.  
 - 🔍 [Code Check](#code-check):
   - We found 4 R, SAS, SPSS, or Stata code files.
@@ -69,39 +63,19 @@ suggestions for improvement or feedback can be sent to D.Lakens@tue.nl.
   - 1 file loaded in the code was missing in the repository.
   - Absolute file paths were found.
   - Libraries/imports were loaded in multiple places.  
-- 🔍 [DOI Check](#doi-check): We checked 1 reference in CrossRef and
-  found 1 missing DOI.  
-- 🔍 [Reference Accuracy](#reference-accuracy): We checked 4 references
-  with DOIs in CrossRef and found matches for 3.  
-- ℹ️ [Replication Check](#replication-check): You cited 1 article in the
-  FReD replication database.  
+- 🔍 [Reference Accuracy](#reference-accuracy): We checked 5 references
+  in CrossRef and found entries for 4.  
+- ℹ️ [Replication Check](#replication-check): We found 1 replication for
+  1 original you cited.  
 - ℹ️ [RetractionWatch](#retractionwatch): You cited 1 article in the
   RetractionWatch database.  
 - ℹ️ [Check PubPeer Comments](#check-pubpeer-comments): You cited 1
   reference with comments in PubPeer.  
 - ℹ️ [Summarise References](#summarise-references): Summary information
-  provided for 4 references
+  provided for 5 references  
+- ☠️ [causal_claims](#causal_claims): This module failed to run
 
 ## General Modules
-
-### ⚠️ COI Check
-
-No conflict of interest statement was detected. Consider adding one.
-
-NoteHow It Works
-
-Identify and extract Conflicts of Interest (COI) statements.
-
-The COI Check module uses regular expressions to check sentences for
-words related to conflict of interest statements. It will return the
-sentences in which the conflict of interest statement was found.
-
-The function incorporates code from
-[rtransparent](https://github.com/serghiou/rtransparent), which is no
-longer maintained. For their validation, see [the
-paper](https://doi.org/10.1371/journal.pbio.3001107).
-
-This module was developed by Daniel Lakens
 
 ### ⚠️ Funding Check
 
@@ -130,14 +104,14 @@ View detailed feedback
 
 Data was openly shared for this article, based on the following text:
 
-> Data is also available from <https://osf.io/5tbm9> and code is also
-> available from <https://osf.io/629bx>.
+> Data is also available from https://osf.io/5tbm9 and code is also
+> available from https://osf.io/629bx.
 
 Code was openly shared for this article, based on the following text:
 
 > Data and analysis code is available on GitHub from
-> <https://github.com/Lakens/to_err_is_human> and from
-> <https://researchbox.org/4377>.
+> https://github.com/Lakens/to_err_is_human and from
+> https://researchbox.org/4377.
 
 NoteHow It Works
 
@@ -162,17 +136,46 @@ It might miss open data and code declarations when the words used in the
 manuscript are not in the pattern that ODDPub searches for, or when the
 repositories are not in the ODDpub code (e.g., ResearchBox).
 
+From ODDPub: “To validate the algorithm, we manually screened a sample
+of 792 publications that were randomly selected from PubMed. On this
+validation dataset, our algorithm detects Open Data publications with a
+sensitivity of 0.73 and specificity of 0.97.”
+
+This module was developed by Daniel Lakens
+
+### ✅️ COI Check
+
+A conflict of interest statement was detected.
+
+View detailed feedback
+
+The following conflict of interest statement was detected.
+
+NoteHow It Works
+
+Identify and extract Conflicts of Interest (COI) statements.
+
+The COI Check module uses regular expressions to check sentences for
+words related to conflict of interest statements. It will return the
+sentences in which the conflict of interest statement was found.
+
+The function incorporates code from
+[rtransparent](https://github.com/serghiou/rtransparent), which is no
+longer maintained. For their validation, see [the
+paper](https://doi.org/10.1371/journal.pbio.3001107).
+
 This module was developed by Daniel Lakens
 
 ## Method Modules
 
 ### ⚠️ Power Analysis Check
 
-We detected 1 potential power analysis.
+We detected 2 potential power analyses.
 
 View detailed feedback
 
-Some essential information could not be detected: alpha_level
+Some essential information could not be detected: alpha_level,
+effect_size, effect_size_metric
 
 TipLearn More
 
@@ -203,14 +206,11 @@ For a sensitivity power analysis, this sentence would look like:
 
 NoteHow It Works
 
-This module uses a large language module (LLM) to extract information
-reported in power analyses, including the statistical test, sample size,
-alpha level, desired level of power,and magnitude and type of effect
-size.
-
-If you have not set llm_use(TRUE) and supplied a groq API, the module
-will return paragraphs that potentially contain power analyses, based on
-a regular expression search.
+This module uses uses regular expressions to identify sentences that
+contain a statistical power analysis. If specified by the user, it also
+uses a large language module (LLM) to extract information reported in
+power analyses, including the statistical test, sample size, alpha
+level, desired level of power, and magnitude and type of effect size.
 
 The Power Analysis Check module uses regular expressions to identify
 sentences that contain a statistical power analysis. Without the use of
@@ -231,151 +231,6 @@ articles in Psychological Science.
 
 This module was developed by Lisa DeBruine, Daniel Lakens and Cristian
 Mesquida
-
-### ✅️ Randomization and Causal Claims
-
-- We identified 1 sentence describing randomization.
-- No causal claims were observed in the title.
-- No causal claims were observed in the abstract.
-
-View detailed feedback
-
-Journal Article Reporting Standards require details about randomization
-procedures, or how possible bias due to non-randomization is mitigated.
-This information is often not reported. Furthermore, researchers
-sometimes make causal claims that are not warranted, for example because
-there was no random assignment to conditions. This module checks how
-(non)randomization is reported, and checks for causal claims in the
-title and abstract. Researchers are asked to double check whether this
-information is reported completely and correctly.
-
-#### Randomization
-
-We identified 1 sentence describing randomization.
-
-If this was a study that contained random assignment to conditions, the
-journal article reporting standards (JARS) ask that you describe the
-following:
-
-1.  Random assignment method: Procedure used to generate the random
-    assignment sequence, including details of any restriction (e.g.,
-    blocking, stratification)
-
-2.  Random assignment concealment: Whether sequence was concealed until
-    interventions were assigned
-
-3.  Random assignment implementation: Who generated the assignment
-    sequence, who enrolled participants, who assigned participants to
-    groups
-
-#### Causal Claims
-
-No causal claims were observed in the title.
-
-No causal claims were observed in the abstract.
-
-TipLearn More
-
-For advice on how to make causal claims, and when not to, see:
-
-Antonakis J, Bendahan S, Jacquart P, Lalive R (2010). “On making causal
-claims: A review and recommendations.” *The Leadership Quarterly*,
-**21**(6), 1086–1120.
-[doi:10.1016/j.leaqua.2010.10.010](https://doi.org/10.1016/j.leaqua.2010.10.010).
-
-Grosz M, Rohrer J, Thoemmes F (2020). “The Taboo Against Explicit Causal
-Inference in Nonexperimental Psychology.” *Perspectives on Psychological
-Science*, **15**(5), 1243–1255.
-[doi:10.1177/1745691620921521](https://doi.org/10.1177/1745691620921521).
-
-For the APA journal articles reporting standards, see
-<https://apastyle.apa.org/jars>
-
-NoteHow It Works
-
-Aims to identify the presence of random assignment, and lists sentences
-that make causal claims in title or abstract.
-
-The Randomization and Causal Claims Check first uses regular expressions
-to check whether the manuscript contains a statement about randomization
-to conditions. Subsequently, it sends the title and abstract to a
-[machine learning classifier developed by Rasoul
-Norouzi](https://github.com/rasoulnorouzi/causal_relation_miner) that
-runs on
-[HuggingFace](https://huggingface.co/spaces/lakens/causal_sentences).
-Causal statements are identified. Researchers are recommended to double
-check if causal statements are warranted, especially if no sentences
-describing randomization were detected.
-
-The regular expressions can miss statements about randomization, or
-incorrectly assume there is a sentence describing randomization. The
-module can’t evaluate if the causal statements that are identified are
-warranted or not, and it only reminds users to double-check.
-
-If you want to improve the detection of sentences describing
-randomization, or otherwise improve the module, reach out to the
-Metacheck development team.
-
-This module was developed by Daniel Lakens
-
-### ℹ️ Preregistration Check
-
-We found 2 preregistrations.
-
-View detailed feedback
-
-We found 2 preregistrations.
-
-Meta-scientific research has shown that deviations from preregistrations
-are often not reported or checked, and that the most common deviations
-concern the sample size. We recommend manually checking the full
-preregistration at the links below, and have provided the preregistered
-sample size.
-
-TipFull Preregistration
-
-TipLearn More
-
-For metascientific articles demonstrating the rate of deviations from
-preregistrations, see:
-
-van den Akker O, Bakker M, van Assen M, Pennington C, Verweij L,
-Elsherif M, Claesen A, Gaillard S, Yeung S, Frankenberger J, Krautter K,
-Cockcroft J, Kreuer K, Evans T, Heppel F, Schoch S, Korbmacher M, Yamada
-Y, Albayrak-Aydemir N, Wicherts J (2024). “The potential of
-preregistration in psychology: Assessing preregistration producibility
-and preregistration-study consistency.” *Psychological Methods*.
-[doi:10.1037/met0000687](https://doi.org/10.1037/met0000687).
-
-For educational material on how to report deviations from
-preregistrations, see:
-
-Lakens, Daniël (2024). “When and How to Deviate From a Preregistration.”
-*Collabra: Psychology*, **10**(1), 117094.
-[doi:10.1525/collabra.117094](https://doi.org/10.1525/collabra.117094).
-
-NoteHow It Works
-
-Retrieve information from preregistrations in a standardised way, and
-make them easier to check.
-
-The Preregistration Check module identifies preregistrations on the OSF
-and AsPredicted based on links in the manuscript, retrieves the
-preregistration text, and organizes the information into a template. The
-module then uses regular expressions to identify text from AsPredicted,
-and the API to retrieve text from the OSF. The information in the
-preregistration is returned.
-
-The module can’t extract information from non-structured preregistration
-templates (i.e., where the preregistration is uploaded in a single text
-field) and it can’t retrieve information in preregistrations that are
-stored as text documents on the OSF.
-
-If you want to extend the package to be able to download information
-from other preregistration sites, reach out to the Metacheck development
-team.
-
-This module was developed by Daniel Lakens and Lisa DeBruine
 
 ## Results Modules
 
@@ -458,47 +313,6 @@ and there are ways to describe ‘marginal significance’ that are not
 detected by the module.
 
 This module was developed by Daniel Lakens
-
-### ⚠️ Effect Sizes in t-tests and F-tests
-
-We found 1 t-test and/or F-test where effect sizes are not reported.
-
-View detailed feedback
-
-We recommend checking the sentences below, and add any missing effect
-sizes.
-
-TipLearn More
-
-For metascientific articles demonstrating that effect sizes are often
-not reported:
-
-- Peng, C.-Y. J., Chen, L.-T., Chiang, H.-M., & Chiang, Y.-C. (2013).
-  The Impact of APA and AERA Guidelines on Effect Size Reporting.
-  Educational Psychology Review, 25(2), 157–209.
-  doi:[10.1007/s10648-013-9218-2](https://doi.org/10.1007/s10648-013-9218-2).
-
-For educational material on reporting effect sizes:
-
-- [Guide to Effect Sizes and Confidence
-  Intervals](https://matthewbjane.quarto.pub/guide-to-effect-sizes-and-confidence-intervals/)
-
-TipAll detected and assessed stats
-
-NoteHow It Works
-
-The Effect Size module checks for effect sizes in t-tests and F-tests.
-
-The Effect Size check searches for regular expressions that match a
-predefined pattern. The module was validated on APA reported statistical
-tests, and might miss effect sizes that were reported in other reporting
-styles. It was validated by the Metacheck team on papers published in
-Psychological Science.
-
-If you want to extend the package to detect effect sizes for additional
-tests, reach out to the Metacheck development team.
-
-This module was developed by Daniel Lakens and Lisa DeBruine
 
 ### ⚠️ StatCheck
 
@@ -610,10 +424,51 @@ to the Metacheck development team.
 
 This module was developed by Daniel Lakens
 
+### 🔍 Effect Sizes in t-tests and F-tests
+
+We found 1 t-test and/or F-test where effect sizes are not reported.
+
+View detailed feedback
+
+We recommend checking the sentences below, and add any missing effect
+sizes.
+
+TipLearn More
+
+For metascientific articles demonstrating that effect sizes are often
+not reported:
+
+- Peng, C.-Y. J., Chen, L.-T., Chiang, H.-M., & Chiang, Y.-C. (2013).
+  The Impact of APA and AERA Guidelines on Effect Size Reporting.
+  Educational Psychology Review, 25(2), 157–209.
+  doi:[10.1007/s10648-013-9218-2](https://doi.org/10.1007/s10648-013-9218-2).
+
+For educational material on reporting effect sizes:
+
+- [Guide to Effect Sizes and Confidence
+  Intervals](https://matthewbjane.quarto.pub/guide-to-effect-sizes-and-confidence-intervals/)
+
+TipAll detected and assessed stats
+
+NoteHow It Works
+
+The Effect Size module checks for effect sizes in t-tests and F-tests.
+
+The Effect Size check searches for regular expressions that match a
+predefined pattern. The module was validated on APA reported statistical
+tests, and might miss effect sizes that were reported in other reporting
+styles. It was validated by the Metacheck team on papers published in
+Psychological Science.
+
+If you want to extend the package to detect effect sizes for additional
+tests, reach out to the Metacheck development team.
+
+This module was developed by Daniel Lakens and Lisa DeBruine
+
 ### 🔍 Repository Check
 
-- We found 13 files in 3 repositories.
-- We found 0 README files and 3 repositories without READMEs.
+- We found 9 files in 3 repositories.
+- We found 1 README file and 2 repositories without READMEs.
 - We found 1 archive file.
 
 View detailed feedback
@@ -713,37 +568,9 @@ This module was developed by Daniel Lakens
 
 ## Reference Modules
 
-### 🔍 DOI Check
-
-We checked 1 reference in CrossRef and found 1 missing DOI.
-
-View detailed feedback
-
-Double check any references listed in the tables below. The match score
-gives an indication of how good the match was. Many books do not have a
-DOI or are not listed in CrossRef. Garbled references are usually a
-result of poor parsing of the paper by grobid; we are working on more
-accurate alternatives.
-
-NoteHow It Works
-
-This module checks references for missing DOIs or DOIs with an invalid
-format.
-
-This module works by identifying references that do not have a DOI or
-have a DOI that does not have a valid format. It then looks up these
-references by title, author and journal or book title in CrossRef. A DOI
-match is returned for the reference with the highest match above the
-`crossref_min_score` (default of 50).
-
-Carefully check the returned results, as problems with reference import
-can lead to false positives.
-
-This module was developed by Daniel Lakens and Lisa DeBruine
-
 ### 🔍 Reference Accuracy
 
-We checked 4 references with DOIs in CrossRef and found matches for 3.
+We checked 5 references in CrossRef and found entries for 4.
 
 View detailed feedback
 
@@ -754,15 +581,15 @@ NoteHow It Works
 
 This module checks references for mismatches with CrossRef.
 
-It looks up the DOIs originally present in your paper (not those found
-by ref_doi_check) and returns the bibliographic information.
+This module uses the bib_match table from each paper (this can be added
+or refreshed using `add_bib_match()`) to detect possible problems in the
+reference section.
 
-We then check that the title from your reference section is the same as
-the retrieved title (ignoring differences in capitalisation) and that
-all author last names in your reference section are also in the
-retrieved author list (we do not check first names or order yet). This
-check is done for all references with crossref entries, including those
-found by ref_doi_check, if it was previously run.
+We check that the title from your reference section is the same as the
+retrieved title (ignoring differences in capitalisation) and that all
+author last names in your reference section are also in the retrieved
+author list (we do not check first names or order yet). This check is
+done for all references with crossref entries in the bib_match table.
 
 Mismatches may be because of problems with our parsing of references
 from your PDF (we’re working on improving this), incorrect formatting in
@@ -772,12 +599,12 @@ This module was developed by Daniel Lakens and Lisa DeBruine
 
 ### ℹ️ Replication Check
 
-You cited 1 article in the FReD replication database.
+We found 1 replication for 1 original you cited.
 
 View detailed feedback
 
-We checked 4 references with DOIs. You cited 1 article in the FReD
-replication database.
+We checked 5 references with DOIs. We found 1 replication for 1 original
+you cited.
 
 Check if you are aware of the replication studies, and cite them where
 appropriate.
@@ -785,13 +612,15 @@ appropriate.
 NoteHow It Works
 
 This module checks references and warns for citations of original
-studies for which replication studies exist in the Replication Database.
+studies for which replication or reproduction studies exist in the FLoRA
+database.
 
 The Replication Check module compares the reference list against studies
-in the FORRT replication database based on the DOI. If a study in the
-database is found, a reminder is provided that a replication of the
-original study exists, and should be cited (currently, a warning is
-provided regardless of whether the replication study is already cited).
+in the FLoRA (FORRT Library of Replication Attempts) database based on
+the DOI. If a study in the database is found, a reminder is provided
+that a replication or reproduction of the original study exists, and
+should be cited (currently, a warning is provided regardless of whether
+the replication/reproduction study is already cited).
 
 The module requires that the reference has a DOI. If you run the
 ref_doi_check module in a pipeline before this, it will use the enhanced
@@ -799,14 +628,15 @@ DOI list from that module, otherwise it will only run on references with
 existing DOIs.
 
 It is possible the original study was cited for other reasons than the
-empirical claim tested, or that the replication in the FORRT replication
-database is for only one of the studies in the paper, and not the study
-the authors discuss.
+empirical claim tested, or that the replication/reproduction in the
+FLoRA database is for only one of the studies in the paper, and not the
+study the authors discuss.
 
-The database can be manually updated with the \`FReD_update()\`\`
-function. For more information, see <https://forrt.org/FReD/>.
+The database can be manually updated with the `FLoRA_update()` function.
+For more information, see <https://forrt.org/FLoRA/>.
 
-This module was developed by Daniel Lakens and Lisa DeBruine
+This module was developed by Daniel Lakens, Lisa DeBruine and Lukas
+Wallrich
 
 ### ℹ️ RetractionWatch
 
@@ -814,7 +644,7 @@ You cited 1 article in the RetractionWatch database.
 
 View detailed feedback
 
-We checked 4 references with DOIs. You cited 1 article in the
+We checked 5 references with DOIs. You cited 1 article in the
 RetractionWatch database.
 
 Check if you are aware of the replication studies, and cite them where
@@ -849,7 +679,7 @@ You cited 1 reference with comments in PubPeer.
 
 View detailed feedback
 
-We checked 4 references with DOIs. You cited 1 reference with comments
+We checked 5 references with DOIs. You cited 1 reference with comments
 in PubPeer.
 
 Pubpeer is a platform for post-publication peer review. We have filtered
@@ -879,16 +709,17 @@ This module was developed by Daniel Lakens and Lisa DeBruine
 
 ### ℹ️ Summarise References
 
-Summary information provided for 4 references
+Summary information provided for 5 references
 
 View detailed feedback
+
+See the specific reports above for details.
 
 NoteHow It Works
 
 Summarise information about each reference in a paper.
 
 This module summarises previously-run reference section modules:
-ref_doi_check, ref_accuracy, ref_pubpeer, ref_replication, and
-ref_retractiuon.
+ref_accuracy, ref_pubpeer, ref_replication, and ref_retraction.
 
 This module was developed by Lisa DeBruine

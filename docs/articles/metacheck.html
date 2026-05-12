@@ -34,7 +34,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">metacheck</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.9068</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.9100</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -81,90 +81,54 @@
 <p>You can install the development version of metacheck from <a href="https://github.com/scienceverse/metacheck" class="external-link">GitHub</a> with:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># install.packages("devtools")</span></span>
-<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"scienceverse/metacheck"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/install-deprecated.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"scienceverse/metacheck"</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/scienceverse/metacheck" class="external-link">metacheck</a></span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; *******************************************</span></span>
-<span><span class="co">#&gt; ✅ Welcome to metacheck</span></span>
-<span><span class="co">#&gt; For support and examples visit:</span></span>
-<span><span class="co">#&gt; https://scienceverse.github.io/metacheck/</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; ⚠️ Set an email to use APIs like OpenAlex</span></span>
-<span><span class="co">#&gt; metacheck::email('your@address.org')</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; ‼️ This is alpha software; please check any</span></span>
-<span><span class="co">#&gt; results. False positives and negatives will</span></span>
-<span><span class="co">#&gt; occur at unknown rates.</span></span>
-<span><span class="co">#&gt; *******************************************</span></span></code></pre>
-<p>You can launch an interactive shiny app version of the code below
-with:</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/metacheck_app.html">metacheck_app</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div class="section level3">
 <h3 id="load-from-pdf">Load from PDF<a class="anchor" aria-label="anchor" href="#load-from-pdf"></a>
 </h3>
-<p>The function <code><a href="../reference/pdf2grobid.html">pdf2grobid()</a></code> can read PDF files and save
-them in the <a href="https://tei-c.org/" class="external-link">TEI</a> format created by <a href="https://grobid.readthedocs.io/" class="external-link">grobid</a>. This requires an
-internet connection and takes a few seconds per paper, so should only be
-done once and the results saved for later use.</p>
-<p>If the server is unavailable, you can <a href="https://huggingface.co/spaces/kermitt2/grobid" class="external-link">use a grobid web
-interface</a>.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">pdf_file</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/demopdf.html">demopdf</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="va">xml_file</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/pdf2grobid.html">pdf2grobid</a></span><span class="op">(</span><span class="va">pdf_file</span><span class="op">)</span></span></code></pre></div>
+<p>The function <code><a href="../reference/convert.html">convert()</a></code> can read PDF files and save them
+in <a href="https://www.scienceverse.org/schema/paper.json" class="external-link">JSON
+format</a>. This requires an internet connection and takes a few seconds
+per paper, so should only be done once and the results saved for later
+use.</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">pdf_file</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/demofile.html">demofile</a></span><span class="op">(</span><span class="st">"pdf"</span><span class="op">)</span></span>
+<span><span class="va">json_file</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/convert.html">convert</a></span><span class="op">(</span>file_path <span class="op">=</span> <span class="va">pdf_file</span>, save_path <span class="op">=</span> <span class="st">"converted"</span><span class="op">)</span></span></code></pre></div>
 <p>You can set up your own local grobid server following instructions
 from <a href="https://grobid.readthedocs.io/" class="external-link uri">https://grobid.readthedocs.io/</a>. The easiest way is to
 use Docker.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">--rm</span> <span class="at">--init</span> <span class="at">--ulimit</span> core=0 <span class="at">-p</span> 8070:8070 lfoppiano/grobid:0.8.2</span></code></pre></div>
-<p>Then you can set your grobid_url to the local path <a href="http://localhost:8070" class="external-link uri">http://localhost:8070</a>.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">xml_file</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/pdf2grobid.html">pdf2grobid</a></span><span class="op">(</span><span class="va">pdf_file</span>, grobid_url <span class="op">=</span> <span class="st">"http://localhost:8070"</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">--rm</span> <span class="at">--init</span> <span class="at">--ulimit</span> core=0 <span class="at">-p</span> 8070:8070 lfoppiano/grobid:0.9.0</span></code></pre></div>
+<p>Then you can set your api_url to the local path <a href="http://localhost:8070" class="external-link uri">http://localhost:8070</a>.</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">json_file</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/convert.html">convert</a></span><span class="op">(</span>file_path <span class="op">=</span> <span class="va">pdf_file</span>, </span>
+<span>                     save_path <span class="op">=</span> <span class="st">"converted"</span>,</span>
+<span>                     method <span class="op">=</span> <span class="st">"grobid"</span>,</span>
+<span>                     api_url <span class="op">=</span> <span class="st">"http://localhost:8070"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
-<h3 id="load-from-xml">Load from XML<a class="anchor" aria-label="anchor" href="#load-from-xml"></a>
+<h3 id="load-from-json">Load from JSON<a class="anchor" aria-label="anchor" href="#load-from-json"></a>
 </h3>
-<p>The function <code><a href="../reference/read.html">read()</a></code> can read XML files parsed by grobid
-or cermine, plus any XML files in JATS-DTD APA or NLM formats.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">paper</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read.html">read</a></span><span class="op">(</span><span class="va">xml_file</span><span class="op">)</span></span></code></pre></div>
-<p>XML files parsed by <a href="http://cermine.ceon.pl" class="external-link">cermine</a> are
-not as good as grobid at parsing papers, and omits figure and table
-captions.</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">cermine_xml_file</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"psychsci/0956797620955209.cermine.xml"</span>,</span>
-<span>                                package <span class="op">=</span> <span class="st">"metacheck"</span><span class="op">)</span></span>
-<span><span class="va">paper</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read.html">read</a></span><span class="op">(</span><span class="va">cermine_xml_file</span><span class="op">)</span></span></code></pre></div>
+<p>The function <code><a href="../reference/read.html">read()</a></code> can read converted JSON files.</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">paper</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read.html">read</a></span><span class="op">(</span><span class="va">json_file</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="load-from-non-pdf-document">Load from non-PDF document<a class="anchor" aria-label="anchor" href="#load-from-non-pdf-document"></a>
 </h3>
 <p>To take advantage of grobid’s ability to parse references and other
 aspects of papers, for now the best way is to convert your papers to
-PDF. However, metacheck can read in plain text from a text/docx file
-with <code><a href="../reference/read.html">read()</a></code>.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">filename</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata/to_err_is_human.docx"</span>, </span>
-<span>                        package <span class="op">=</span> <span class="st">"metacheck"</span><span class="op">)</span></span>
-<span><span class="va">paper_from_doc</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read.html">read_text</a></span><span class="op">(</span><span class="va">filename</span><span class="op">)</span></span></code></pre></div>
+PDF. We will introduce our custom backend, bibr, soon and this will be
+able to convert DOC and DOCX files directly.</p>
 </div>
 <div class="section level3">
 <h3 id="batch-processing">Batch Processing<a class="anchor" aria-label="anchor" href="#batch-processing"></a>
 </h3>
-<p>The functions <code><a href="../reference/pdf2grobid.html">pdf2grobid()</a></code> and <code><a href="../reference/read.html">read()</a></code> also
-work on a folder of files, returning a list of XML file paths or paper
+<p>The functions <code><a href="../reference/convert.html">convert()</a></code> and <code><a href="../reference/read.html">read()</a></code> also
+work on a folder of files, returning a list of JSON file paths or paper
 objects, respectively. The functions <code><a href="../reference/search_text.html">search_text()</a></code>,
 <code><a href="../reference/expand_text.html">expand_text()</a></code> and <code><a href="../reference/llm.html">llm()</a></code> also work on a list of
 paper objects.</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">grobid_dir</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/demodir.html">demodir</a></span><span class="op">(</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">papers</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/read.html">read</a></span><span class="op">(</span><span class="va">grobid_dir</span><span class="op">)</span></span>
-<span></span>
-<span><span class="va">hypotheses</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/search_text.html">search_text</a></span><span class="op">(</span><span class="va">papers</span>, <span class="st">"hypothesi"</span>, </span>
-<span>                          section <span class="op">=</span> <span class="st">"intro"</span>, </span>
-<span>                          return <span class="op">=</span> <span class="st">"paragraph"</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
@@ -175,110 +139,125 @@ info, references, and citations.</p>
 <div class="section level3">
 <h3 id="info">Info<a class="anchor" aria-label="anchor" href="#info"></a>
 </h3>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">paper</span><span class="op">$</span><span class="va">info</span></span></code></pre></div>
-<pre><code><span><span class="co">#&gt; $title</span></span>
-<span><span class="co">#&gt; [1] "To Err is Human: An Empirical Investigation"</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; $description</span></span>
-<span><span class="co">#&gt; [1] "This paper demonstrates some good and poor practices for use with the {metacheck} R package and Shiny app. All data are simulated. The paper shows examples of (1) open and closed OSF links; (2a) citation of retracted papers, (2b) citations without a doi, (2c) citations with Pubpeer comments, (2d) citations in the FORTT replication database, and (2e) missing/mismatched/incorrect citations and references; (3a) R files with code on GitHub that do not load libraries in one location, (3b) load files that are not shared in the repository, (3c) lack comments, and (3d) have hard-coded files, (4) imprecise reporting of non-significant pvalues; (5) tests with and without effect sizes, (6) use of \"marginally significant\" to describe non-significant findings, and (7) retrieving information from preregistrations."</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; $keywords</span></span>
-<span><span class="co">#&gt; [1] ""</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; $doi</span></span>
-<span><span class="co">#&gt; [1] ""</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; $submission</span></span>
-<span><span class="co">#&gt; [1] ""</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; $filename</span></span>
-<span><span class="co">#&gt; [1] "/private/var/folders/t6/7x6md_5s2j5bfb324s784yzw0000gn/T/RtmpiPaWWJ/temp_libpath1edb7d40e629/metacheck/extdata/to_err_is_human.xml"</span></span></code></pre>
+<pre><code><span><span class="co">#&gt;                                         title     keywords  doi</span></span>
+<span><span class="co">#&gt; 1 To Err is Human: An Empirical Investigation list(list()) &lt;NA&gt;</span></span>
+<span><span class="co">#&gt;          file_hash input_format           file_name bibr_version paper_type</span></span>
+<span><span class="co">#&gt; 1 a26373a4f28e3718          pdf to_err_is_human.pdf         10.0  empirical</span></span>
+<span><span class="co">#&gt;   paper_type_confidence         oecd_l1                           oecd_l2</span></span>
+<span><span class="co">#&gt; 1                     0 Social Sciences Psychology and Cognitive Sciences</span></span>
+<span><span class="co">#&gt;   oecd_confidence</span></span>
+<span><span class="co">#&gt; 1              NA</span></span></code></pre>
 </div>
 <div class="section level3">
 <h3 id="bibliography">Bibliography<a class="anchor" aria-label="anchor" href="#bibliography"></a>
 </h3>
 <p>The bibliography is provided in a tabular format.</p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">paper</span><span class="op">$</span><span class="va">bib</span></span></code></pre></div>
-<table class="table">
+<table style="width:100%;" class="table">
 <colgroup>
-<col width="0%">
-<col width="78%">
 <col width="2%">
-<col width="0%">
-<col width="7%">
-<col width="5%">
-<col width="0%">
 <col width="2%">
+<col width="3%">
+<col width="9%">
+<col width="32%">
+<col width="14%">
 <col width="1%">
+<col width="20%">
+<col width="2%">
+<col width="2%">
+<col width="3%">
+<col width="3%">
 </colgroup>
 <thead><tr class="header">
-<th align="left">xref_id</th>
-<th align="left">ref</th>
+<th align="right">bib_id</th>
+<th align="right">text_id</th>
+<th align="left">bib_type</th>
 <th align="left">doi</th>
-<th align="left">bibtype</th>
 <th align="left">title</th>
-<th align="left">journal</th>
-<th align="left">year</th>
 <th align="left">authors</th>
-<th align="left">id</th>
+<th align="right">year</th>
+<th align="left">container</th>
+<th align="left">volume</th>
+<th align="left">issue</th>
+<th align="left">first_page</th>
+<th align="left">last_page</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">b0</td>
-<td align="left">10.1098/rspb.1998.0380 , Menstrual cycle variation in
-women’s preferences for the scent of symmetrical men, S , W , Gangestad
-, R , Thornhill , Proceedings Biological Sciences , 1998 , 22 ,
-927-933</td>
-<td align="left">10.1098/rspb.1998.0380</td>
-<td align="left">Article</td>
-<td align="left">Menstrual cycle variation in women’s preferences for
-the scent of symmetrical men</td>
-<td align="left">Proceedings Biological Sciences</td>
-<td align="left">1998</td>
-<td align="left">S W Gangestad, R Thornhill</td>
-<td align="left">to_err_is_human</td>
+<td align="right">1</td>
+<td align="right">29</td>
+<td align="left">misc</td>
+<td align="left">10.5281/zenodo.2669586</td>
+<td align="left">Faux: Simulation for Factorial Designs</td>
+<td align="left">DeBruine, Lisa</td>
+<td align="right">2025</td>
+<td align="left"></td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
 </tr>
 <tr class="even">
-<td align="left">b1</td>
-<td align="left">10.1177/0956797614520714 , Evil Genius? How Dishonesty
-Can Lead to Greater Creativity, F , Gino , S , S , Wiltermuth ,
-Psychological Science , 2014 , 25 , 4 , 973-981</td>
-<td align="left">10.1177/0956797614520714</td>
-<td align="left">Article</td>
-<td align="left">Evil Genius? How Dishonesty Can Lead to Greater
-Creativity</td>
-<td align="left">Psychological Science</td>
-<td align="left">2014</td>
-<td align="left">F Gino, S S Wiltermuth</td>
-<td align="left">to_err_is_human</td>
+<td align="right">2</td>
+<td align="right">30</td>
+<td align="left">article</td>
+<td align="left">10.1037/0003-066x.54.6.408</td>
+<td align="left">The Origins of Sex Differences in Human Behavior:
+Evolved Dispositions Versus Social Roles</td>
+<td align="left">Eagly, Alice H., and Wendy Wood</td>
+<td align="right">1999</td>
+<td align="left">American Psychologist</td>
+<td align="left">54</td>
+<td align="left">6</td>
+<td align="left">408</td>
+<td align="left">423</td>
 </tr>
 <tr class="odd">
-<td align="left">b2</td>
-<td align="left">10.0000/0123456789 , Human error is a symptom of a poor
-design, F , Smith , Journal of Journals , 2021 , 0 , 0 , 0</td>
-<td align="left">10.0000/0123456789</td>
-<td align="left">Article</td>
-<td align="left">Human error is a symptom of a poor design</td>
-<td align="left">Journal of Journals</td>
-<td align="left">2021</td>
-<td align="left">F Smith</td>
-<td align="left">to_err_is_human</td>
+<td align="right">3</td>
+<td align="right">31</td>
+<td align="left">article</td>
+<td align="left">10.1177/0956797614520714</td>
+<td align="left">Evil Genius? How Dishonesty Can Lead to Greater
+Creativity</td>
+<td align="left">Gino, Francesca, and Scott S. Wiltermuth</td>
+<td align="right">2014</td>
+<td align="left">Psychological Science</td>
+<td align="left">25</td>
+<td align="left">4</td>
+<td align="left">973</td>
+<td align="left">981</td>
 </tr>
 <tr class="even">
-<td align="left">b3</td>
-<td align="left">Equivalence testing for psychological research , D ,
-Lakens , Advances in Methods and Practices in Psychological Science,
-2018 , 1 , 259-270</td>
-<td align="left">NA</td>
-<td align="left">Article</td>
-<td align="left">Equivalence testing for psychological research</td>
+<td align="right">4</td>
+<td align="right">32</td>
+<td align="left">article</td>
+<td align="left"></td>
+<td align="left">Equivalence Testing for Psychological Research</td>
+<td align="left">Lakens, Daniël</td>
+<td align="right">2018</td>
 <td align="left">Advances in Methods and Practices in Psychological
 Science</td>
-<td align="left">2018</td>
-<td align="left">D Lakens</td>
-<td align="left">to_err_is_human</td>
+<td align="left">1</td>
+<td align="left">NA</td>
+<td align="left">259</td>
+<td align="left">270</td>
+</tr>
+<tr class="odd">
+<td align="right">5</td>
+<td align="right">33</td>
+<td align="left">article</td>
+<td align="left">10.0000/0123456789</td>
+<td align="left">Human Error Is a Symptom of a Poor Design</td>
+<td align="left">Smith, F.</td>
+<td align="right">2021</td>
+<td align="left">Journal of Journals</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
 </tr>
 </tbody>
 </table>
@@ -288,56 +267,63 @@ Science</td>
 </h3>
 <p>Cross-references are also provided in a tabular format, with
 <code>xref_id</code> to match the bibliography table.</p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">paper</span><span class="op">$</span><span class="va">xrefs</span></span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">paper</span><span class="op">$</span><span class="va">xref</span></span></code></pre></div>
 <table class="table">
-<colgroup>
-<col width="3%">
-<col width="2%">
-<col width="10%">
-<col width="70%">
-<col width="6%">
-<col width="3%">
-<col width="1%">
-<col width="1%">
-<col width="1%">
-</colgroup>
 <thead><tr class="header">
-<th align="left">xref_id</th>
-<th align="left">type</th>
+<th align="right">xref_id</th>
+<th align="left">xref_type</th>
 <th align="left">contents</th>
-<th align="left">text</th>
-<th align="left">id</th>
-<th align="left">section</th>
-<th align="right">div</th>
-<th align="right">p</th>
-<th align="right">s</th>
+<th align="right">text_id</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">b1</td>
-<td align="left">bibr</td>
-<td align="left">(Gino &amp; Wiltermuth, 2014)</td>
-<td align="left">Although intentional dishonestly might be a successful
-way to boost creativity (Gino &amp; Wiltermuth, 2014), it is safe to say
-most mistakes researchers make are unintentional.</td>
-<td align="left">to_err_is_human</td>
-<td align="left">intro</td>
 <td align="right">1</td>
-<td align="right">1</td>
-<td align="right">1</td>
+<td align="left">table</td>
+<td align="left">Table 1</td>
+<td align="right">20</td>
 </tr>
 <tr class="even">
-<td align="left">NA</td>
-<td align="left">bibr</td>
-<td align="left">(Smithy, 2020)</td>
-<td align="left">From a human factors perspective, human error is a
-symptom of a poor design (Smithy, 2020).</td>
-<td align="left">to_err_is_human</td>
-<td align="left">intro</td>
 <td align="right">1</td>
-<td align="right">1</td>
+<td align="left">figure</td>
+<td align="left">Figure 1</td>
+<td align="right">20</td>
+</tr>
+<tr class="odd">
 <td align="right">2</td>
+<td align="left">figure</td>
+<td align="left">Figure 2</td>
+<td align="right">23</td>
+</tr>
+<tr class="even">
+<td align="right">1</td>
+<td align="left">foot</td>
+<td align="left">1</td>
+<td align="right">10</td>
+</tr>
+<tr class="odd">
+<td align="right">2</td>
+<td align="left">foot</td>
+<td align="left">2</td>
+<td align="right">19</td>
+</tr>
+<tr class="even">
+<td align="right">3</td>
+<td align="left">bib</td>
+<td align="left">(Gino and Wiltermuth 2014)</td>
+<td align="right">6</td>
+</tr>
+<tr class="odd">
+<td align="right">NA</td>
+<td align="left">bib</td>
+<td align="left">(Smithy, 2020)</td>
+<td align="right">7</td>
+</tr>
+<tr class="even">
+<td align="right">1</td>
+<td align="left">bib</td>
+<td align="left">(DeBruine 2025)</td>
+<td align="right">20</td>
 </tr>
 </tbody>
 </table>
@@ -348,40 +334,30 @@ symptom of a poor design (Smithy, 2020).</td>
 <p>There are functions to combine the infomation from a list of papers,
 like the <code>psychsci</code> built-in dataset of 250 open access
 papers from Psychological Science.</p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/info_table.html">info_table</a></span><span class="op">(</span><span class="va">psychsci</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"title"</span>, <span class="st">"doi"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 5 × 3</span></span></span>
-<span><span class="co">#&gt;   id               title                                                   doi  </span></span>
-<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                                   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> 0956797613520608 Continuous Theta-Burst Stimulation Demonstrates a Caus… 10.1…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> 0956797614522816 Beyond Gist: Strategic and Incremental Information Acc… 10.1…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> 0956797614527830 Serotonin and Social Norms: Tryptophan Depletion Impai… 10.1…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> 0956797614557697 Action-Specific Disruption of Perceptual Confidence     10.1…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> 0956797614560771 Emotional Vocalizations Are Recognized Across Cultures… 10.1…</span></span></code></pre>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/concat_tables.html">concat_tables</a></span><span class="op">(</span><span class="va">psychsci</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span>, <span class="st">"bib"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">doi</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">#&gt;   xref_id</span></span>
-<span><span class="co">#&gt; 1     b40</span></span>
-<span><span class="co">#&gt; 2      b0</span></span>
-<span><span class="co">#&gt; 3      b1</span></span>
-<span><span class="co">#&gt; 4      b2</span></span>
-<span><span class="co">#&gt; 5      b3</span></span>
-<span><span class="co">#&gt; 6      b4</span></span>
-<span><span class="co">#&gt;                                                                                                                                                                                                                                     ref</span></span>
-<span><span class="co">#&gt; 1                                                        10.3389/fnint.2012.00079/full, The construction of confidence in a perceptual decision, A, Zylberberg, P, Barttfeld, M, Sigman, Frontiers in Integrative Neuroscience, 2012, 6</span></span>
-<span><span class="co">#&gt; 2                                                             10.1037/0033-2909.115, Strong evidence for universals in facial expressions: A reply to Russell's mistaken critique, P, Ekman, Psychological Bulletin, 1994, 115, 268-287</span></span>
-<span><span class="co">#&gt; 3                                         10.1177/0956797613517239, Cultural relativity in perceiving emotion from vocalizations, M, Gendron, D, Roberson, J, M, Van Der Vyver, L, F, Barrett, Psychological Science, 2014, 25, 911-920</span></span>
-<span><span class="co">#&gt; 4                                      10.1037/0033-2909.115.1.102, Is there universal recognition of emotion from facial expression? A review of the cross-cultural studies, J, A, Russell, Psychological Bulletin, 1994, 115, 102-141</span></span>
-<span><span class="co">#&gt; 5                      10.1080/17470211003721642, Perceptual cues in non-verbal vocal expressions of emotion, D, A, Sauter, F, Eisner, A, J, Calder, S, K, Scott, The Quarterly Journal of Experimental Psychology, 2010, 63, 2251-2272</span></span>
-<span><span class="co">#&gt; 6 10.1073/pnas.0908239106, Crosscultural recognition of basic emotions through nonverbal emotional vocalizations, D, A, Sauter, F, Eisner, P, Ekman, S, K, Scott, Proceedings of the National Academy of Sciences, 2010, 107, 2408-2412</span></span>
-<span><span class="co">#&gt;                             doi bibtype</span></span>
-<span><span class="co">#&gt; 1 10.3389/fnint.2012.00079/full Article</span></span>
-<span><span class="co">#&gt; 2         10.1037/0033-2909.115 Article</span></span>
-<span><span class="co">#&gt; 3      10.1177/0956797613517239 Article</span></span>
-<span><span class="co">#&gt; 4   10.1037/0033-2909.115.1.102 Article</span></span>
-<span><span class="co">#&gt; 5     10.1080/17470211003721642 Article</span></span>
-<span><span class="co">#&gt; 6       10.1073/pnas.0908239106 Article</span></span>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/paper_table.html">paper_table</a></span><span class="op">(</span><span class="va">psychsci</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span>, <span class="st">"info"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"title"</span>, <span class="st">"doi"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">#&gt;                                                                                                                                                                                                                              title</span></span>
+<span><span class="co">#&gt; 1 Mirror neurons, originally discovered in macaque monkeys using single-cell recordings, are active when an animal is either performing a particular action or observing another agent performing the same or a similar action (di</span></span>
+<span><span class="co">#&gt; 2                                                                                                                                         Beyond Gist: Strategic and Incremental Information Accumulation for Scene Categorization</span></span>
+<span><span class="co">#&gt; 3                                                                                      Serotonin and Social Norms: Tryptophan Depletion Impairs Social Comparison and Leads to Resource Depletion in a Multiplayer Harvesting Game</span></span>
+<span><span class="co">#&gt; 4                                                                                                                                                                              Action-Specific Disruption of Perceptual Confidence</span></span>
+<span><span class="co">#&gt; 5                                                                                                                                  Emotional Vocalizations Are Recognized Across Cultures Regardless of the Valence of Distractors</span></span>
+<span><span class="co">#&gt;                        doi         paper_id</span></span>
+<span><span class="co">#&gt; 1 10.1177/0956797613520608 0956797613520608</span></span>
+<span><span class="co">#&gt; 2 10.1177/0956797614522816 0956797614522816</span></span>
+<span><span class="co">#&gt; 3 10.1177/0956797614527830 0956797614527830</span></span>
+<span><span class="co">#&gt; 4 10.1177/0956797614557697 0956797614557697</span></span>
+<span><span class="co">#&gt; 5 10.1177/0956797614560771 0956797614560771</span></span></code></pre>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/paper_table.html">paper_table</a></span><span class="op">(</span><span class="va">psychsci</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span>, <span class="st">"bib"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">doi</span><span class="op">)</span>, <span class="va">doi</span> <span class="op">!=</span> <span class="st">""</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">#&gt;   bib_type                           doi</span></span>
+<span><span class="co">#&gt; 1  article 10.3389/fnint.2012.00079/full</span></span>
+<span><span class="co">#&gt; 2  article         10.1037/0033-2909.115</span></span>
+<span><span class="co">#&gt; 3  article      10.1177/0956797613517239</span></span>
+<span><span class="co">#&gt; 4  article   10.1037/0033-2909.115.1.102</span></span>
+<span><span class="co">#&gt; 5  article     10.1080/17470211003721642</span></span>
+<span><span class="co">#&gt; 6  article       10.1073/pnas.0908239106</span></span>
 <span><span class="co">#&gt;                                                                                                      title</span></span>
 <span><span class="co">#&gt; 1                                                  The construction of confidence in a perceptual decision</span></span>
 <span><span class="co">#&gt; 2             Strong evidence for universals in facial expressions: A reply to Russell's mistaken critique</span></span>
@@ -389,125 +365,150 @@ papers from Psychological Science.</p>
 <span><span class="co">#&gt; 4 Is there universal recognition of emotion from facial expression? A review of the cross-cultural studies</span></span>
 <span><span class="co">#&gt; 5                                               Perceptual cues in non-verbal vocal expressions of emotion</span></span>
 <span><span class="co">#&gt; 6                    Crosscultural recognition of basic emotions through nonverbal emotional vocalizations</span></span>
-<span><span class="co">#&gt;                                            journal year</span></span>
-<span><span class="co">#&gt; 1            Frontiers in Integrative Neuroscience 2012</span></span>
-<span><span class="co">#&gt; 2                           Psychological Bulletin 1994</span></span>
-<span><span class="co">#&gt; 3                            Psychological Science 2014</span></span>
-<span><span class="co">#&gt; 4                           Psychological Bulletin 1994</span></span>
-<span><span class="co">#&gt; 5 The Quarterly Journal of Experimental Psychology 2010</span></span>
-<span><span class="co">#&gt; 6  Proceedings of the National Academy of Sciences 2010</span></span>
-<span><span class="co">#&gt;                                                 authors               id</span></span>
-<span><span class="co">#&gt; 1                   A Zylberberg, P Barttfeld, M Sigman 0956797614557697</span></span>
-<span><span class="co">#&gt; 2                                               P Ekman 0956797614560771</span></span>
-<span><span class="co">#&gt; 3 M Gendron, D Roberson, J M Van Der Vyver, L F Barrett 0956797614560771</span></span>
-<span><span class="co">#&gt; 4                                           J A Russell 0956797614560771</span></span>
-<span><span class="co">#&gt; 5           D A Sauter, F Eisner, A J Calder, S K Scott 0956797614560771</span></span>
-<span><span class="co">#&gt; 6              D A Sauter, F Eisner, P Ekman, S K Scott 0956797614560771</span></span></code></pre>
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/concat_tables.html">concat_tables</a></span><span class="op">(</span><span class="va">psychsci</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">40</span><span class="op">]</span>, <span class="st">"xrefs"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">grepl</a></span><span class="op">(</span><span class="st">"replicat"</span>, <span class="va">text</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html" class="external-link">count</a></span><span class="op">(</span><span class="va">id</span>, <span class="va">text</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 11 × 3</span></span></span>
-<span><span class="co">#&gt;    id               text                                                       n</span></span>
-<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                                  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> 0956797614560771 1 We reanalyzed the data from the 29 Himba participan…     1</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> 0956797615617779 Experiment 1b replicated the results of Experiment 1a…     1</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> 0956797616647519 Note that the average expected ES found in Study 1 is…     1</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> 0956797616647519 This is worrisome, as the results of our first study …     2</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> 0956797616665351 At a group level, therefore, the perceptual data repl…     5</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> 0956797617693326 Experiment 2 replicated Experiment 1 under conditions…     1</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> 0956797617693326 Experiment 2 replicated these findings on a separate …     4</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> 0956797617702699 A study by Papesh (2015) is particularly relevant: Sh…     2</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> 0956797617705667 Experiment 3 therefore replicated the effects in a mi…     1</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> 0956797617705667 This replicates the main finding of Beck et al. (2012…     1</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">11</span> 0956797617716922 Though we await replication of our findings, we see t…     1</span></span></code></pre>
+<span><span class="co">#&gt;                                                     authors editors publisher</span></span>
+<span><span class="co">#&gt; 1                    Zylberberg, A; Barttfeld, P; Sigman, M                  </span></span>
+<span><span class="co">#&gt; 2                                                  Ekman, P                  </span></span>
+<span><span class="co">#&gt; 3 Gendron, M; Roberson, D; Van Der Vyver, J M; Barrett, L F                  </span></span>
+<span><span class="co">#&gt; 4                                              Russell, J A                  </span></span>
+<span><span class="co">#&gt; 5           Sauter, D A; Eisner, F; Calder, A J; Scott, S K                  </span></span>
+<span><span class="co">#&gt; 6              Sauter, D A; Eisner, F; Ekman, P; Scott, S K                  </span></span>
+<span><span class="co">#&gt;   year volume issue first_page last_page</span></span>
+<span><span class="co">#&gt; 1 2012      6             &lt;NA&gt;      &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 2 1994    115              268       287</span></span>
+<span><span class="co">#&gt; 3 2014     25              911       920</span></span>
+<span><span class="co">#&gt; 4 1994    115              102       141</span></span>
+<span><span class="co">#&gt; 5 2010     63             2251      2272</span></span>
+<span><span class="co">#&gt; 6 2010    107             2408      2412</span></span>
+<span><span class="co">#&gt;                                          container bib_id year_suffix text_id</span></span>
+<span><span class="co">#&gt; 1            Frontiers in Integrative Neuroscience     40                 276</span></span>
+<span><span class="co">#&gt; 2                           Psychological Bulletin      0                  53</span></span>
+<span><span class="co">#&gt; 3                            Psychological Science      1                  54</span></span>
+<span><span class="co">#&gt; 4                           Psychological Bulletin      2                  55</span></span>
+<span><span class="co">#&gt; 5 The Quarterly Journal of Experimental Psychology      3                  56</span></span>
+<span><span class="co">#&gt; 6  Proceedings of the National Academy of Sciences      4                  57</span></span>
+<span><span class="co">#&gt;           paper_id</span></span>
+<span><span class="co">#&gt; 1 0956797614557697</span></span>
+<span><span class="co">#&gt; 2 0956797614560771</span></span>
+<span><span class="co">#&gt; 3 0956797614560771</span></span>
+<span><span class="co">#&gt; 4 0956797614560771</span></span>
+<span><span class="co">#&gt; 5 0956797614560771</span></span>
+<span><span class="co">#&gt; 6 0956797614560771</span></span></code></pre>
 </div>
 </div>
 <div class="section level2">
 <h2 id="search-text">Search Text<a class="anchor" aria-label="anchor" href="#search-text"></a>
 </h2>
 <p>You can access a parsed table of the full text of the paper via
-<code>paper$full_text</code>, but you may find it more convenient to use
-the function <code><a href="../reference/search_text.html">search_text()</a></code>. The defaults return a data
-table of each sentence, with the section type, header, div, paragraph
-and sentence numbers, and file name. (The section type is a best guess
-from the headers, so may not always be accurate.)</p>
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<code>paper$text</code>, but you may find it more convenient to use the
+function <code><a href="../reference/search_text.html">search_text()</a></code>. The defaults return a data table of
+each sentence, with the section type, header, div, paragraph and
+sentence numbers, and file name. (The section type is a best guess from
+the headers, so may not always be accurate.)</p>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">text</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/search_text.html">search_text</a></span><span class="op">(</span><span class="va">paper</span><span class="op">)</span></span></code></pre></div>
-<table class="table">
+<table style="width:100%;" class="table">
 <colgroup>
-<col width="77%">
-<col width="3%">
-<col width="8%">
+<col width="0%">
+<col width="1%">
+<col width="1%">
+<col width="85%">
 <col width="1%">
 <col width="1%">
 <col width="1%">
 <col width="5%">
+<col width="1%">
 </colgroup>
 <thead><tr class="header">
+<th align="right">text_id</th>
+<th align="right">section_id</th>
+<th align="right">paragraph_id</th>
 <th align="left">text</th>
-<th align="left">section</th>
+<th align="left">formatted</th>
+<th align="right">page_number</th>
+<th align="left">paper_id</th>
 <th align="left">header</th>
-<th align="right">div</th>
-<th align="right">p</th>
-<th align="right">s</th>
-<th align="left">id</th>
+<th align="left">section_type</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">This paper demonstrates some good and poor practices
-for use with the {metacheck} R package and Shiny app.</td>
-<td align="left">abstract</td>
-<td align="left">Abstract</td>
-<td align="right">0</td>
 <td align="right">1</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="left">Daniel Lakens Lisa DeBruine Jakub Werner</td>
+<td align="left">NA</td>
 <td align="right">1</td>
 <td align="left">to_err_is_human</td>
+<td align="left">To Err is Human: An Empirical Investigation</td>
+<td align="left">unknown</td>
 </tr>
 <tr class="even">
-<td align="left">Although intentional dishonestly might be a successful
-way to boost creativity (Gino &amp; Wiltermuth, 2014), it is safe to say
-most mistakes researchers make are unintentional.</td>
-<td align="left">intro</td>
-<td align="left">Introduction</td>
-<td align="right">1</td>
-<td align="right">1</td>
-<td align="right">1</td>
-<td align="left">to_err_is_human</td>
-</tr>
-<tr class="odd">
-<td align="left">In this study we examine whether automated checks
-reduce the amount of errors that researchers make in scientific
-manuscripts.</td>
-<td align="left">method</td>
-<td align="left">Method and Participants</td>
 <td align="right">2</td>
 <td align="right">1</td>
+<td align="right">2</td>
+<td align="left">2026-02-22</td>
+<td align="left">NA</td>
 <td align="right">1</td>
 <td align="left">to_err_is_human</td>
-</tr>
-<tr class="even">
-<td align="left">On average researchers in the experimental condition
-found the app marginally significantly more useful (M = 5.06) than
-researchers in the control condition found the checklist (M = 4.5),
-t(97.2) = -1.96, p = 0.152.</td>
-<td align="left">results</td>
-<td align="left">Results</td>
-<td align="right">3</td>
-<td align="right">1</td>
-<td align="right">1</td>
-<td align="left">to_err_is_human</td>
+<td align="left">To Err is Human: An Empirical Investigation</td>
+<td align="left">unknown</td>
 </tr>
 <tr class="odd">
-<td align="left">It seems automated tools can help prevent errors by
-providing researchers with feedback about potential mistakes, and
-researchers feel the app is useful.</td>
-<td align="left">discussion</td>
-<td align="left">Discussion</td>
-<td align="right">4</td>
-<td align="right">1</td>
+<td align="right">3</td>
+<td align="right">2</td>
+<td align="right">3</td>
+<td align="left">This paper demonstrates some good and poor practices
+for use with the {metacheck} R package.</td>
+<td align="left">NA</td>
 <td align="right">1</td>
 <td align="left">to_err_is_human</td>
+<td align="left">Abstract</td>
+<td align="left">abstract</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="right">2</td>
+<td align="right">3</td>
+<td align="left">All data are simulated.</td>
+<td align="left">NA</td>
+<td align="right">1</td>
+<td align="left">to_err_is_human</td>
+<td align="left">Abstract</td>
+<td align="left">abstract</td>
+</tr>
+<tr class="odd">
+<td align="right">5</td>
+<td align="right">2</td>
+<td align="right">3</td>
+<td align="left">The paper shows examples of (1) open and closed OSF
+links; (2a) citation of retracted papers, (2b) citations without a doi,
+(2c) citations with Pubpeer comments, (2d) citations in the FLoRA
+replication database, and (2e) missing/mismatched/incorrect citations
+and references; (3a) R files with code on GitHub that do not load
+libraries in one location, (3b) load files that are not shared in the
+repository, (3c) lack comments, and (3d) have absolute file paths; (4)
+imprecise reporting of non-significant p-values; (5) tests with and
+without effect sizes; (6) use of “marginally significant” to describe
+non-significant findings; (7) a power analysis reporting some of the
+essential attributes; and (8) retrieving information from
+preregistrations.</td>
+<td align="left">NA</td>
+<td align="right">1</td>
+<td align="left">to_err_is_human</td>
+<td align="left">Abstract</td>
+<td align="left">abstract</td>
+</tr>
+<tr class="even">
+<td align="right">6</td>
+<td align="right">3</td>
+<td align="right">4</td>
+<td align="left">Although intentional dishonesty might be a successful
+way to boost creativity (Gino and Wiltermuth 2014), it is safe to say
+most mistakes researchers make are unintentional.</td>
+<td align="left">NA</td>
+<td align="right">1</td>
+<td align="left">to_err_is_human</td>
+<td align="left"></td>
+<td align="left">intro</td>
 </tr>
 </tbody>
 </table>
@@ -518,88 +519,57 @@ researchers feel the app is useful.</td>
 <code>pattern</code> argument. The pattern is a regex string by default;
 set <code>fixed = TRUE</code> if you want to find exact text
 matches.</p>
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">text</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/search_text.html">search_text</a></span><span class="op">(</span><span class="va">paper</span>, pattern <span class="op">=</span> <span class="st">"metacheck"</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <colgroup>
-<col width="69%">
+<col width="4%">
 <col width="5%">
+<col width="7%">
+<col width="50%">
+<col width="5%">
+<col width="6%">
 <col width="8%">
-<col width="2%">
-<col width="1%">
-<col width="1%">
-<col width="10%">
+<col width="4%">
+<col width="7%">
 </colgroup>
 <thead><tr class="header">
+<th align="right">text_id</th>
+<th align="right">section_id</th>
+<th align="right">paragraph_id</th>
 <th align="left">text</th>
-<th align="left">section</th>
+<th align="left">formatted</th>
+<th align="right">page_number</th>
+<th align="left">paper_id</th>
 <th align="left">header</th>
-<th align="right">div</th>
-<th align="right">p</th>
-<th align="right">s</th>
-<th align="left">id</th>
+<th align="left">section_type</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
+<td align="right">3</td>
+<td align="right">2</td>
+<td align="right">3</td>
 <td align="left">This paper demonstrates some good and poor practices
-for use with the {metacheck} R package and Shiny app.</td>
-<td align="left">abstract</td>
-<td align="left">Abstract</td>
-<td align="right">0</td>
-<td align="right">1</td>
+for use with the {metacheck} R package.</td>
+<td align="left">NA</td>
 <td align="right">1</td>
 <td align="left">to_err_is_human</td>
+<td align="left">Abstract</td>
+<td align="left">abstract</td>
 </tr>
 <tr class="even">
+<td align="right">9</td>
+<td align="right">3</td>
+<td align="right">4</td>
 <td align="left">In this study we examine the usefulness of metacheck to
 improve best practices.</td>
-<td align="left">intro</td>
-<td align="left">Introduction</td>
+<td align="left">NA</td>
 <td align="right">1</td>
-<td align="right">1</td>
-<td align="right">4</td>
 <td align="left">to_err_is_human</td>
+<td align="left"></td>
+<td align="left">intro</td>
 </tr>
 </tbody>
-</table>
-</div>
-<div class="section level3">
-<h3 id="section">Section<a class="anchor" aria-label="anchor" href="#section"></a>
-</h3>
-<p>Set <code>section</code> to a vector of the sections to search
-in.</p>
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">text</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/search_text.html">search_text</a></span><span class="op">(</span><span class="va">paper</span>, <span class="st">"metacheck"</span>, </span>
-<span>                    section <span class="op">=</span> <span class="st">"abstract"</span><span class="op">)</span></span></code></pre></div>
-<table style="width:100%;" class="table">
-<colgroup>
-<col width="70%">
-<col width="5%">
-<col width="5%">
-<col width="2%">
-<col width="1%">
-<col width="1%">
-<col width="10%">
-</colgroup>
-<thead><tr class="header">
-<th align="left">text</th>
-<th align="left">section</th>
-<th align="left">header</th>
-<th align="right">div</th>
-<th align="right">p</th>
-<th align="right">s</th>
-<th align="left">id</th>
-</tr></thead>
-<tbody><tr class="odd">
-<td align="left">This paper demonstrates some good and poor practices
-for use with the {metacheck} R package and Shiny app.</td>
-<td align="left">abstract</td>
-<td align="left">Abstract</td>
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="right">1</td>
-<td align="left">to_err_is_human</td>
-</tr></tbody>
 </table>
 </div>
 <div class="section level3">
@@ -607,44 +577,70 @@ for use with the {metacheck} R package and Shiny app.</td>
 </h3>
 <p>Set <code>return</code> to one of “sentence”, “paragraph”, “section”,
 or “match” to control what gets returned.</p>
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">text</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/search_text.html">search_text</a></span><span class="op">(</span><span class="va">paper</span>, <span class="st">"metacheck"</span>, </span>
-<span>                    section <span class="op">=</span> <span class="st">"intro"</span>, </span>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">text</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/search_text.html">search_text</a></span><span class="op">(</span><span class="va">paper</span>, <span class="st">"GitHub"</span>, </span>
 <span>                    return <span class="op">=</span> <span class="st">"paragraph"</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <colgroup>
-<col width="90%">
+<col width="0%">
 <col width="1%">
-<col width="2%">
-<col width="0%">
-<col width="0%">
-<col width="0%">
-<col width="3%">
+<col width="1%">
+<col width="89%">
+<col width="1%">
+<col width="1%">
+<col width="1%">
+<col width="1%">
+<col width="1%">
 </colgroup>
 <thead><tr class="header">
+<th align="left">text_id</th>
+<th align="right">section_id</th>
+<th align="right">paragraph_id</th>
 <th align="left">text</th>
-<th align="left">section</th>
+<th align="left">formatted</th>
+<th align="left">page_number</th>
+<th align="left">paper_id</th>
 <th align="left">header</th>
-<th align="right">div</th>
-<th align="right">p</th>
-<th align="left">s</th>
-<th align="left">id</th>
+<th align="left">section_type</th>
 </tr></thead>
-<tbody><tr class="odd">
-<td align="left">Although intentional dishonestly might be a successful
-way to boost creativity (Gino &amp; Wiltermuth, 2014), it is safe to say
-most mistakes researchers make are unintentional. From a human factors
-perspective, human error is a symptom of a poor design (Smithy, 2020).
-Automation can be used to check for errors in scientific manuscripts,
-and inform authors about possible corrections. In this study we examine
-the usefulness of metacheck to improve best practices.</td>
-<td align="left">intro</td>
-<td align="left">Introduction</td>
-<td align="right">1</td>
-<td align="right">1</td>
+<tbody>
+<tr class="odd">
+<td align="left">NA</td>
+<td align="right">2</td>
+<td align="right">3</td>
+<td align="left">This paper demonstrates some good and poor practices
+for use with the {metacheck} R package. All data are simulated. The
+paper shows examples of (1) open and closed OSF links; (2a) citation of
+retracted papers, (2b) citations without a doi, (2c) citations with
+Pubpeer comments, (2d) citations in the FLoRA replication database, and
+(2e) missing/mismatched/incorrect citations and references; (3a) R files
+with code on GitHub that do not load libraries in one location, (3b)
+load files that are not shared in the repository, (3c) lack comments,
+and (3d) have absolute file paths; (4) imprecise reporting of
+non-significant p-values; (5) tests with and without effect sizes; (6)
+use of “marginally significant” to describe non-significant findings;
+(7) a power analysis reporting some of the essential attributes; and (8)
+retrieving information from preregistrations.</td>
+<td align="left">NA</td>
 <td align="left">NA</td>
 <td align="left">to_err_is_human</td>
-</tr></tbody>
+<td align="left">Abstract</td>
+<td align="left">abstract</td>
+</tr>
+<tr class="even">
+<td align="left">NA</td>
+<td align="right">6</td>
+<td align="right">7</td>
+<td align="left">Data and analysis code is available on GitHub from <a href="https://github.com/Lakens/to_err_is_human" class="external-link uri">https://github.com/Lakens/to_err_is_human</a> and from <a href="https://researchbox.org/4377" class="external-link uri">https://researchbox.org/4377</a>. Data is also available
+from <a href="https://osf.io/5tbm9" class="external-link uri">https://osf.io/5tbm9</a>
+and code is also available from <a href="https://osf.io/629bx" class="external-link uri">https://osf.io/629bx</a>.</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">to_err_is_human</td>
+<td align="left">Data Availability</td>
+<td align="left">endnote</td>
+</tr>
+</tbody>
 </table>
 </div>
 <div class="section level3">
@@ -655,109 +651,164 @@ setting <code>return = "match"</code>. The extra <code>...</code>
 arguments in <code><a href="../reference/search_text.html">search_text()</a></code> are passed to
 <code><a href="https://rdrr.io/r/base/grep.html" class="external-link">grep()</a></code>, so <code>perl = TRUE</code> allows you to use more
 complex regex, like below.</p>
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pattern</span> <span class="op">&lt;-</span> <span class="st">"[a-zA-Z]\\S*\\s*(=|&lt;)\\s*[0-9\\.,-]*\\d"</span></span>
 <span><span class="va">text</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/search_text.html">search_text</a></span><span class="op">(</span><span class="va">paper</span>, <span class="va">pattern</span>, return <span class="op">=</span> <span class="st">"match"</span>, perl <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <colgroup>
-<col width="21%">
+<col width="6%">
+<col width="9%">
 <col width="10%">
-<col width="32%">
-<col width="5%">
-<col width="4%">
-<col width="4%">
-<col width="21%">
+<col width="19%">
+<col width="8%">
+<col width="9%">
+<col width="13%">
+<col width="12%">
+<col width="10%">
 </colgroup>
 <thead><tr class="header">
+<th align="right">text_id</th>
+<th align="right">section_id</th>
+<th align="right">paragraph_id</th>
 <th align="left">text</th>
-<th align="left">section</th>
+<th align="left">formatted</th>
+<th align="right">page_number</th>
+<th align="left">paper_id</th>
 <th align="left">header</th>
-<th align="right">div</th>
-<th align="right">p</th>
-<th align="right">s</th>
-<th align="left">id</th>
+<th align="left">section_type</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">M = 9.12</td>
-<td align="left">method</td>
-<td align="left">Method and Participants</td>
+<td align="right">19</td>
+<td align="right">7</td>
+<td align="right">8</td>
+<td align="left">N=50</td>
+<td align="left">NA</td>
 <td align="right">2</td>
-<td align="right">1</td>
-<td align="right">11</td>
 <td align="left">to_err_is_human</td>
+<td align="left">Power Analysis</td>
+<td align="left">method</td>
 </tr>
 <tr class="even">
-<td align="left">M = 10.9</td>
-<td align="left">method</td>
-<td align="left">Method and Participants</td>
-<td align="right">2</td>
-<td align="right">1</td>
-<td align="right">11</td>
+<td align="right">21</td>
+<td align="right">8</td>
+<td align="right">10</td>
+<td align="left">M=9.12</td>
+<td align="left">NA</td>
+<td align="right">3</td>
 <td align="left">to_err_is_human</td>
+<td align="left">Results</td>
+<td align="left">results</td>
 </tr>
 <tr class="odd">
-<td align="left">t(97.7) = 2.9</td>
-<td align="left">method</td>
-<td align="left">Method and Participants</td>
-<td align="right">2</td>
-<td align="right">1</td>
-<td align="right">11</td>
+<td align="right">21</td>
+<td align="right">8</td>
+<td align="right">10</td>
+<td align="left">M=10.9</td>
+<td align="left">NA</td>
+<td align="right">3</td>
 <td align="left">to_err_is_human</td>
+<td align="left">Results</td>
+<td align="left">results</td>
 </tr>
 <tr class="even">
-<td align="left">p = 0.005</td>
-<td align="left">method</td>
-<td align="left">Method and Participants</td>
-<td align="right">2</td>
-<td align="right">1</td>
-<td align="right">11</td>
+<td align="right">21</td>
+<td align="right">8</td>
+<td align="right">10</td>
+<td align="left">t(97.7)=2.9</td>
+<td align="left">NA</td>
+<td align="right">3</td>
 <td align="left">to_err_is_human</td>
+<td align="left">Results</td>
+<td align="left">results</td>
 </tr>
 <tr class="odd">
-<td align="left">d = 0.59</td>
-<td align="left">method</td>
-<td align="left">Method and Participants</td>
-<td align="right">2</td>
-<td align="right">1</td>
-<td align="right">11</td>
+<td align="right">21</td>
+<td align="right">8</td>
+<td align="right">10</td>
+<td align="left">p=0.005</td>
+<td align="left">NA</td>
+<td align="right">3</td>
 <td align="left">to_err_is_human</td>
+<td align="left">Results</td>
+<td align="left">results</td>
 </tr>
 <tr class="even">
-<td align="left">M = 5.06</td>
-<td align="left">results</td>
-<td align="left">Results</td>
+<td align="right">21</td>
+<td align="right">8</td>
+<td align="right">10</td>
+<td align="left">d=0.59</td>
+<td align="left">NA</td>
 <td align="right">3</td>
-<td align="right">1</td>
-<td align="right">1</td>
 <td align="left">to_err_is_human</td>
+<td align="left">Results</td>
+<td align="left">results</td>
 </tr>
 <tr class="odd">
-<td align="left">M = 4.5</td>
-<td align="left">results</td>
-<td align="left">Results</td>
+<td align="right">22</td>
+<td align="right">8</td>
+<td align="right">11</td>
+<td align="left">M=5.06</td>
+<td align="left">NA</td>
 <td align="right">3</td>
-<td align="right">1</td>
-<td align="right">1</td>
 <td align="left">to_err_is_human</td>
+<td align="left">Results</td>
+<td align="left">results</td>
 </tr>
 <tr class="even">
-<td align="left">t(97.2) = -1.96</td>
-<td align="left">results</td>
-<td align="left">Results</td>
+<td align="right">22</td>
+<td align="right">8</td>
+<td align="right">11</td>
+<td align="left">M=4.5</td>
+<td align="left">NA</td>
 <td align="right">3</td>
-<td align="right">1</td>
-<td align="right">1</td>
 <td align="left">to_err_is_human</td>
+<td align="left">Results</td>
+<td align="left">results</td>
 </tr>
 <tr class="odd">
-<td align="left">p = 0.152</td>
-<td align="left">results</td>
-<td align="left">Results</td>
+<td align="right">22</td>
+<td align="right">8</td>
+<td align="right">11</td>
+<td align="left">t(97.2)=-1.96</td>
+<td align="left">NA</td>
 <td align="right">3</td>
-<td align="right">1</td>
-<td align="right">1</td>
 <td align="left">to_err_is_human</td>
+<td align="left">Results</td>
+<td align="left">results</td>
+</tr>
+<tr class="even">
+<td align="right">22</td>
+<td align="right">8</td>
+<td align="right">11</td>
+<td align="left">p=0.152</td>
+<td align="left">NA</td>
+<td align="right">3</td>
+<td align="left">to_err_is_human</td>
+<td align="left">Results</td>
+<td align="left">results</td>
+</tr>
+<tr class="odd">
+<td align="right">39</td>
+<td align="right">16</td>
+<td align="right">25</td>
+<td align="left">pwr::pwr.t.test(n = 50</td>
+<td align="left">NA</td>
+<td align="right">2</td>
+<td align="left">to_err_is_human</td>
+<td align="left">Footnote 2</td>
+<td align="left">footnote</td>
+</tr>
+<tr class="even">
+<td align="right">39</td>
+<td align="right">16</td>
+<td align="right">25</td>
+<td align="left">power = 0.8</td>
+<td align="left">NA</td>
+<td align="right">2</td>
+<td align="left">to_err_is_human</td>
+<td align="left">Footnote 2</td>
+<td align="left">footnote</td>
 </tr>
 </tbody>
 </table>
@@ -767,7 +818,7 @@ complex regex, like below.</p>
 </h3>
 <p>You can expand the text returned by <code><a href="../reference/search_text.html">search_text()</a></code> or a
 module with <code><a href="../reference/expand_text.html">expand_text()</a></code>.</p>
-<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">marginal</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/search_text.html">search_text</a></span><span class="op">(</span><span class="va">paper</span>, <span class="st">"marginal"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../reference/expand_text.html">expand_text</a></span><span class="op">(</span><span class="va">paper</span>, plus <span class="op">=</span> <span class="fl">1</span>, minus <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
 <span></span>
@@ -787,13 +838,13 @@ supported by <a href="https://ellmer.tidyverse.org/" class="external-link">ellme
 <div class="section level3">
 <h3 id="setup">Setup<a class="anchor" aria-label="anchor" href="#setup"></a>
 </h3>
-<p>You will need to get your own API key from your preferred provider
-(e.g. <a href="https://console.groq.com/keys" class="external-link uri">https://console.groq.com/keys</a>). To avoid having to type
+<p>You will need to get <strong>your own API key</strong> (the one below
+is a fake example) from your preferred provider (e.g. <a href="https://console.groq.com/keys" class="external-link uri">https://console.groq.com/keys</a>). To avoid having to type
 it out, add it to the .Renviron file in the following format (you can
 use <code><a href="https://usethis.r-lib.org/reference/edit.html" class="external-link">usethis::edit_r_environ()</a></code> to access the .Renviron
 file).</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb29-1"><a href="#cb29-1" tabindex="-1"></a><span class="va">GROQ_GPT_KEY</span><span class="op">=</span><span class="st">"sk-proj-abcdefghijklmnopqrs0123456789ABCDEFGHIJKLMNOPQRS"</span></span></code></pre></div>
-<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb21"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a><span class="va">GROQ_GPT_KEY</span><span class="op">=</span><span class="st">"sk-proj-abcdefghijklmnopqrs0123456789ABCDEFGHIJKLMNOPQRS"</span></span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># useful if you aren't sure where this file is</span></span>
 <span><span class="fu">usethis</span><span class="fu">::</span><span class="fu"><a href="https://usethis.r-lib.org/reference/edit.html" class="external-link">edit_r_environ</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p>You can get or set the default LLM model with
@@ -801,10 +852,10 @@ file).</p>
 models using <code><a href="../reference/llm_model_list.html">llm_model_list()</a></code>.</p>
 <table style="width:100%;" class="table">
 <colgroup>
-<col width="8%">
-<col width="32%">
+<col width="7%">
+<col width="31%">
 <col width="6%">
-<col width="10%">
+<col width="12%">
 <col width="13%">
 <col width="19%">
 <col width="9%">
@@ -821,34 +872,16 @@ models using <code><a href="../reference/llm_model_list.html">llm_model_list()</
 <tbody>
 <tr class="odd">
 <td align="left">groq</td>
-<td align="left">llama-3.1-8b-instant</td>
+<td align="left">groq/compound</td>
 <td align="left">model</td>
-<td align="left">Meta</td>
+<td align="left">Groq</td>
 <td align="right">131072</td>
-<td align="right">131072</td>
-<td align="left">2023-09-03</td>
+<td align="right">8192</td>
+<td align="left">2025-09-04</td>
 </tr>
 <tr class="even">
 <td align="left">groq</td>
-<td align="left">openai/gpt-oss-20b</td>
-<td align="left">model</td>
-<td align="left">OpenAI</td>
-<td align="right">131072</td>
-<td align="right">65536</td>
-<td align="left">2025-08-05</td>
-</tr>
-<tr class="odd">
-<td align="left">groq</td>
-<td align="left">moonshotai/kimi-k2-instruct-0905</td>
-<td align="left">model</td>
-<td align="left">Moonshot AI</td>
-<td align="right">262144</td>
-<td align="right">16384</td>
-<td align="left">2025-09-05</td>
-</tr>
-<tr class="even">
-<td align="left">groq</td>
-<td align="left">meta-llama/llama-prompt-guard-2-22m</td>
+<td align="left">meta-llama/llama-prompt-guard-2-86m</td>
 <td align="left">model</td>
 <td align="left">Meta</td>
 <td align="right">512</td>
@@ -857,22 +890,40 @@ models using <code><a href="../reference/llm_model_list.html">llm_model_list()</
 </tr>
 <tr class="odd">
 <td align="left">groq</td>
-<td align="left">groq/compound-mini</td>
+<td align="left">qwen/qwen3-32b</td>
 <td align="left">model</td>
-<td align="left">Groq</td>
+<td align="left">Alibaba Cloud</td>
 <td align="right">131072</td>
-<td align="right">8192</td>
-<td align="left">2025-09-04</td>
+<td align="right">40960</td>
+<td align="left">2025-05-28</td>
+</tr>
+<tr class="even">
+<td align="left">groq</td>
+<td align="left">canopylabs/orpheus-v1-english</td>
+<td align="left">model</td>
+<td align="left">Canopy Labs</td>
+<td align="right">4000</td>
+<td align="right">50000</td>
+<td align="left">2025-12-19</td>
+</tr>
+<tr class="odd">
+<td align="left">groq</td>
+<td align="left">openai/gpt-oss-safeguard-20b</td>
+<td align="left">model</td>
+<td align="left">OpenAI</td>
+<td align="right">131072</td>
+<td align="right">65536</td>
+<td align="left">2025-10-29</td>
 </tr>
 </tbody>
 </table>
 <p>When you start metacheck for the first time, it will check for
 relevant API keys in your Renviron and automatically set the model to
 use. You can get or set this with <code><a href="../reference/llm_model.html">llm_model()</a></code>.</p>
-<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/llm_model.html">llm_model</a></span><span class="op">(</span><span class="op">)</span> <span class="co"># get current model</span></span>
-<span><span class="fu"><a href="../reference/llm_model.html">llm_model</a></span><span class="op">(</span><span class="st">"openai"</span><span class="op">)</span> <span class="co"># set to ellmer's default openai model</span></span>
-<span><span class="fu"><a href="../reference/llm_model.html">llm_model</a></span><span class="op">(</span><span class="st">"openai/gpt-4.1"</span><span class="op">)</span> <span class="co"># set to specific openai model</span></span></code></pre></div>
+<span><span class="fu"><a href="../reference/llm_model.html">llm_model</a></span><span class="op">(</span><span class="st">"groq"</span><span class="op">)</span> <span class="co"># set to ellmer's default groq model</span></span>
+<span><span class="fu"><a href="../reference/llm_model.html">llm_model</a></span><span class="op">(</span><span class="st">"groq/llama-3.3-70b-versatile"</span><span class="op">)</span> <span class="co"># set to specific openai model</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="llm-queries">LLM Queries<a class="anchor" aria-label="anchor" href="#llm-queries"></a>
@@ -882,14 +933,14 @@ use. You can get or set this with <code><a href="../reference/llm_model.html">ll
 choose an LLM, and adjust settings.</p>
 <p>Use <code><a href="../reference/search_text.html">search_text()</a></code> first to narrow down the text into
 what you want to query. Below, we limited search to the first ten
-papers’ method sections, and returned sentences that contains the word
-“power” and at least one number. Then we asked an LLM to determine if
-this is an a priori power analysis, and if so, to return some relevant
-values in a JSON-structured format.</p>
-<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
+papers, and returned sentences that contains the word “power” and at
+least one number. Then we asked an LLM to determine if this is an a
+priori power analysis, and if so, to return some relevant values in a
+JSON-structured format.</p>
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">power</span> <span class="op">&lt;-</span> <span class="va">psychsci</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">]</span> <span class="op">|&gt;</span></span>
 <span>  <span class="co"># sentences containing the word power</span></span>
-<span>  <span class="fu"><a href="../reference/search_text.html">search_text</a></span><span class="op">(</span><span class="st">"power"</span>, section <span class="op">=</span> <span class="st">"method"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/search_text.html">search_text</a></span><span class="op">(</span><span class="st">"power"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="co"># and containing at least one number</span></span>
 <span>  <span class="fu"><a href="../reference/search_text.html">search_text</a></span><span class="op">(</span><span class="st">"[0-9]"</span><span class="op">)</span> </span>
 <span></span>
@@ -921,19 +972,19 @@ makes syntax mistakes. The function <code><a href="../reference/json_expand.html
 expand a column with a JSON-formatted response into columns and deals
 with it gracefully (sets an ‘error’ column to “parsing error”) if there
 are errors. It also fixes column data types, if possible.</p>
-<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">llm_response</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/json_expand.html">json_expand</a></span><span class="op">(</span><span class="va">llm_power</span>, <span class="st">"answer"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">text</span>, <span class="va">apriori</span><span class="op">:</span><span class="va">es_metric</span><span class="op">)</span></span></code></pre></div>
 <table style="width:100%;" class="table">
 <colgroup>
-<col width="83%">
-<col width="2%">
-<col width="6%">
+<col width="87%">
+<col width="1%">
+<col width="4%">
 <col width="1%">
 <col width="1%">
 <col width="1%">
 <col width="0%">
-<col width="2%">
+<col width="1%">
 </colgroup>
 <thead><tr class="header">
 <th align="left">text</th>
@@ -942,31 +993,55 @@ are errors. It also fixes column data types, if possible.</p>
 <th align="right">sample</th>
 <th align="right">alpha</th>
 <th align="right">power</th>
-<th align="left">es</th>
+<th align="right">es</th>
 <th align="left">es_metric</th>
 </tr></thead>
 <tbody>
+<tr class="odd">
+<td align="left">It is possible that less-consistent effects were
+observed on trials with errors because of reduced power to detect an
+effect on these trials, which by design were less numerous (~25%).</td>
+<td align="left">FALSE</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">Figure 1 shows that CY had very little predictive power
+for CLIM, but the fit in the transposed plot has an obvious bell-shaped
+curve.</td>
+<td align="left">FALSE</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+</tr>
 <tr class="odd">
 <td align="left">Sample size was calculated with an a priori power
 analysis, using the effect sizes reported by Küpper et al. (2014), who
 used identical procedures, materials, and dependent measures.</td>
 <td align="left">TRUE</td>
-<td align="left"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
 <td align="left">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
 <td align="left">NA</td>
 </tr>
 <tr class="even">
 <td align="left">We determined that a minimum sample size of 7 per group
 would be necessary for 95% power to detect an effect.</td>
 <td align="left">TRUE</td>
-<td align="left"></td>
+<td align="left">t-test</td>
 <td align="right">7</td>
-<td align="right">NA</td>
+<td align="right">0.050</td>
 <td align="right">0.95</td>
-<td align="left">NA</td>
+<td align="right">NA</td>
 <td align="left">NA</td>
 </tr>
 <tr class="odd">
@@ -978,18 +1053,18 @@ on a black background for 2 s using Power-Point.</td>
 <td align="right">NA</td>
 <td align="right">NA</td>
 <td align="right">NA</td>
-<td align="left">NA</td>
+<td align="right">NA</td>
 <td align="left">NA</td>
 </tr>
 <tr class="even">
 <td align="left">A sample size of 26 per group was required to ensure
 80% power to detect this difference at the 5% significance level.</td>
 <td align="left">TRUE</td>
-<td align="left"></td>
+<td align="left">two-sample t-test</td>
 <td align="right">26</td>
 <td align="right">0.050</td>
 <td align="right">0.80</td>
-<td align="left">NA</td>
+<td align="right">NA</td>
 <td align="left">NA</td>
 </tr>
 <tr class="odd">
@@ -997,23 +1072,23 @@ on a black background for 2 s using Power-Point.</td>
 to ensure an 80% power to detect this difference at the 5% significance
 level.</td>
 <td align="left">TRUE</td>
-<td align="left"></td>
+<td align="left">t-test</td>
 <td align="right">18</td>
 <td align="right">0.050</td>
 <td align="right">0.80</td>
-<td align="left">NA</td>
+<td align="right">NA</td>
 <td align="left">NA</td>
 </tr>
 <tr class="even">
 <td align="left">The 13,500 selected loan requests conservatively
 achieved a power of .98 for an effect size of .07 at an alpha level of
 .05.</td>
-<td align="left">FALSE</td>
-<td align="left">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="left">NA</td>
+<td align="left">TRUE</td>
+<td align="left"></td>
+<td align="right">13500</td>
+<td align="right">0.050</td>
+<td align="right">0.98</td>
+<td align="right">0.07</td>
 <td align="left">NA</td>
 </tr>
 <tr class="odd">
@@ -1023,11 +1098,11 @@ size of 24 would provide .80 power at a conservative brainwide alpha
 threshold of .002 (although such thresholds ideally should be relaxed
 for detecting activity in regions where an effect is predicted).</td>
 <td align="left">TRUE</td>
-<td align="left">contrasts of fMRI activity</td>
+<td align="left">fMRI activity contrast</td>
 <td align="right">24</td>
 <td align="right">0.002</td>
 <td align="right">0.80</td>
-<td align="left">NA</td>
+<td align="right">NA</td>
 <td align="left">NA</td>
 </tr>
 <tr class="even">
@@ -1035,11 +1110,11 @@ for detecting activity in regions where an effect is predicted).</td>
 of the sole existing similar study, which used neural activity to
 predict Internet downloads of music (Berns &amp; Moore, 2012).</td>
 <td align="left">TRUE</td>
-<td align="left"></td>
-<td align="right">NA</td>
-<td align="right">NA</td>
-<td align="right">NA</td>
 <td align="left">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
 <td align="left">NA</td>
 </tr>
 <tr class="odd">
@@ -1051,7 +1126,37 @@ alpha level of .05.</td>
 <td align="right">72</td>
 <td align="right">0.050</td>
 <td align="right">0.80</td>
+<td align="right">NA</td>
 <td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">Categorical ratings of the emotional expressions in the
+loan photographs had a similarly powerful impact on loan-request
+success; requests with “happy” photographs received $5.15 more per hour
+than requests with “sad” photographs, on average; they achieved full
+funding in 7.6% less time.</td>
+<td align="left">FALSE</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">Although previous research has provided mixed evidence
+about the impact of positive versus negative affect on charitable giving
+(Andreoni, 1990;Small &amp; Verrochi, 2009), by simultaneously assessing
+affect at both Internet-aggregate and laboratory-sample levels of
+analysis, our studies provide consistent evidence that
+photograph-elicited positive arousal most powerfully promoted lending
+rates and outcomes (Tables 1 and 2, Fig. 2a, and Fig.</td>
+<td align="left">FALSE</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
 <td align="left">NA</td>
 </tr>
 </tbody>
@@ -1066,7 +1171,7 @@ output to the input text when input may have 0+ outputs.&lt;/p&gt;"><sup>1</sup>
 frame from <code><a href="../reference/search_text.html">search_text()</a></code>. To prevent accidentally making
 way too many calls because of errors in your code, we set the default
 limits to 30 queries at a time, but you can change this:</p>
-<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/llm_max_calls.html">llm_max_calls</a></span><span class="op">(</span><span class="fl">30</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
@@ -1079,22 +1184,19 @@ archived on the Open Science Framework.</p>
 <h3 id="osf-links-and-ids">OSF Links and IDs<a class="anchor" aria-label="anchor" href="#osf-links-and-ids"></a>
 </h3>
 <p>Get any OSF links from a paper or list of papers.</p>
-<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">links</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/osf_links.html">osf_links</a></span><span class="op">(</span><span class="va">psychsci</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">links</span><span class="op">$</span><span class="va">text</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">#&gt; [1] "osf.io/e2aks"                                             </span></span>
-<span><span class="co">#&gt; [2] "osf.io/tvyxz/"                                            </span></span>
-<span><span class="co">#&gt; [3] "osf.io/t9j8e/? view_only=f171281f212f4435917b16a9e581a73b"</span></span>
-<span><span class="co">#&gt; [4] "osf .io/ideta"                                            </span></span>
-<span><span class="co">#&gt; [5] "osf.io/eky4s"                                             </span></span>
-<span><span class="co">#&gt; [6] "osf.io/xgwhk"</span></span></code></pre>
+<pre><code><span><span class="co">#&gt; [1] "osf.io/e2aks"                  "osf.io/tvyxz/"                </span></span>
+<span><span class="co">#&gt; [3] "osf.io/t9j8e/? view_only=f171" "osf .io/ideta"                </span></span>
+<span><span class="co">#&gt; [5] "osf.io/tvyxz/ "                "osf.io/eky4s"</span></span></code></pre>
 <p>You can see that some of them have rogue spaces or view-only links.
 The function <code><a href="../reference/osf_check_id.html">osf_check_id()</a></code> takes most formats of OSF links
 (with or without <a href="https://" class="external-link uri">https://</a> and
 osf.io/, as well as the 25-character waterbutler IDs) and converts them
 to short IDs.</p>
-<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">osf_ids</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/osf_check_id.html">osf_check_id</a></span><span class="op">(</span><span class="va">links</span><span class="op">$</span><span class="va">text</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">osf_ids</span><span class="op">)</span></span></code></pre></div>
@@ -1110,25 +1212,19 @@ need to add this step to most workflows.</p>
 osf_type (nodes, files, preprints, registrations, users, set to
 “private” if you don’t have authorisation to view it, and “invalid” if
 the ), whether it is public</p>
-<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">info</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/osf_retrieve.html">osf_retrieve</a></span><span class="op">(</span><span class="va">links</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">6</span>, <span class="op">]</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">#&gt; Starting OSF retrieval for 4 URLs...</span></span></code></pre>
-<pre><code><span><span class="co">#&gt; * Retrieving info from e2aks...</span></span></code></pre>
-<pre><code><span><span class="co">#&gt; * Retrieving info from tvyxz...</span></span></code></pre>
-<pre><code><span><span class="co">#&gt; * Retrieving info from t9j8e...</span></span></code></pre>
-<pre><code><span><span class="co">#&gt; * Retrieving info from ideta...</span></span></code></pre>
-<pre><code><span><span class="co">#&gt; ...OSF retrieval complete!</span></span></code></pre>
-<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">info</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"text"</span>,<span class="st">"osf_id"</span>, <span class="st">"osf_type"</span>, <span class="st">"public"</span>, <span class="st">"category"</span><span class="op">)</span><span class="op">]</span></span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">info</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/osf_retrieve.html">osf_retrieve</a></span><span class="op">(</span><span class="va">links</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">6</span>, <span class="st">"text"</span><span class="op">]</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">info</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"text"</span>,<span class="st">"osf_id"</span>, <span class="st">"osf_type"</span>, <span class="st">"public"</span>, <span class="st">"category"</span><span class="op">)</span><span class="op">]</span></span></code></pre></div>
 <pre><code><span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 5</span></span></span>
-<span><span class="co">#&gt;   text                                           osf_id osf_type public category</span></span>
-<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> osf.io/e2aks                                   e2aks  nodes    TRUE   project </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> osf.io/tvyxz/                                  tvyxz  nodes    TRUE   project </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> osf.io/tvyxz/                                  tvyxz  nodes    TRUE   project </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> osf.io/t9j8e/? view_only=f171281f212f4435917b… t9j8e  private  FALSE  <span style="color: #BB0000;">NA</span>      </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> osf .io/ideta                                  ideta  nodes    TRUE   project </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span> osf.io/tvyxz/                                  tvyxz  nodes    TRUE   project</span></span></code></pre>
+<span><span class="co">#&gt;   text                            osf_id osf_type public category</span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> <span style="color: #949494;">"</span>osf.io/e2aks<span style="color: #949494;">"</span>                  e2aks  nodes    TRUE   project </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> <span style="color: #949494;">"</span>osf.io/tvyxz/<span style="color: #949494;">"</span>                 tvyxz  nodes    TRUE   project </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> <span style="color: #949494;">"</span>osf.io/tvyxz/<span style="color: #949494;">"</span>                 tvyxz  nodes    TRUE   project </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> <span style="color: #949494;">"</span>osf.io/t9j8e/? view_only=f171<span style="color: #949494;">"</span> t9j8e  private  FALSE  <span style="color: #BB0000;">NA</span>      </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> <span style="color: #949494;">"</span>osf .io/ideta<span style="color: #949494;">"</span>                 ideta  nodes    TRUE   project </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span> <span style="color: #949494;">"</span>osf.io/tvyxz/ <span style="color: #949494;">"</span>                tvyxz  nodes    TRUE   project</span></span></code></pre>
 <p>For now, the OSF API does not let us retrieve any information about
 view-only links. They may be viewable by you in the web browser if the
 link is still active, but will be listed in the table as public = FALSE
@@ -1136,35 +1232,17 @@ and osf_type = “private”.</p>
 <p>You can set the argument <code>recursive = TRUE</code> to also
 retrieve information about all nodes and files that are contained by the
 OSF link.</p>
-<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/osf_api_calls.html">osf_api_calls</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span></span>
-<span><span class="va">all_contents</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/osf_retrieve.html">osf_retrieve</a></span><span class="op">(</span><span class="va">links</span><span class="op">$</span><span class="va">text</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, recursive <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">#&gt; Starting OSF retrieval for 1 URL...</span></span></code></pre>
-<pre><code><span><span class="co">#&gt; * Retrieving info from e2aks...</span></span></code></pre>
-<pre><code><span><span class="co">#&gt; ...Main retrieval complete</span></span></code></pre>
-<pre><code><span><span class="co">#&gt; Starting retrieval of children...</span></span></code></pre>
-<pre><code><span><span class="co">#&gt; * Retrieving children for e2aks...</span></span></code></pre>
-<pre><code><span><span class="co">#&gt; * Retrieving children for pj4e8, 7jh5v...</span></span></code></pre>
-<pre><code><span><span class="co">#&gt; * Retrieving files for e2aks...</span></span></code></pre>
-<pre><code><span><span class="co">#&gt; * Retrieving files for pj4e8...</span></span></code></pre>
-<pre><code><span><span class="co">#&gt; * Retrieving files for 7jh5v...</span></span></code></pre>
-<pre><code><span><span class="co">#&gt; ...OSF retrieval complete!</span></span></code></pre>
-<div class="sourceCode" id="cb59"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">n_calls</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/osf_api_calls.html">osf_api_calls</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">all_contents</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/osf_retrieve.html">osf_retrieve</a></span><span class="op">(</span><span class="va">links</span><span class="op">$</span><span class="va">text</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, recursive <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="va">n_calls</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/osf_api_calls.html">osf_api_calls</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p>The function <code><a href="../reference/osf_api_calls.html">osf_api_calls()</a></code> lets you reset and retrieve
 the number of API calls made since the last reset. You can see that the
 project osf.io/e2aks had 3 nodes and 6 files, which required 10 API
 calls.</p>
-<div class="sourceCode" id="cb60"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">all_contents</span><span class="op">$</span><span class="va">osf_type</span> <span class="op">==</span> <span class="st">"nodes"</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">#&gt; [1] 3</span></span></code></pre>
-<div class="callout-note">
-<p>The OSF API does not (yet) have a way to find out what type of thing
-a URL represents, so we may have to make a few API calls to figure out
-if a URL represents a node, a file, a preprint, a preregistration, a
-user, or is an invalid URL (e.g., a typo or an object that has been
-deleted).</p>
-</div>
 </div>
 <div class="section level3">
 <h3 id="download-osf-files">Download OSF Files<a class="anchor" aria-label="anchor" href="#download-osf-files"></a>
@@ -1179,7 +1257,7 @@ you, recreating a folder structure based on the component names and
 downloading all files smaller than <code>max_file_size</code> (defaults
 to 10 MB) up to a total size of <code>max_download_size</code> (defaults
 to 100 MB).</p>
-<div class="sourceCode" id="cb62"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/osf_file_download.html">osf_file_download</a></span><span class="op">(</span>osf_id <span class="op">=</span> <span class="st">"pngda"</span>,</span>
 <span>                  download_to <span class="op">=</span> <span class="st">"."</span>, </span>
 <span>                  max_file_size <span class="op">=</span> <span class="fl">1</span>, </span>
@@ -1187,7 +1265,7 @@ to 100 MB).</p>
 <pre><code>Starting retrieval for pngda
 - omitting metacheck.png (1.5MB)
 Downloading files [=====================] 24/24 00:00:35</code></pre>
-<div class="sourceCode" id="cb64"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">list.files</a></span><span class="op">(</span><span class="st">"pngda"</span>, recursive <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">#&gt;  [1] "Data/Individual/data-01.csv"                         </span></span>
 <span><span class="co">#&gt;  [2] "Data/Individual/data-02.csv"                         </span></span>
@@ -1224,45 +1302,46 @@ will share more modules.</p>
 <h3 id="module-list">Module List<a class="anchor" aria-label="anchor" href="#module-list"></a>
 </h3>
 <p>You can see the list of built-in modules with the function below.</p>
-<div class="sourceCode" id="cb66"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/module_list.html">module_list</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">#&gt;  </span></span>
+<pre><code><span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; *** GENERAL ***</span></span>
-<span><span class="co">#&gt;  * all_urls: List all the URLs in the main text.</span></span>
-<span><span class="co">#&gt;  * coi_check: Identify and extract Conflicts of Interest (COI) statements.</span></span>
-<span><span class="co">#&gt;  * coi_check_oi: Identify and extract Conflicts of Interest (COI) statements.</span></span>
-<span><span class="co">#&gt;  * funding_check: Identify and extract funding statements.</span></span>
-<span><span class="co">#&gt;  * funding_check_oi: Identify and extract funding statements.</span></span>
-<span><span class="co">#&gt;  * open_practices: This module incorporates ODDPub into metacheck. ODDPub is a text mining algorithm that detects which publications disseminated Open Data or Open Code together with the publication.</span></span>
-<span><span class="co">#&gt;  </span></span>
-<span><span class="co">#&gt; *** METHOD ***</span></span>
-<span><span class="co">#&gt;  * causal_claims: Aims to identify the presence of random assignment, and lists sentences that make causal claims in title or abstract.</span></span>
-<span><span class="co">#&gt;  * power: This module uses a large language module (LLM) to extract information reported in power analyses, including the statistical test, sample size, alpha level, desired level of power,and magnitude and type of effect size.</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; If you have not set llm_use(TRUE) and supplied a groq API, the module will return paragraphs that potentially contain power analyses, based on a regular expression search.</span></span>
-<span><span class="co">#&gt;  * prereg_check: Retrieve information from preregistrations in a standardised way,</span></span>
+<span><span class="co">#&gt; * all_urls: List all the URLs in the main text.</span></span>
+<span><span class="co">#&gt; * coi_check: Identify and extract Conflicts of Interest (COI) statements.</span></span>
+<span><span class="co">#&gt; * coi_check_oi: Identify and extract Conflicts of Interest (COI) statements.</span></span>
+<span><span class="co">#&gt; * funding_check: Identify and extract funding statements.</span></span>
+<span><span class="co">#&gt; * funding_check_oi: Identify and extract funding statements.</span></span>
+<span><span class="co">#&gt; * open_practices: This module incorporates ODDPub into metacheck. ODDPub is a text mining algorithm that detects which publications disseminated Open Data or Open Code together with the publication.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; *** METHOD ***</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; * causal_claims: Aims to identify the presence of random assignment, and lists sentences that make causal claims in title or abstract.</span></span>
+<span><span class="co">#&gt; * power: This module uses uses regular expressions to identify sentences that contain a statistical power analysis. If specified by the user, it also uses a large language module (LLM) to extract information reported in power analyses, including the statistical test, sample size, alpha level, desired level of power, and magnitude and type of effect size.</span></span>
+<span><span class="co">#&gt; * prereg_check: Retrieve information from preregistrations in a standardised way,</span></span>
 <span><span class="co">#&gt; and make them easier to check.</span></span>
-<span><span class="co">#&gt;  </span></span>
+<span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; *** RESULTS ***</span></span>
-<span><span class="co">#&gt;  * all_p_values: List all p-values in the text, returning the matched text (e.g., 'p = 0.04') and document location in a table.</span></span>
-<span><span class="co">#&gt;  * code_check: This module retrieves information from repositories checked by repo_check about code files (R, SAS, SPSS, Stata).</span></span>
-<span><span class="co">#&gt;  * marginal: List all sentences that describe an effect as 'marginally significant'.</span></span>
-<span><span class="co">#&gt;  * repo_check: This module retrieves information from repositories.</span></span>
-<span><span class="co">#&gt;  * stat_check: Check consistency of p-values and test statistics</span></span>
-<span><span class="co">#&gt;  * stat_effect_size: The Effect Size module checks for effect sizes in t-tests and F-tests.</span></span>
-<span><span class="co">#&gt;  * stat_p_exact: List any p-values reported with insufficient precision (e.g., p &lt; .05 or p = n.s.)</span></span>
-<span><span class="co">#&gt;  * stat_p_nonsig: This module checks for imprecisely reported p values. If p &gt; .05 is detected, it warns for misinterpretations.</span></span>
-<span><span class="co">#&gt;  </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; * all_p_values: List all p-values in the text, returning the matched text (e.g., 'p = 0.04') and document location in a table.</span></span>
+<span><span class="co">#&gt; * code_check: This module retrieves information from repositories checked by repo_check about code files (R, SAS, SPSS, Stata).</span></span>
+<span><span class="co">#&gt; * marginal: List all sentences that describe an effect as 'marginally significant'.</span></span>
+<span><span class="co">#&gt; * repo_check: This module retrieves information from repositories.</span></span>
+<span><span class="co">#&gt; * stat_check: Check consistency of p-values and test statistics</span></span>
+<span><span class="co">#&gt; * stat_effect_size: The Effect Size module checks for effect sizes in t-tests and F-tests.</span></span>
+<span><span class="co">#&gt; * stat_p_exact: List any p-values reported with insufficient precision (e.g., p &lt; .05 or p = n.s.)</span></span>
+<span><span class="co">#&gt; * stat_p_nonsig: This module checks for imprecisely reported p values. If p &gt; .05 is detected, it warns for misinterpretations.</span></span>
+<span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; *** REFERENCE ***</span></span>
-<span><span class="co">#&gt;  * ref_accuracy: This module checks references for mismatches with CrossRef.</span></span>
-<span><span class="co">#&gt;  * ref_consistency: Check if all references are cited and all citations are referenced</span></span>
-<span><span class="co">#&gt;  * ref_doi_check: This module checks references for missing DOIs or DOIs with an invalid format.</span></span>
-<span><span class="co">#&gt;  * ref_miscitation: Check for frequently miscited papers. This module is just a proof of concept -- the miscite database is not yet populated with real examples.</span></span>
-<span><span class="co">#&gt;  * ref_pubpeer: This module checks references and warns for citations that have comments on pubpeer (excluding Statcheck comments).</span></span>
-<span><span class="co">#&gt;  * ref_replication: This module checks references and warns for citations of original studies for which replication studies exist in the Replication Database.</span></span>
-<span><span class="co">#&gt;  * ref_retraction: This module checks references and warns for citations in the RetractionWatch Database.</span></span>
-<span><span class="co">#&gt;  * ref_summary: Summarise information about each reference in a paper.</span></span>
-<span><span class="co">#&gt;  </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; * ref_accuracy: This module checks references for mismatches with CrossRef.</span></span>
+<span><span class="co">#&gt; * ref_consistency: Check if all references are cited and all citations are referenced</span></span>
+<span><span class="co">#&gt; * ref_miscitation: Check for frequently miscited papers. This module is just a proof of concept -- the miscite database is not yet populated with real examples.</span></span>
+<span><span class="co">#&gt; * ref_pubpeer: This module checks references and warns for citations that have comments on pubpeer (excluding Statcheck comments).</span></span>
+<span><span class="co">#&gt; * ref_replication: This module checks references and warns for citations of original studies for which replication or reproduction studies exist in the FLoRA database.</span></span>
+<span><span class="co">#&gt; * ref_retraction: This module checks references and warns for citations in the RetractionWatch Database.</span></span>
+<span><span class="co">#&gt; * ref_summary: Summarise information about each reference in a paper.</span></span>
+<span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Use `module_help("module_name")` for help with a specific module</span></span></code></pre>
 </div>
 <div class="section level3">
@@ -1270,62 +1349,72 @@ will share more modules.</p>
 </h3>
 <p>To run a built-in module on a paper, you can reference it by
 name.</p>
-<div class="sourceCode" id="cb68"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/module_run.html">module_run</a></span><span class="op">(</span><span class="va">paper</span>, <span class="st">"all_p_values"</span><span class="op">)</span></span></code></pre></div>
 <table style="width:100%;" class="table">
 <colgroup>
-<col width="12%">
+<col width="7%">
 <col width="9%">
-<col width="28%">
-<col width="4%">
-<col width="3%">
-<col width="3%">
-<col width="19%">
+<col width="11%">
+<col width="7%">
 <col width="8%">
-<col width="9%">
+<col width="10%">
+<col width="14%">
+<col width="7%">
+<col width="11%">
+<col width="6%">
+<col width="7%">
 </colgroup>
 <thead><tr class="header">
+<th align="right">text_id</th>
+<th align="right">section_id</th>
+<th align="right">paragraph_id</th>
 <th align="left">text</th>
-<th align="left">section</th>
+<th align="left">formatted</th>
+<th align="right">page_number</th>
+<th align="left">paper_id</th>
 <th align="left">header</th>
-<th align="right">div</th>
-<th align="right">p</th>
-<th align="right">s</th>
-<th align="left">id</th>
+<th align="left">section_type</th>
 <th align="left">p_comp</th>
 <th align="right">p_value</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">p = 0.005</td>
-<td align="left">method</td>
-<td align="left">Method and Participants</td>
-<td align="right">2</td>
-<td align="right">1</td>
-<td align="right">11</td>
+<td align="right">21</td>
+<td align="right">8</td>
+<td align="right">10</td>
+<td align="left">p=0.005</td>
+<td align="left">NA</td>
+<td align="right">3</td>
 <td align="left">to_err_is_human</td>
+<td align="left">Results</td>
+<td align="left">results</td>
 <td align="left">=</td>
 <td align="right">0.005</td>
 </tr>
 <tr class="even">
-<td align="left">p = 0.152</td>
-<td align="left">results</td>
-<td align="left">Results</td>
+<td align="right">22</td>
+<td align="right">8</td>
+<td align="right">11</td>
+<td align="left">p=0.152</td>
+<td align="left">NA</td>
 <td align="right">3</td>
-<td align="right">1</td>
-<td align="right">1</td>
 <td align="left">to_err_is_human</td>
+<td align="left">Results</td>
+<td align="left">results</td>
 <td align="left">=</td>
 <td align="right">0.152</td>
 </tr>
 <tr class="odd">
+<td align="right">23</td>
+<td align="right">8</td>
+<td align="right">12</td>
 <td align="left">p &gt; .05</td>
-<td align="left">results</td>
-<td align="left">Results</td>
+<td align="left">NA</td>
 <td align="right">3</td>
-<td align="right">1</td>
-<td align="right">2</td>
 <td align="left">to_err_is_human</td>
+<td align="left">Results</td>
+<td align="left">results</td>
 <td align="left">&gt;</td>
 <td align="right">0.050</td>
 </tr>
@@ -1347,9 +1436,9 @@ details.</p>
 </h2>
 <p>You can generate a report from any set of modules. Check the function
 help for the default set.</p>
-<div class="sourceCode" id="cb69"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/report.html">report</a></span><span class="op">(</span><span class="va">paper</span>, output_format <span class="op">=</span> <span class="st">"qmd"</span><span class="op">)</span></span></code></pre></div>
-<p>See the <a href="report-example.html">example report</a>.</p>
+<p>See the <a href="../report-example.html">example report</a>.</p>
 </div>
 
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
@@ -1359,7 +1448,7 @@ help for the default set.</p>
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by Lisa DeBruine, Daniel Lakens.</p>
+  <p>Developed by Lisa DeBruine, Daniel Lakens, Jakub Werner.</p>
 </div>
 
 <div class="pkgdown-footer-right">

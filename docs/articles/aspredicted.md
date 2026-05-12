@@ -42,59 +42,61 @@ the same link in multiple places, so we will just show you the unique
 links here, returned in the “text” column.
 
 ``` r
+
 links <- aspredicted_links(psychsci)
 
 unique(links$text)
 #>  [1] "https://aspredicted.org/ve2qn.pdf"         
-#>  [2] "https://aspredicted.org/mq97g.pdf"         
+#>  [2] "https://aspredicted.org/z97us"             
 #>  [3] "https://aspredicted.org/4gf64.pdf"         
-#>  [4] "https://aspredicted.org/8a6ta.pdf"         
-#>  [5] "https://aspredicted.org/vp4rg.pdf"         
-#>  [6] "https://aspredicted.org/3kq9y.pdf"         
-#>  [7] "https://aspredicted.org/rz98j.pdf"         
-#>  [8] "https://aspredicted.org/z97us.pdf"         
-#>  [9] "https://aspredicted.org/h9xm3.pdf"         
-#> [10] "https://aspredicted.org/bj9er.pdf"         
-#> [11] "https://aspredicted.org/my5jk.pdf"         
-#> [12] "https://aspredicted.org/5xe8i.pdf"         
-#> [13] "https://aspredicted.org/ak97v.pdf"         
-#> [14] "https://aspredicted.org/p4ci6.pdf"         
-#> [15] "https://aspredicted.org/iv9tb.pdf"         
-#> [16] "https://aspredicted.org/dp8r5.pdf"         
-#> [17] "https://aspredicted.org/Y2F_6B7"           
-#> [18] "https://aspredicted.org/2YK_D6R"           
-#> [19] "https://aspredicted.org/MPG_T3C"           
-#> [20] "https://aspredicted.org/G68_GBZ"           
-#> [21] "https://aspredicted.org/9SR_7BC"           
-#> [22] "https://aspredicted.org/6D7_FVX"           
-#> [23] "https://aspredicted.org/KD5_7LF"           
-#> [24] "https://aspredicted.org/6tv5v.pdf"         
-#> [25] "https://aspredicted.org/qs7zz.pdf"         
-#> [26] "https://aspredicted.org/4mk6i.pdf"         
-#> [27] "https://aspredicted.org/z5k26.pdf"         
-#> [28] "https://aspredicted.org/wd3pm.pdf"         
-#> [29] "https://aspredicted.org/LVH_7KX"           
-#> [30] "https://aspredicted.org/LZQ_DXY"           
-#> [31] "https://aspredicted.org/6X6_XZW"           
-#> [32] "https://aspredicted.org/blind.php?x=nq4xa3"
-#> [33] "https://aspredicted.org/blind.php?x=772w3a"
-#> [34] "https://aspredicted.org/blind.php?x=55km72"
-#> [35] "https://aspredicted.org/blind.php?x=yv9c2a"
-#> [36] "https://aspredicted.org/blind.php?x=4xe5ih"
-#> [37] "https://aspredicted.org/blind.php?x=pk8ff3"
-#> [38] "https://aspredicted.org/sn9xs.pdf"         
-#> [39] "https://aspredicted.org/vh8kg.pdf"         
-#> [40] "https://aspredicted.org/ay3yk.pdf"         
-#> [41] "https://aspredicted.org/jz2nc.pdf"         
-#> [42] "https://aspredicted.org/a2wc9.pdf"         
-#> [43] "https://aspredicted.org/PD5_KKS"           
-#> [44] "https://aspredicted.org/9PG_LTT"           
-#> [45] "https://aspredicted.org/M3P_X3P"           
-#> [46] "https://aspredicted.org/H53_M3P"           
-#> [47] "https://aspredicted.org/CQW_DTT"           
-#> [48] "https://aspredicted.org/PW5_5VT"           
-#> [49] "https://aspredicted.org/sq22k.pdf"         
-#> [50] "https://aspredicted.org/u53e3.pdf"
+#>  [4] "https://aspredicted.org/bj9er"             
+#>  [5] "https://aspredicted.org/qs7zz.pdf"         
+#>  [6] "https://aspredicted.org/4mk6i.pdf"         
+#>  [7] "https://aspredicted.org/z5k26.pdf"         
+#>  [8] "https://aspredicted.org/wd3pm.pdf"         
+#>  [9] "https://aspredicted.org/vh8kg.pdf"         
+#> [10] "https://aspredicted.org/ay3yk.pdf"         
+#> [11] "https://aspredicted.org/jz2nc.pdf"         
+#> [12] "https://aspredicted.org/a2wc9.pdf"         
+#> [13] "https://aspredicted.org/my5jk.pdf"         
+#> [14] "https://aspredicted.org/dp8r5.pdf"         
+#> [15] "https://aspredicted.org/sn9xs.pdf"         
+#> [16] "https://aspredicted.org/MPG_T3C"           
+#> [17] "https://aspredicted.org/G68_GBZ"           
+#> [18] "https://aspredicted.org/9SR_7BC"           
+#> [19] "https://aspredicted.org/6D7_FVX"           
+#> [20] "https://aspredicted.org/Y2F_6B7"           
+#> [21] "https://aspredicted.org/LVH_7KX"           
+#> [22] "https://aspredicted.org/8a6ta.pdf"         
+#> [23] "https://aspredicted.org/vp4rg.pdf"         
+#> [24] "https://aspredicted.org/h9xm3.pdf"         
+#> [25] "https://aspredicted.org/mq97g.pdf"         
+#> [26] "https://aspredicted.org/3kq9y.pdf"         
+#> [27] "https://aspredicted.org/iv9tb.pdf"         
+#> [28] "https://aspredicted.org/rz98j.pdf"         
+#> [29] "https://aspredicted.org/z97us.pdf"         
+#> [30] "https://aspredicted.org/h9xm3"             
+#> [31] "https://aspredicted.org/5xe8i.pdf"         
+#> [32] "https://aspredicted.org/4gf64"             
+#> [33] "https://aspredicted.org/yi5ps.pdf"         
+#> [34] "https://aspredicted.org/nu5yt.pdf"         
+#> [35] "https://aspredicted.org/p4ci6.pdf"         
+#> [36] "https://aspredicted.org/LZQ_DXY"           
+#> [37] "https://aspredicted.org/6X6_XZW"           
+#> [38] "https://aspredicted.org/blind.php?x=nq4xa3"
+#> [39] "https://aspredicted.org/blind.php?x=772w3a"
+#> [40] "https://aspredicted.org/blind.php?x=55km72"
+#> [41] "https://aspredicted.org/blind.php?x=yv9c2a"
+#> [42] "https://aspredicted.org/blind.php?x=4xe5ih"
+#> [43] "https://aspredicted.org/blind.php?x=pk8ff3"
+#> [44] "https://aspredicted.org/bj9er.pdf"         
+#> [45] "https://aspredicted.org/sq22k.pdf"         
+#> [46] "https://aspredicted.org/PD5_KKS"           
+#> [47] "https://aspredicted.org/9PG_LTT"           
+#> [48] "https://aspredicted.org/H53_M3P"           
+#> [49] "https://aspredicted.org/CQW_DTT"           
+#> [50] "https://aspredicted.org/PW5_5VT"           
+#> [51] "https://aspredicted.org/KD5_7LF"
 ```
 
 ## Retrieve Link Info
@@ -102,7 +104,7 @@ unique(links$text)
 We can then use the function
 [`aspredicted_retrieve()`](https://scienceverse.github.io/metacheck/reference/aspredicted_retrieve.md)
 to get structured information from AsPredicted. You can try to run the
-function on all 50 links above, but AsPredicted will eventually make you
+function on all 51 links above, but AsPredicted will eventually make you
 complete a captcha before each access (we’re working on a way to log
 into the site to prevent this). But for demonstration purposes, let’s
 just look at one paper.
@@ -113,17 +115,19 @@ Lemurs](https://journals.sagepub.com/doi/10.1177/09567976221082938)”,
 which contains a single preregistration on AsPredicted.
 
 ``` r
+
 paper <- psychsci$`09567976221082938`
 
 links <- aspredicted_links(paper)
 
-prereg <- aspredicted_retrieve(links)
+prereg <- aspredicted_retrieve(links, id_col = "text")
 #> Starting AsPredicted retrieval for 1 file...
 #> * Retrieving info from https://aspredicted.org/iv9tb.pdf...
 #> ...AsPredicted retrieval complete!
 ```
 
 ``` r
+
 # get just the AsPredicted columns
 cols <- names(prereg)
 ap_cols <- cols[grepl("^AP_", cols)]
@@ -175,6 +179,7 @@ You can access the sample size plan from the results of
 under the column name `AP_sample_size`.
 
 ``` r
+
 # get the sample size section from AsPredicted
 prereg_sample_size <- unique(prereg$AP_sample_size)
 
@@ -216,12 +221,12 @@ paragraph. We can use metacheck’s inbuilt
 function. For this paper, we see this simple approach works well.
 
 ``` r
+
 # match "sample" or "# particip..."
 regex_sample <- "\\bsample\\b|\\d+\\s+particip\\w+"
 
-# get full paragraphs only from the method section
-sample <- search_text(paper, regex_sample, 
-                      section = "method", 
+# get full paragraphs 
+sample <- search_text(paper, regex_sample,
                       return= "paragraph")
 
 sample$text |> cat("> ", x = _)
@@ -245,7 +250,7 @@ sample$text |> cat("> ", x = _)
 > time. The lemurs had little or no prior experience in relevant
 > cognitive tasks such as those used here (see Table S1). All behavioral
 > tests were approved by Duke University’s Institutional Animal Care and
-> Use Committee .
+> Use Committee (Protocol No. A268-16-12).
 
 We see that the the authors planned to test 10 mongoose lemurs, but one
 didn’t feel like participating. This can happen, and it does not really
@@ -266,15 +271,15 @@ ecologically) but it is possible and might work better, given the
 flexible ways people discuss sample sizes in manuscripts.
 
 We can use an overinclusive search for any paragraphs that contain the
-strings “sample”, “subject” or “particip” from the method and results
-sections. We can further narrow this down by including only paragraphs
-that contain a number (including the word forms for small numbers).
+strings “sample”, “subject” or “particip”. We can further narrow this
+down by including only paragraphs that contain a number (including the
+word forms for small numbers).
 
 ``` r
+
 regex_sample <- "subject|sample|particip"
 regex_numbers <- "[0-9]|one|two|three|four|five|six|seven|eight|nine|ten"
 methres <- search_text(paper, regex_sample,
-                       section = c("method", "results"), 
                        return = "paragraph") |>
   search_text(regex_numbers, return = "paragraph")
 ```
@@ -287,6 +292,7 @@ Metacheck has a custom function to send text and a system prompt to an
 LLM.
 
 ``` r
+
 system_prompt_template <- "The following text is part of a scientific article. It describes a performed study. Part of this text should correspond to what researchers planned to do. Before data collection, the researchers stated they would:
 
 %s
@@ -306,15 +312,15 @@ llm_response <- llm(text, system_prompt)
 llm_response$answer |> cat("> ", x = _)
 ```
 
-> The authors deviated from their preregistration. In the original plan,
-> they stated they would “test a minimum of 10 and a maximum of 15
-> individuals for each species based on availability and individual’s
-> willingness to participate at the time of testing.” However, in the
-> study, the total number of lemurs included was 39, with the specific
-> numbers being: ruffed lemurs (n = 10), Coquerel’s sifakas (n = 10),
-> ring-tailed lemurs (n = 10), and mongoose lemurs (n = 9). The sample
-> size for each species significantly exceeded the initially planned
-> maximum of 15 individuals.
+> The authors deviated from their preregistration.
+
+According to the text, the researchers planned to test a minimum of 10
+and a maximum of 15 individuals for each species. However, the actual
+sample size for each species was: ruffed lemur (n = 10), Coquerel’s
+sifakas (n = 10), ring-tailed lemurs (n = 10), and mongoose lemur (n =
+9). The researchers tested 39 lemurs in total, which is more than the
+maximum planned sample size of 60 individuals (15 individuals per
+species).
 
 As we see, the LLM does a very good job evaluating whether the authors
 adhered to their preregistration in terms of the sample size. The
@@ -342,9 +348,10 @@ the method section that contain the words ‘sample’ or ‘particip…’ reve
 the misclassification by the LLM.
 
 ``` r
+
 paper <- psychsci$`0956797621991548`
 links <- aspredicted_links(paper)
-prereg <- aspredicted_retrieve(links)
+prereg <- aspredicted_retrieve(links, id_col = "text")
 #> Starting AsPredicted retrieval for 1 file...
 #> * Retrieving info from https://aspredicted.org/p4ci6.pdf...
 #> ...AsPredicted retrieval complete!
@@ -362,11 +369,11 @@ prereg_sample_size |> cat("> ", x = _)
 > comprehension).
 
 ``` r
+
 # LLM workflow - send potentially relevant paragraphs
 regex_sample <- "subject|sample|particip"
 regex_numbers <- "[0-9]|one|two|three|four|five|six|seven|eight|nine|ten"
 methres <- search_text(paper, regex_sample,
-                       section = c("method", "results"), 
                        return = "paragraph") |>
   search_text(regex_numbers, return = "paragraph")
 
@@ -378,62 +385,55 @@ llm_response <- llm(text, system_prompt)
 llm_response$answer |> cat("> ", x = _)
 ```
 
-> The authors deviated from their preregistration.
-
-The text states that “Here, we sought to collect data from 60
-participants in each cohort.” However, it also states that in cohort B,
-“Cohort B (n = 56; 44 female), our replication sample, the mean age was
-20.64 years (SD = 1.96). Cohort B was originally intended to be another
-60 participants, but data collection was interrupted because of the
-COVID-19 pandemic; we shut down all laboratory testing on March 13,
-2020.” This indicates that the researchers aimed to collect data from 60
-participants in each cohort, as stated in the abstract, but in cohort B,
-they only collected data from 56 participants due to the COVID-19
-pandemic.
-
-Therefore, the authors deviated from their preregistered sample size of
-60 participants in cohort B.
+> The authors deviated from their preregistration. According to the
+> text, the researchers planned to collect data from 60 participants in
+> each cohort, but they only collected data from 56 participants in
+> cohort B due to the COVID-19 pandemic.
 
 ``` r
+
 # manual check - no LLM
 regex_sample <- "\\bsample\\b|\\d+\\s+particip\\w+"
 
 sample <- search_text(paper, regex_sample, 
-                      section = "method", 
                       return= "paragraph")
 
 sample$text |> cat("> ", x = _)
 ```
 
-> Through memory, humans are able to relive the past in rich detail. Our
-> memories are crucial to our sense of self and guide thoughts and
-> actions. As one important factor, emotion plays a crucial role in the
-> fidelity of memory, searing in our minds the best and worst of times.
-> Still, experimental data show that not all the details from emotional
-> events are preserved in memory. Here, we probed three aspects of
-> memory for negative and neutral events: what, when, and which. We used
-> a laboratory analogue of real-world remembering, in which participants
-> watched videos designed to mimic aspects of an unfolding reallife
-> experience. Emotion enhanced memory for “what” but reduced memory for
-> “which.” Critically, emotion also altered memory for “when”;
-> participants estimated that neutral images occurred later, but
-> negative images were not associated with such bias. Thus, our results
-> highlight the myriad effects of emotion on memory. conducted a power
-> analysis based on Madan et al.’s (2017) second experiment. The effect
-> sizes for the impact of emotion on “what” (Cohen’s d = 0.44) and
-> “which” (d = 0.52) memory indicated that a sample size of 56 and 41,
-> respectively, was adequate for detecting an effect on these aspects of
-> memory (α = .05, 1 -β = .90). Here, we sought to collect data from 60
-> participants in each cohort. In cohort A (n = 60; 42 female), the mean
-> age was 20.89 years (SD = 2.94). One participant’s age was excluded
-> from the mean because they entered an age of “2.” We preregistered the
-> study involving cohort A We ran a replication study (exact
-> replication), which involved cohort B, that was not preregistered. In
-> cohort B (n = 56; 44 female), our replication sample, the mean age was
-> 20.64 years (SD = 1.96). Cohort B was originally intended to be
-> another 60 participants, but data collection was interrupted because
-> of the COVID-19 pandemic; we shut down all laboratory testing on March
-> 13, 2020.
+> In the present preregistered study (<https://aspre>
+> dicted.org/p4ci6.pdf), we built on this prior work using a
+> novel-timeline (“when”) paradigm (for related methodology, see
+> Montchal et al., 2019). To contextualize our results in the broader
+> emotional-memory literature, we simultaneously tested “what” (item
+> recognition) and in “which” (associative recognition for a spatial
+> context) memory within the same paradigm, providing a holistic
+> representation of emotional episodic memories. In a second experiment,
+> we directly replicated our findings in an independent sample.
+> Following prior work, we hypothesized that emotion would augment
+> memory for what emotional content was previously viewed but attenuate
+> memory for which unfolding spatial background that content is placed
+> in. Our novel hypothesis was that emotion would additionally attenuate
+> memory for when that content was viewed. conducted a power analysis
+> based on Madan et al.’s (2017) second experiment. The effect sizes for
+> the impact of emotion on “what” (Cohen’s d = 0.44) and “which” (d =
+> 0.52) memory indicated that a sample size of 56 and 41, respectively,
+> was adequate for detecting an effect on these aspects of memory (α =
+> .05, 1 -β = .90). Here, we sought to collect data from 60 participants
+> in each cohort. In cohort A (n = 60; 42 female), the mean age was
+> 20.89 years (SD = 2.94). One participant’s age was excluded from the
+> mean because they entered an age of “2.” We preregistered the study
+> involving cohort A We ran a replication study (exact replication),
+> which involved cohort B, that was not preregistered. In cohort B (n =
+> 56; 44 female), our replication sample, the mean age was 20.64 years
+> (SD = 1.96). Cohort B was originally intended to be another 60
+> participants, but data collection was interrupted because of the
+> COVID-19 pandemic; we shut down all laboratory testing on March 13,
+> 2020. An exploratory analysis (not preregistered) in the full sample
+> examined potential associations between performance (difference
+> scores) across the different aspects of memory probed. Because this
+> involved three comparisons, we used a Bonferroni-corrected value (α)
+> of .016. This analysis failed to yield any significant
 
 ## Putting it All Together
 
@@ -443,6 +443,7 @@ module](https://scienceverse.github.io/metacheck/articles/creating_modules.html)
 by using (or improving) the following code:
 
 ``` r
+
 # save to a file aspredicted_sample.R
 # and use like module_run(paper, "aspredicted_sample.R")
 
@@ -452,7 +453,7 @@ aspredicted_sample <- function(paper, use_llm = FALSE) {
   if (nrow(links) == 0) return(list())
   
   # get prereg data from AsPredicted
-  prereg <- aspredicted_retrieve(links)
+  prereg <- aspredicted_retrieve(links, id_col = "text")
   if (nrow(prereg) == 0 | is.null(prereg$AP_sample_size)) {
     return(list())
   }
@@ -462,7 +463,6 @@ aspredicted_sample <- function(paper, use_llm = FALSE) {
   # check paper for possible sample paragraphs
   regex_sample <- "\\bsample\\b|\\d+\\s+particip\\w+"
   sample <- search_text(paper, regex_sample, 
-                        section = "method", 
                         return= "paragraph")
   
   # check LLM only if requested
@@ -477,7 +477,6 @@ aspredicted_sample <- function(paper, use_llm = FALSE) {
     regex_sample <- "subject|sample|particip"
     regex_numbers <- "[0-9]|one|two|three|four|five|six|seven|eight|nine|ten"
     methres <- search_text(paper, regex_sample,
-                           section = c("method", "results"), 
                            return = "paragraph") |>
       search_text(regex_numbers, return = "paragraph")
     
@@ -512,6 +511,7 @@ aspredicted_sample <- function(paper, use_llm = FALSE) {
 Test on the paper from above.
 
 ``` r
+
 paper <- psychsci$`0956797621991548`
 ap <- aspredicted_sample(paper)
 #> Starting AsPredicted retrieval for 1 file...
@@ -529,40 +529,46 @@ and must be fluent in English (to ensure instruction comprehension).
 
 Sample Size Text in Paper:
 
-Through memory, humans are able to relive the past in rich detail. Our
-memories are crucial to our sense of self and guide thoughts and
-actions. As one important factor, emotion plays a crucial role in the
-fidelity of memory, searing in our minds the best and worst of times.
-Still, experimental data show that not all the details from emotional
-events are preserved in memory. Here, we probed three aspects of memory
-for negative and neutral events: what, when, and which. We used a
-laboratory analogue of real-world remembering, in which participants
-watched videos designed to mimic aspects of an unfolding reallife
-experience. Emotion enhanced memory for “what” but reduced memory for
-“which.” Critically, emotion also altered memory for “when”;
-participants estimated that neutral images occurred later, but negative
-images were not associated with such bias. Thus, our results highlight
-the myriad effects of emotion on memory. conducted a power analysis
-based on Madan et al.’s (2017) second experiment. The effect sizes for
-the impact of emotion on “what” (Cohen’s d = 0.44) and “which” (d =
-0.52) memory indicated that a sample size of 56 and 41, respectively,
-was adequate for detecting an effect on these aspects of memory (α =
-.05, 1 -β = .90). Here, we sought to collect data from 60 participants
-in each cohort. In cohort A (n = 60; 42 female), the mean age was 20.89
-years (SD = 2.94). One participant’s age was excluded from the mean
-because they entered an age of “2.” We preregistered the study involving
-cohort A We ran a replication study (exact replication), which involved
-cohort B, that was not preregistered. In cohort B (n = 56; 44 female),
-our replication sample, the mean age was 20.64 years (SD = 1.96). Cohort
-B was originally intended to be another 60 participants, but data
+In the present preregistered study (<https://aspre>
+dicted.org/p4ci6.pdf), we built on this prior work using a
+novel-timeline (“when”) paradigm (for related methodology, see Montchal
+et al., 2019). To contextualize our results in the broader
+emotional-memory literature, we simultaneously tested “what” (item
+recognition) and in “which” (associative recognition for a spatial
+context) memory within the same paradigm, providing a holistic
+representation of emotional episodic memories. In a second experiment,
+we directly replicated our findings in an independent sample. Following
+prior work, we hypothesized that emotion would augment memory for what
+emotional content was previously viewed but attenuate memory for which
+unfolding spatial background that content is placed in. Our novel
+hypothesis was that emotion would additionally attenuate memory for when
+that content was viewed. conducted a power analysis based on Madan et
+al.’s (2017) second experiment. The effect sizes for the impact of
+emotion on “what” (Cohen’s d = 0.44) and “which” (d = 0.52) memory
+indicated that a sample size of 56 and 41, respectively, was adequate
+for detecting an effect on these aspects of memory (α = .05, 1 -β =
+.90). Here, we sought to collect data from 60 participants in each
+cohort. In cohort A (n = 60; 42 female), the mean age was 20.89 years
+(SD = 2.94). One participant’s age was excluded from the mean because
+they entered an age of “2.” We preregistered the study involving cohort
+A We ran a replication study (exact replication), which involved cohort
+B, that was not preregistered. In cohort B (n = 56; 44 female), our
+replication sample, the mean age was 20.64 years (SD = 1.96). Cohort B
+was originally intended to be another 60 participants, but data
 collection was interrupted because of the COVID-19 pandemic; we shut
-down all laboratory testing on March 13, 2020.
+down all laboratory testing on March 13, 2020. An exploratory analysis
+(not preregistered) in the full sample examined potential associations
+between performance (difference scores) across the different aspects of
+memory probed. Because this involved three comparisons, we used a
+Bonferroni-corrected value (α) of .016. This analysis failed to yield
+any significant
 
 LLM Assessment:
 
 LLM not run
 
 ``` r
+
 paper <- psychsci$`0956797621991548`
 ap_with_llm <- aspredicted_sample(paper, use_llm = TRUE)
 #> Starting AsPredicted retrieval for 1 file...
@@ -581,47 +587,52 @@ and must be fluent in English (to ensure instruction comprehension).
 
 Sample Size Text in Paper:
 
-Through memory, humans are able to relive the past in rich detail. Our
-memories are crucial to our sense of self and guide thoughts and
-actions. As one important factor, emotion plays a crucial role in the
-fidelity of memory, searing in our minds the best and worst of times.
-Still, experimental data show that not all the details from emotional
-events are preserved in memory. Here, we probed three aspects of memory
-for negative and neutral events: what, when, and which. We used a
-laboratory analogue of real-world remembering, in which participants
-watched videos designed to mimic aspects of an unfolding reallife
-experience. Emotion enhanced memory for “what” but reduced memory for
-“which.” Critically, emotion also altered memory for “when”;
-participants estimated that neutral images occurred later, but negative
-images were not associated with such bias. Thus, our results highlight
-the myriad effects of emotion on memory. conducted a power analysis
-based on Madan et al.’s (2017) second experiment. The effect sizes for
-the impact of emotion on “what” (Cohen’s d = 0.44) and “which” (d =
-0.52) memory indicated that a sample size of 56 and 41, respectively,
-was adequate for detecting an effect on these aspects of memory (α =
-.05, 1 -β = .90). Here, we sought to collect data from 60 participants
-in each cohort. In cohort A (n = 60; 42 female), the mean age was 20.89
-years (SD = 2.94). One participant’s age was excluded from the mean
-because they entered an age of “2.” We preregistered the study involving
-cohort A We ran a replication study (exact replication), which involved
-cohort B, that was not preregistered. In cohort B (n = 56; 44 female),
-our replication sample, the mean age was 20.64 years (SD = 1.96). Cohort
-B was originally intended to be another 60 participants, but data
+In the present preregistered study (<https://aspre>
+dicted.org/p4ci6.pdf), we built on this prior work using a
+novel-timeline (“when”) paradigm (for related methodology, see Montchal
+et al., 2019). To contextualize our results in the broader
+emotional-memory literature, we simultaneously tested “what” (item
+recognition) and in “which” (associative recognition for a spatial
+context) memory within the same paradigm, providing a holistic
+representation of emotional episodic memories. In a second experiment,
+we directly replicated our findings in an independent sample. Following
+prior work, we hypothesized that emotion would augment memory for what
+emotional content was previously viewed but attenuate memory for which
+unfolding spatial background that content is placed in. Our novel
+hypothesis was that emotion would additionally attenuate memory for when
+that content was viewed. conducted a power analysis based on Madan et
+al.’s (2017) second experiment. The effect sizes for the impact of
+emotion on “what” (Cohen’s d = 0.44) and “which” (d = 0.52) memory
+indicated that a sample size of 56 and 41, respectively, was adequate
+for detecting an effect on these aspects of memory (α = .05, 1 -β =
+.90). Here, we sought to collect data from 60 participants in each
+cohort. In cohort A (n = 60; 42 female), the mean age was 20.89 years
+(SD = 2.94). One participant’s age was excluded from the mean because
+they entered an age of “2.” We preregistered the study involving cohort
+A We ran a replication study (exact replication), which involved cohort
+B, that was not preregistered. In cohort B (n = 56; 44 female), our
+replication sample, the mean age was 20.64 years (SD = 1.96). Cohort B
+was originally intended to be another 60 participants, but data
 collection was interrupted because of the COVID-19 pandemic; we shut
-down all laboratory testing on March 13, 2020.
+down all laboratory testing on March 13, 2020. An exploratory analysis
+(not preregistered) in the full sample examined potential associations
+between performance (difference scores) across the different aspects of
+memory probed. Because this involved three comparisons, we used a
+Bonferroni-corrected value (α) of .016. This analysis failed to yield
+any significant
 
 LLM Assessment:
 
 The authors deviated from their preregistration.
 
-According to the initial plan, the researchers stated they would collect
-data from 60 participants in each cohort. However, for cohort B, the
-study was interrupted due to the COVID-19 pandemic, and only 56
-participants were collected instead of the planned 60.
+According to the text, the researchers planned to collect data from 60
+participants in each cohort, but they only collected data from 60
+participants in cohort A and 56 participants in cohort B.
 
 It fails gracefully if there are no links.
 
 ``` r
+
 paper <- psychsci[[1]]
 ap_no_links <- aspredicted_sample(paper)
 ```
@@ -639,18 +650,15 @@ preregistrations. If you are interested in developing this metacheck
 module further, or performing such a validation study, do reach out to
 us.
 
-Akker, Olmo R. van den, Marjan Bakker, Marcel A. L. M. van Assen,
-Charlotte R. Pennington, Leone Verweij, Mahmoud M. Elsherif, Aline
-Claesen, et al. 2024. “The Potential of Preregistration in Psychology:
-Assessing Preregistration Producibility and Preregistration-Study
-Consistency.” *Psychological Methods*, October.
+Akker, Olmo R. van den, Marjan Bakker, Marcel A. L. M. van Assen, et al.
+2024. “The Potential of Preregistration in Psychology: Assessing
+Preregistration Producibility and Preregistration-Study Consistency.”
+*Psychological Methods*, ahead of print, October.
 <https://doi.org/10.1037/met0000687>.
 
-Imai, Taisuke, Séverine Toussaert, Aurélien Baillon, Anna Dreber, Seda
-Ertaç, Magnus Johannesson, Levent Neyse, and Marie Claire Villeval.
-2025. *Pre-Registration and Pre-Analysis Plans in Experimental
-Economics*. 220. I4R Discussion Paper Series.
-<https://www.econstor.eu/handle/10419/315047>.
+Imai, Taisuke, Séverine Toussaert, Aurélien Baillon, et al. 2025.
+*Pre-Registration and Pre-Analysis Plans in Experimental Economics*. I4R
+Discussion Paper Series. <https://www.econstor.eu/handle/10419/315047>.
 
 Lakens, Daniël. 2024. “When and How to Deviate from a Preregistration.”
 *Collabra: Psychology* 10 (1): 117094.

@@ -1,6 +1,6 @@
-# Get author info from TEI type XML
+# Get authors from TEI type XML
 
-Get author info from TEI type XML
+Get authors from TEI type XML
 
 ## Usage
 
@@ -16,4 +16,4 @@ tei_authors(xml)
 
 ## Value
 
-an author list
+authors table

@@ -13,7 +13,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">metacheck</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.9068</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.9100</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -40,22 +40,6 @@
     </div>
 
     <div class="section level2">
-      <h2 id="app">App<a class="anchor" aria-label="anchor" href="#app"></a></h2>
-
-
-
-      <dl></dl></div><div class="section level2">
-
-
-
-
-      <dl><dt>
-
-          <code><a href="metacheck_app.html">metacheck_app()</a></code>
-
-        </dt>
-        <dd>Launch Shiny App</dd>
-      </dl></div><div class="section level2">
       <h2 id="reading-in-papers">Reading in Papers<a class="anchor" aria-label="anchor" href="#reading-in-papers"></a></h2>
 
 
@@ -67,61 +51,101 @@
 
       <dl><dt>
 
-          <code><a href="pdf2grobid.html">pdf2grobid()</a></code>
+          <code><a href="convert.html">convert()</a></code>
+
+        </dt>
+        <dd>Convert documents</dd>
+
+        <dt>
+
+          <code><a href="convert_bibr.html">convert_bibr()</a></code>
+
+        </dt>
+        <dd>Convert documents using bibr</dd>
+
+        <dt>
+
+          <code><a href="convert_grobid.html">convert_grobid()</a></code>
 
         </dt>
         <dd>Convert a PDF to Grobid XML</dd>
 
         <dt>
 
-          <code><a href="read.html">read()</a></code> <code><a href="read.html">read_grobid()</a></code> <code><a href="read.html">read_cermine()</a></code> <code><a href="read.html">read_text()</a></code>
+          <code><a href="grobid_to_bibr.html">grobid_to_bibr()</a></code>
 
         </dt>
-        <dd>Get paper from XML or text file</dd>
+        <dd>Convert Grobid TEI XML file to bibr format</dd>
 
         <dt>
 
-          <code><a href="paper_validate.html">paper_validate()</a></code>
+          <code><a href="read.html">read()</a></code>
 
         </dt>
-        <dd>Validate Papers</dd>
-      </dl></div><div class="section level2">
-      <h2 id="demo-resources">Demo Resources<a class="anchor" aria-label="anchor" href="#demo-resources"></a></h2>
-
-
-
-      <dl></dl></div><div class="section level2">
-
-
-
-
-      <dl><dt>
-
-          <code><a href="demoxml.html">demoxml()</a></code>
-
-        </dt>
-        <dd>Get demo XML file</dd>
+        <dd>Read in grobid XML or bibr JSON</dd>
 
         <dt>
 
-          <code><a href="demopdf.html">demopdf()</a></code>
+          <code><a href="demopaper.html">demopaper()</a></code>
 
         </dt>
-        <dd>Get demo PDF file</dd>
+        <dd>Get demo paper</dd>
 
         <dt>
 
-          <code><a href="demodir.html">demodir()</a></code>
+          <code><a href="demofile.html">demofile()</a></code>
 
         </dt>
-        <dd>Get demo directory of grobid XML files</dd>
+        <dd>Get a demo file</dd>
 
         <dt>
 
           <code><a href="psychsci.html">psychsci</a></code>
 
         </dt>
-        <dd>Psychologial Science Open Access Paper Set</dd>
+        <dd>Psychological Science Open Access Paper Set</dd>
+
+        <dt>
+
+          <code><a href="test_paper.html">test_paper()</a></code>
+
+        </dt>
+        <dd>Test paper</dd>
+
+        <dt>
+
+          <code><a href="paper_id.html">paper_id()</a></code>
+
+        </dt>
+        <dd>Get Paper IDs</dd>
+
+        <dt>
+
+          <code><a href="paper_coerce.html">paper_coerce()</a></code>
+
+        </dt>
+        <dd>Coerce paper object types</dd>
+
+        <dt>
+
+          <code><a href="paper_schema.html">paper_schema()</a></code>
+
+        </dt>
+        <dd>Get paper schema</dd>
+
+        <dt>
+
+          <code><a href="paper_write.html">paper_write()</a></code>
+
+        </dt>
+        <dd>Write paper</dd>
+
+        <dt>
+
+          <code><a href="paper_validate.html">paper_validate()</a></code>
+
+        </dt>
+        <dd>Validate a Paper Object</dd>
       </dl></div><div class="section level2">
       <h2 id="search-papers">Search Papers<a class="anchor" aria-label="anchor" href="#search-papers"></a></h2>
 
@@ -148,24 +172,17 @@
 
         <dt>
 
-          <code><a href="concat_tables.html">concat_tables()</a></code>
+          <code><a href="paper_table.html">paper_table()</a></code>
 
         </dt>
-        <dd>Concatenate tables</dd>
+        <dd>Paper tables</dd>
 
         <dt>
 
-          <code><a href="info_table.html">info_table()</a></code>
+          <code><a href="ref_table.html">ref_table()</a></code>
 
         </dt>
-        <dd>Get paper information in a table</dd>
-
-        <dt>
-
-          <code><a href="author_table.html">author_table()</a></code>
-
-        </dt>
-        <dd>Get author information in a table</dd>
+        <dd>Reference and DOI table</dd>
       </dl></div><div class="section level2">
       <h2 id="module-functions">Module Functions<a class="anchor" aria-label="anchor" href="#module-functions"></a></h2>
 
@@ -285,6 +302,20 @@
 
         <dt>
 
+          <code><a href="logger.html">logger()</a></code>
+
+        </dt>
+        <dd>Log messages</dd>
+
+        <dt>
+
+          <code><a href="lastlog.html">lastlog()</a></code>
+
+        </dt>
+        <dd>Get the last log</dd>
+
+        <dt>
+
           <code><a href="format_ref.html">format_ref()</a></code>
 
         </dt>
@@ -292,17 +323,24 @@
 
         <dt>
 
-          <code><a href="pb.html">pb()</a></code>
-
-        </dt>
-        <dd>Progress Bar</dd>
-
-        <dt>
-
           <code><a href="get_prev_outputs.html">get_prev_outputs()</a></code>
 
         </dt>
         <dd>Get Previous Outputs</dd>
+
+        <dt>
+
+          <code><a href="format_bib_authors.html">format_bib_authors()</a></code>
+
+        </dt>
+        <dd>Format Bib Authors</dd>
+
+        <dt>
+
+          <code><a href="fig_image_view.html">fig_image_view()</a></code>
+
+        </dt>
+        <dd>View a figure image</dd>
       </dl></div><div class="section level2">
       <h2 id="llm-functions">LLM Functions<a class="anchor" aria-label="anchor" href="#llm-functions"></a></h2>
 
@@ -366,6 +404,13 @@
 
       <dl><dt>
 
+          <code><a href="add_bib_match.html">add_bib_match()</a></code>
+
+        </dt>
+        <dd>Match table from bib table</dd>
+
+        <dt>
+
           <code><a href="crossref_doi.html">crossref_doi()</a></code>
 
         </dt>
@@ -380,10 +425,24 @@
 
         <dt>
 
+          <code><a href="datacite_doi.html">datacite_doi()</a></code>
+
+        </dt>
+        <dd>Doi.org Info from DataCite</dd>
+
+        <dt>
+
           <code><a href="doi_clean.html">doi_clean()</a></code>
 
         </dt>
         <dd>Clean DOIs</dd>
+
+        <dt>
+
+          <code><a href="doi_lookup.html">doi_lookup()</a></code>
+
+        </dt>
+        <dd>Doi.org Info from DOI</dd>
 
         <dt>
 
@@ -473,6 +532,13 @@
 
       <dl><dt>
 
+          <code><a href="osf_api_calls.html">osf_api_calls()</a></code>
+
+        </dt>
+        <dd>Get/set the OSF API Call Count</dd>
+
+        <dt>
+
           <code><a href="osf_api_check.html">osf_api_check()</a></code>
 
         </dt>
@@ -501,10 +567,24 @@
 
         <dt>
 
+          <code><a href="osf_get_all_pages.html">osf_get_all_pages()</a></code>
+
+        </dt>
+        <dd>Get All OSF API Query Pages</dd>
+
+        <dt>
+
           <code><a href="osf_links.html">osf_links()</a></code>
 
         </dt>
         <dd>Find OSF Links in Papers</dd>
+
+        <dt>
+
+          <code><a href="osf_preprint_list.html">osf_preprint_list()</a></code>
+
+        </dt>
+        <dd>Get A list of preprints from the OSF</dd>
 
         <dt>
 
@@ -519,27 +599,6 @@
 
         </dt>
         <dd>Get OSF GUID Type</dd>
-
-        <dt>
-
-          <code><a href="osf_get_all_pages.html">osf_get_all_pages()</a></code>
-
-        </dt>
-        <dd>Get All OSF API Query Pages</dd>
-
-        <dt>
-
-          <code><a href="osf_api_calls.html">osf_api_calls()</a></code>
-
-        </dt>
-        <dd>Get/set the OSF API Call Count</dd>
-
-        <dt>
-
-          <code><a href="osf_preprint_list.html">osf_preprint_list()</a></code>
-
-        </dt>
-        <dd>Get A list of preprints from the OSF</dd>
       </dl></div><div class="section level2">
       <h2 id="github-functions">GitHub Functions<a class="anchor" aria-label="anchor" href="#github-functions"></a></h2>
 
@@ -661,10 +720,10 @@
 
         <dt>
 
-          <code><a href="summarize_contents.html">summarize_contents()</a></code>
+          <code><a href="file_category.html">file_category()</a></code>
 
         </dt>
-        <dd>Summarize Directory Contents</dd>
+        <dd>Categorise files</dd>
 
         <dt>
 
@@ -672,41 +731,6 @@
 
         </dt>
         <dd>Extract causal relations from sentence(s) via a Hugging Face Space</dd>
-
-        <dt>
-
-          <code><a href="check_orcid.html">check_orcid()</a></code>
-
-        </dt>
-        <dd>Check validity of ORCiD</dd>
-
-        <dt>
-
-          <code><a href="get_orcid.html">get_orcid()</a></code>
-
-        </dt>
-        <dd>Get ORCiD from Name</dd>
-
-        <dt>
-
-          <code><a href="orcid_person.html">orcid_person()</a></code>
-
-        </dt>
-        <dd>Get Person Details for ORCiD</dd>
-
-        <dt>
-
-          <code><a href="credit_roles.html">credit_roles()</a></code>
-
-        </dt>
-        <dd>CRediT Roles</dd>
-
-        <dt>
-
-          <code><a href="online.html">online()</a></code>
-
-        </dt>
-        <dd>Check if the host of a URL is online</dd>
       </dl></div><div class="section level2">
       <h2 id="validation-functions">Validation Functions<a class="anchor" aria-label="anchor" href="#validation-functions"></a></h2>
 
@@ -719,10 +743,10 @@
 
       <dl><dt>
 
-          <code><a href="compare_tables.html">compare_tables()</a></code>
+          <code><a href="validate.html">validate()</a></code>
 
         </dt>
-        <dd>Compare Tables for Validation</dd>
+        <dd>Validate</dd>
 
         <dt>
 
@@ -730,20 +754,6 @@
 
         </dt>
         <dd>Accuracy</dd>
-
-        <dt>
-
-          <code><a href="text_features.html">text_features()</a></code>
-
-        </dt>
-        <dd>Text features</dd>
-
-        <dt>
-
-          <code><a href="distinctive_words.html">distinctive_words()</a></code>
-
-        </dt>
-        <dd>Get Distinctive Words</dd>
       </dl></div><div class="section level2">
       <h2 id="extras">Extras<a class="anchor" aria-label="anchor" href="#extras"></a></h2>
 
@@ -756,10 +766,10 @@
 
       <dl><dt>
 
-          <code><a href="verbose.html">verbose()</a></code>
+          <code><a href="extract_equations.html">extract_equations()</a></code>
 
         </dt>
-        <dd>Set or get metacheck verbosity</dd>
+        <dd>Extract P-Values</dd>
 
         <dt>
 
@@ -794,7 +804,7 @@
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by Lisa DeBruine, Daniel Lakens.</p>
+  <p>Developed by Lisa DeBruine, Daniel Lakens, Jakub Werner.</p>
 </div>
 
 <div class="pkgdown-footer-right">
