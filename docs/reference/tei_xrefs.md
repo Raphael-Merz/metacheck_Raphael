@@ -5,7 +5,7 @@ Get cross references from TEI type XML
 ## Usage
 
 ``` r
-tei_xrefs(xml)
+tei_xrefs(xml, text_table)
 ```
 
 ## Arguments
@@ -13,6 +13,10 @@ tei_xrefs(xml)
 - xml:
 
   The XML
+
+- text_table:
+
+  The text table for the paper
 
 ## Value
 

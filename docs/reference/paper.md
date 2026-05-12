@@ -5,14 +5,14 @@ Create a new paper object or load a paper from PDF or XML
 ## Usage
 
 ``` r
-paper(name = "Demo Paper", ...)
+paper(id = NULL, ...)
 ```
 
 ## Arguments
 
-- name:
+- id:
 
-  The name of the study or a file path to a PDF or grobid XML
+  The ID of the study
 
 - ...:
 

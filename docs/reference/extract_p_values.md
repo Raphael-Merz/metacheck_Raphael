@@ -28,7 +28,7 @@ the
 [`search_text()`](https://scienceverse.github.io/metacheck/reference/search_text.md)
 function and a custom pattern.
 
-This will catch most comparators like =\<\>~≈≠≤≥≪≫ and most versions of
+This will catch most comparators like =\<\>~ and most versions of
 scientific notation like 5.0 x 10^-2 or 5.0e-2. If you find any formats
 that are not correctly handled by this function, please contact the
 author.

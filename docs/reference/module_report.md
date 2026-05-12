@@ -26,8 +26,7 @@ text
 ## Examples
 
 ``` r
-filename <- demoxml()
-paper <- read(filename)
+paper <- demopaper()
 op <- module_run(paper, "stat_p_exact")
 module_report(op) |> cat()
 #> ### ⚠️ Exact P-Values {#exact-p-values .red}
@@ -44,7 +43,7 @@ module_report(op) |> cat()
 #> 
 #> 
 #> # table data --------------------------------------
-#> table <- structure(list("P-Value" = "p > .05", Sentence = "There was no effect of experience on the reduction in errors when using the tool (p > .05), as the correlation was non-significant."), row.names = c(NA, 
+#> table <- structure(list("P-Value" = "p > .05", Text = "There was no effect of experience on the reduction in errors when using the tool (p > .05), as the correlation was non-significant (Figure 2)."), row.names = c(NA, 
 #> -1L), class = c("tbl_df", "tbl", "data.frame"))
 #> 
 #> # display table -----------------------------------

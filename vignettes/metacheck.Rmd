@@ -1,6 +1,7 @@
 ---
 title: "metacheck"
 output: rmarkdown::html_vignette
+df-print: paged
 vignette: >
   %\VignetteIndexEntry{metacheck}
   %\VignetteEngine{knitr::rmarkdown}
@@ -34,12 +35,6 @@ library(metacheck)
 devtools::load_all(".")
 ```
 
-
-You can launch an interactive shiny app version of the code below with:
-
-``` r
-metacheck_app()
-```
 
 ### Load from PDF
 
@@ -106,7 +101,8 @@ paper$bib
 ```
 
 ```{r, echo = FALSE}
-knitr::kable(paper$bib)
+isna <- paper$bib |> lapply(is.na) |> sapply(all)
+knitr::kable(paper$bib[, !isna])
 ```
 
 ### Cross-References
@@ -132,7 +128,7 @@ paper_table(psychsci[1:5], "info", c("title", "doi"))
 
 ```{r}
 paper_table(psychsci[1:5], "bib") |>
-  dplyr::filter(!is.na(doi))
+  dplyr::filter(!is.na(doi), doi != "")
 ```
 
 ## Search Text

@@ -13,7 +13,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">metacheck</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.9068</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.9100</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -51,8 +51,8 @@
 <span>  <span class="va">ref</span>,</span>
 <span>  min_score <span class="op">=</span> <span class="fl">50</span>,</span>
 <span>  rows <span class="op">=</span> <span class="fl">1</span>,</span>
-<span>  select <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"DOI"</span>, <span class="st">"score"</span>, <span class="st">"type"</span>, <span class="st">"title"</span>, <span class="st">"author"</span>, <span class="st">"container-title"</span>, <span class="st">"published"</span>,</span>
-<span>    <span class="st">"volume"</span>, <span class="st">"issue"</span>, <span class="st">"page"</span>, <span class="st">"URL"</span>, <span class="st">"abstract"</span><span class="op">)</span></span>
+<span>  select <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"DOI"</span>, <span class="st">"score"</span>, <span class="st">"type"</span>, <span class="st">"title"</span>, <span class="st">"author"</span>, <span class="st">"editor"</span>, <span class="st">"publisher"</span>,</span>
+<span>    <span class="st">"container-title"</span>, <span class="st">"year"</span>, <span class="st">"volume"</span>, <span class="st">"issue"</span>, <span class="st">"page"</span>, <span class="st">"URL"</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -82,11 +82,12 @@
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p>The argument <code>ref</code> can take many formats.  Crossref queries only look for authors, title, and container-title (e.g., journal or book), but extra information doesn't seem to hurt.</p><ul><li><p>be a text reference or fragment</p></li>
+    <p>The argument <code>ref</code> can take many formats.  Crossref queries only look for authors, title, and container-title (e.g., journal or book), but extra information doesn't seem to hurt.</p><ul><li><p>a text reference or fragment</p></li>
 <li><p>a bibentry object (authors, title and container will be extracted)</p></li>
 <li><p>a vector of text or bibentry objects</p></li>
-<li><p>a paper object (the ref column of the bib table will be extracted)</p></li>
-</ul></div>
+<li><p>a paper object (the bib table will be extracted)</p></li>
+</ul><p>Valid selects for this route are: abstract, URL, resource, member, posted, score, created, degree, update-policy, short-title, license, ISSN, container-title, issued, update-to, issue, prefix, approved, indexed, article-number, clinical-trial-number, accepted, author, group-title, DOI, is-referenced-by-count, updated-by, event, chair, standards-body, original-title, funder, translator, published, archive, published-print, alternative-id, subject, subtitle, published-online, publisher-location, content-domain, reference, title, link, type, publisher, volume, references-count, ISBN, issn-type, assertion, deposited, page, content-created, short-container-title, relation, editor</p>
+    </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
@@ -105,7 +106,7 @@
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by Lisa DeBruine, Daniel Lakens.</p>
+  <p>Developed by Lisa DeBruine, Daniel Lakens, Jakub Werner.</p>
 </div>
 
 <div class="pkgdown-footer-right">

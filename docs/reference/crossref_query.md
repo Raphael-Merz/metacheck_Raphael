@@ -9,8 +9,8 @@ crossref_query(
   ref,
   min_score = 50,
   rows = 1,
-  select = c("DOI", "score", "type", "title", "author", "container-title", "published",
-    "volume", "issue", "page", "URL", "abstract")
+  select = c("DOI", "score", "type", "title", "author", "editor", "publisher",
+    "container-title", "year", "volume", "issue", "page", "URL")
 )
 ```
 
@@ -42,13 +42,25 @@ The argument `ref` can take many formats. Crossref queries only look for
 authors, title, and container-title (e.g., journal or book), but extra
 information doesn't seem to hurt.
 
-- be a text reference or fragment
+- a text reference or fragment
 
 - a bibentry object (authors, title and container will be extracted)
 
 - a vector of text or bibentry objects
 
-- a paper object (the ref column of the bib table will be extracted)
+- a paper object (the bib table will be extracted)
+
+Valid selects for this route are: abstract, URL, resource, member,
+posted, score, created, degree, update-policy, short-title, license,
+ISSN, container-title, issued, update-to, issue, prefix, approved,
+indexed, article-number, clinical-trial-number, accepted, author,
+group-title, DOI, is-referenced-by-count, updated-by, event, chair,
+standards-body, original-title, funder, translator, published, archive,
+published-print, alternative-id, subject, subtitle, published-online,
+publisher-location, content-domain, reference, title, link, type,
+publisher, volume, references-count, ISBN, issn-type, assertion,
+deposited, page, content-created, short-container-title, relation,
+editor
 
 ## Examples
 

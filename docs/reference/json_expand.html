@@ -13,7 +13,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">metacheck</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.9068</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.9100</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -74,7 +74,7 @@
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">table</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>  id <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span>,</span></span>
+<span class="r-in"><span>  paper_id <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span>,</span></span>
 <span class="r-in"><span>  answer <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    <span class="st">'{"number": "1", "letter": "A", "bool": true}'</span>,</span></span>
 <span class="r-in"><span>    <span class="st">'{"number": "2", "letter": "B", "bool": "FALSE"}'</span>,</span></span>
@@ -86,18 +86,18 @@
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">expanded</span> <span class="op">&lt;-</span> <span class="fu">json_expand</span><span class="op">(</span><span class="va">table</span>, <span class="st">"answer"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">expanded</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   id                                               answer number letter  bool</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1  1         {"number": "1", "letter": "A", "bool": true}      1      A  TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2  2      {"number": "2", "letter": "B", "bool": "FALSE"}      2      B FALSE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3  3          {"number": "3", "letter": "", "bool": null}      3           NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4  4                         oh no, the LLM misunderstood     NA   &lt;NA&gt;    NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5  5 {"number": "5", "letter": ["E", "F"], "bool": false}      5    E;F FALSE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>           error</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1          &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2          &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3          &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4 parsing error</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5          &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   paper_id                                               answer number letter</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1        1         {"number": "1", "letter": "A", "bool": true}      1      A</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2        2      {"number": "2", "letter": "B", "bool": "FALSE"}      2      B</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3        3          {"number": "3", "letter": "", "bool": null}      3       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4        4                         oh no, the LLM misunderstood     NA   &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5        5 {"number": "5", "letter": ["E", "F"], "bool": false}      5    E;F</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    bool         error</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1  TRUE          &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 FALSE          &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3    NA          &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4    NA parsing error</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5 FALSE          &lt;NA&gt;</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
@@ -105,7 +105,7 @@
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by Lisa DeBruine, Daniel Lakens.</p>
+  <p>Developed by Lisa DeBruine, Daniel Lakens, Jakub Werner.</p>
 </div>
 
 <div class="pkgdown-footer-right">

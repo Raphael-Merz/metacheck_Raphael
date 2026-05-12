@@ -1,4 +1,4 @@
-# Psychologial Science Open Access Paper Set
+# Psychological Science Open Access Paper Set
 
 250 open access papers from Psychological Science.
 

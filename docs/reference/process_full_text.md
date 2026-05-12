@@ -5,12 +5,12 @@ Process full text table
 ## Usage
 
 ``` r
-process_text(text)
+process_full_text(full_text)
 ```
 
 ## Arguments
 
-- text:
+- full_text:
 
   a table of the full text
 

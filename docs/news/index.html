@@ -13,7 +13,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">metacheck</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.9068</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.9100</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -40,6 +40,23 @@
       <small>Source: <a href="https://github.com/scienceverse/metacheck/blob/HEAD/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.0.0.9070" id="metacheck-0009070">metacheck 0.0.0.9070<a class="anchor" aria-label="anchor" href="#metacheck-0009070"></a></h2>
+<ul><li>Major updates to replace grobid functions with bibr</li>
+<li>Remove <code>author_table()</code>, as this is just <code>concat_tables()</code> now</li>
+</ul></div>
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.0.0.9069" id="metacheck-0009069">metacheck 0.0.0.9069<a class="anchor" aria-label="anchor" href="#metacheck-0009069"></a></h2>
+<ul><li>Updated osf_* and rb_* functions to use progress bars instead of messages</li>
+<li>New logging functions: <code><a href="../reference/logger.html">logger()</a></code> and <code><a href="../reference/lastlog.html">lastlog()</a></code> inspired by <a href="https://github.com/levibaruch" class="external-link">@levibaruch</a></li>
+<li>New <code><a href="../reference/test_paper.html">test_paper()</a></code> for creating paper objects with specific test text</li>
+<li>
+<code>summarize_contents()</code> changed to <code><a href="../reference/file_category.html">file_category()</a></code> and now works with a vector of file names, as well as a data frame</li>
+<li>
+<code>compare_tables()</code>, <code>text_features()</code> and <code>distinctive_words()</code> now deprecated</li>
+<li>
+<code><a href="../reference/validate.html">validate()</a></code> function simplified</li>
+</ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.0.0.9068" id="metacheck-0009068">metacheck 0.0.0.9068<a class="anchor" aria-label="anchor" href="#metacheck-0009068"></a></h2>
 <ul><li>FReD replication database and associated functions now renamed to <code><a href="../reference/FLoRA.html">FLoRA()</a></code>
@@ -127,7 +144,7 @@
 </li>
 <li>Fixed a bug where some .docx file wouldn’t read in (support for Word files is still patchy – ideally render to PDF)</li>
 <li>New <code><a href="../reference/pubpeer_comments.html">pubpeer_comments()</a></code> function (now vectorised)</li>
-<li>Module helpers: <code><a href="../reference/scroll_table.html">scroll_table()</a></code>, <code><a href="../reference/collapse_section.html">collapse_section()</a></code>, <code><a href="../reference/link.html">link()</a></code>, <code><a href="../reference/plural.html">plural()</a></code>, <code><a href="../reference/pb.html">pb()</a></code>
+<li>Module helpers: <code><a href="../reference/scroll_table.html">scroll_table()</a></code>, <code><a href="../reference/collapse_section.html">collapse_section()</a></code>, <code><a href="../reference/link.html">link()</a></code>, <code><a href="../reference/plural.html">plural()</a></code>, <code>pb()</code>
 </li>
 </ul></div>
     <div class="section level2">
@@ -142,7 +159,7 @@
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by Lisa DeBruine, Daniel Lakens.</p>
+  <p>Developed by Lisa DeBruine, Daniel Lakens, Jakub Werner.</p>
 </div>
 
 <div class="pkgdown-footer-right">

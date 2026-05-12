@@ -27,7 +27,7 @@ As a team, we have a specific philosophy on how to create useful automated check
 
 ## metacheck
 
-![](https://scienceverse.github.io/metacheck/logo.png){style="float:right; width: 10em;" fig-alt="metacheck Logo, a green hexagon with PAPAERCHECK in art deco font"}
+![](https://scienceverse.github.io/metacheck/logo.png){style="float:right; width: 10em;" fig-alt="metacheck Logo, a green hexagon with METACHECK in art deco font"}
 
 In this post, we introduce [metacheck](https://scienceverse.github.io/metacheck/), a new tool that leverages text search, code, and large language models to extract and supplement information from scientific documents (including manuscripts, submitted or published articles, or preregistration documents) and provides automated suggestions for improvement.
 

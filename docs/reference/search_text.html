@@ -13,7 +13,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">metacheck</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.9068</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.9100</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -50,13 +50,13 @@
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">search_text</span><span class="op">(</span></span>
 <span>  <span class="va">paper</span>,</span>
 <span>  pattern <span class="op">=</span> <span class="st">".*"</span>,</span>
-<span>  section <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  return <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"sentence"</span>, <span class="st">"paragraph"</span>, <span class="st">"div"</span>, <span class="st">"section"</span>, <span class="st">"match"</span>, <span class="st">"id"</span><span class="op">)</span>,</span>
+<span>  return <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"sentence"</span>, <span class="st">"paragraph"</span>, <span class="st">"section"</span>, <span class="st">"header"</span>, <span class="st">"match"</span>, <span class="st">"paper_id"</span><span class="op">)</span>,</span>
 <span>  ignore.case <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  fixed <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  perl <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  exclude <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>  search_header <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span>  search_header <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  include_refs <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -72,12 +72,8 @@
 <dd><p>the regex pattern to search for, if a vector with length &gt; 1, the patterns will be searched separately and combined</p></dd>
 
 
-<dt id="arg-section">section<a class="anchor" aria-label="anchor" href="#arg-section"></a></dt>
-<dd><p>the section(s) to search in</p></dd>
-
-
 <dt id="arg-return">return<a class="anchor" aria-label="anchor" href="#arg-return"></a></dt>
-<dd><p>the kind of text to return, the full sentence, paragraph, div, or section that the text is in, or just the (regex) match, or all body text for a paper (id)</p></dd>
+<dd><p>the kind of text to return, the full sentence, paragraph, header, or section that the text is in, or just the (regex) match, or all body text for a paper (paper_id)</p></dd>
 
 
 <dt id="arg-ignore-case">ignore.case<a class="anchor" aria-label="anchor" href="#arg-ignore-case"></a></dt>
@@ -99,23 +95,27 @@
 <dt id="arg-search-header">search_header<a class="anchor" aria-label="anchor" href="#arg-search-header"></a></dt>
 <dd><p>also search the header</p></dd>
 
+
+<dt id="arg-include-refs">include_refs<a class="anchor" aria-label="anchor" href="#arg-include-refs"></a></dt>
+<dd><p>whether to include the reference section in the search</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p>a data frame of matches</p>
     </div>
+    <div class="section level2">
+    <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
+    <p>The section argument can take a vector of section names, or a PERL regular expression (use ".*" to match all sections). Possible section types are abstract, intro, method, results, discussion, references, acknowledgment, funding, endnote, footnote, table, figure, and unknown. The default includes all sections except references, tables and figures.</p>
+    </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">filename</span> <span class="op">&lt;-</span> <span class="fu"><a href="demoxml.html">demoxml</a></span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">paper</span> <span class="op">&lt;-</span> <span class="fu"><a href="read.html">read</a></span><span class="op">(</span><span class="va">filename</span><span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu">search_text</span><span class="op">(</span><span class="va">paper</span>, <span class="st">"p\\s*(=|&lt;)\\s*[0-9\\.]+"</span>, return <span class="op">=</span> <span class="st">"match"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 2 × 7</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   text       section header                    div     p     s id             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> p = 0.005  method  Method and Participants     2     1    11 to_err_is_human</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> p = 0.152. results Results                     3     1     1 to_err_is_human</span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">paper</span> <span class="op">&lt;-</span> <span class="fu"><a href="demopaper.html">demopaper</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">all_text</span> <span class="op">&lt;-</span> <span class="fu">search_text</span><span class="op">(</span><span class="va">paper</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">study</span> <span class="op">&lt;-</span> <span class="fu">search_text</span><span class="op">(</span><span class="va">paper</span>, <span class="st">"study"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">equations</span> <span class="op">&lt;-</span> <span class="fu">search_text</span><span class="op">(</span><span class="va">paper</span>, <span class="st">"\\b\\S+\\s*(=|&lt;)\\s*[0-9\\.]+"</span>, return <span class="op">=</span> <span class="st">"match"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">no_numbers</span> <span class="op">&lt;-</span> <span class="fu">search_text</span><span class="op">(</span><span class="va">paper</span>, <span class="st">"\\d"</span>, exclude <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
@@ -123,7 +123,7 @@
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by Lisa DeBruine, Daniel Lakens.</p>
+  <p>Developed by Lisa DeBruine, Daniel Lakens, Jakub Werner.</p>
 </div>
 
 <div class="pkgdown-footer-right">

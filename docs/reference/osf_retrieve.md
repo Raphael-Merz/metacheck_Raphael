@@ -5,7 +5,13 @@ Retrieve info from the OSF by ID
 ## Usage
 
 ``` r
-osf_retrieve(osf_url, id_col = 1, recursive = FALSE, find_project = FALSE)
+osf_retrieve(
+  osf_url,
+  id_col = 1,
+  recursive = FALSE,
+  find_project = FALSE,
+  pb = NULL
+)
 ```
 
 ## Arguments
@@ -27,6 +33,10 @@ osf_retrieve(osf_url, id_col = 1, recursive = FALSE, find_project = FALSE)
 
   DEPRECATED always TRUE now - find the top-level project associated
   with a file (adds 1+ API calls)
+
+- pb:
+
+  a progress bar passed from another function
 
 ## Value
 

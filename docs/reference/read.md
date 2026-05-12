@@ -1,33 +1,25 @@
-# Get paper from XML or text file
+# Read in grobid XML or bibr JSON
 
-This should work with XML files in TEI (grobid), JATS APA-DTD, NLM-DTD
-and cermine formats, plus basic parsing of plain text files.
+Read in grobid XML or bibr JSON
 
 ## Usage
 
 ``` r
-read(filename)
-
-read_grobid(filename)
-
-read_cermine(filename)
-
-read_text(filename)
+read(file_path, include_images = FALSE)
 ```
 
 ## Arguments
 
-- filename:
+- file_path:
 
-  the path to the file, a vector of file paths, or the path to a
-  directory
+  path to a directory containing XML and/or JSON files, or a vector of
+  paths
+
+- include_images:
+
+  whether to include images in the figures table of the paper object
+  (they make object size larger, only relevant to bibr imports)
 
 ## Value
 
-A paper object with class scivrs_paper, or a list of paper objects
-
-## Examples
-
-``` r
-# paper <- read(filename)
-```
+a paper or paperlist

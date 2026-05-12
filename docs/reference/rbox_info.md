@@ -5,7 +5,7 @@ Retrieve info from ResearchBox by URL
 ## Usage
 
 ``` r
-rbox_info(rb_url)
+rbox_info(rb_url, pb = NULL)
 ```
 
 ## Arguments
@@ -13,6 +13,10 @@ rbox_info(rb_url)
 - rb_url:
 
   a ResearchBox URL
+
+- pb:
+
+  a progress bar passed from another function
 
 ## Value
 
