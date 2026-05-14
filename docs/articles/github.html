@@ -34,7 +34,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">metacheck</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.9100</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.9101</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -145,12 +145,33 @@ of. repo name, and NULL if the repository in inaccessible.</p>
 <span><span class="co">#&gt; You can install the development version of metacheck from [GitHub](https://github.com/) with:</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; ``` r</span></span>
-<span><span class="co">#&gt; # install.packages("devtools")</span></span>
-<span><span class="co">#&gt; devtools::install_github("scienceverse/metacheck")</span></span>
+<span><span class="co">#&gt; # install.packages("remotes")</span></span>
+<span><span class="co">#&gt; remotes::install_github("scienceverse/metacheck")</span></span>
 <span><span class="co">#&gt; ```</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; ## API (optional)</span></span>
-<span><span class="co">#&gt; To run metacheck as a REST API either using plumber or Docker, see [`inst/plumber/README.md`](inst/plumber/README.md) for instructions and documentation.</span></span></code></pre>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; To run metacheck as a REST API either using plumber or Docker, see [`inst/plumber/README.md`](inst/plumber/README.md) for instructions and documentation.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; ## Notes for Developers</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; ### bibr format </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Metacheck uses bibr format for the paper objects. The schema for this can be found at &lt;https://www.scienceverse.org/schema/paper.json&gt;. If this format changes, or the file returned from bibr changes, the following functions will need checking:</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; - `paper()` (R/paper.R)</span></span>
+<span><span class="co">#&gt; - `validate_paper()` (R/paper.R)</span></span>
+<span><span class="co">#&gt; - `paper_write()` (R/paper.R)</span></span>
+<span><span class="co">#&gt; - `platform_bibr()` (R/bibr.R)</span></span>
+<span><span class="co">#&gt; - `convert_bibr()` (R/bibr.R)</span></span>
+<span><span class="co">#&gt; - `read_bibr()` (R/bibr.R) Remove fixes when bibr output conforms to the schema</span></span>
+<span><span class="co">#&gt; - `.grobid_to_bibr()` (R/grobid) Cascades to a bunch of tei_**() functions</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; ### tests</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; You may not contribute any code unless you also contribute a test of this code.</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Check tests/testthat/helper.R for custom test skip functions. By default, all tests requiring a web connection, LLM, or long tests are skipped or mocked. You can control this globally with the skip functions in this file (e.g., comment out the first `skip()` function in each custom function to run all tests of this type unless on cran/covr).</span></span></code></pre>
 </div>
 <div class="section level2">
 <h2 id="github_languages">github_languages<a class="anchor" aria-label="anchor" href="#github_languages"></a>
@@ -160,17 +181,19 @@ languages, as detected and classified by GitHub.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/github_languages.html">github_languages</a></span><span class="op">(</span><span class="st">"scienceverse/metacheck"</span><span class="op">)</span></span>
 <span><span class="co">#&gt;                      repo   language    bytes</span></span>
-<span><span class="co">#&gt; 1  scienceverse/metacheck       HTML 18689007</span></span>
-<span><span class="co">#&gt; 2  scienceverse/metacheck          R  6447012</span></span>
-<span><span class="co">#&gt; 3  scienceverse/metacheck        TeX    47751</span></span>
-<span><span class="co">#&gt; 4  scienceverse/metacheck       AMPL     7571</span></span>
-<span><span class="co">#&gt; 5  scienceverse/metacheck     Python     6986</span></span>
-<span><span class="co">#&gt; 6  scienceverse/metacheck        CSS     3358</span></span>
-<span><span class="co">#&gt; 7  scienceverse/metacheck   Makefile     1407</span></span>
-<span><span class="co">#&gt; 8  scienceverse/metacheck Dockerfile     1201</span></span>
-<span><span class="co">#&gt; 9  scienceverse/metacheck JavaScript     1018</span></span>
-<span><span class="co">#&gt; 10 scienceverse/metacheck       SCSS      104</span></span>
-<span><span class="co">#&gt; 11 scienceverse/metacheck      Shell       17</span></span></code></pre></div>
+<span><span class="co">#&gt; 1  scienceverse/metacheck          R 49846936</span></span>
+<span><span class="co">#&gt; 2  scienceverse/metacheck       HTML 19384087</span></span>
+<span><span class="co">#&gt; 3  scienceverse/metacheck        Lua    92710</span></span>
+<span><span class="co">#&gt; 4  scienceverse/metacheck        TeX    40040</span></span>
+<span><span class="co">#&gt; 5  scienceverse/metacheck       AMPL     7571</span></span>
+<span><span class="co">#&gt; 6  scienceverse/metacheck     Python     6986</span></span>
+<span><span class="co">#&gt; 7  scienceverse/metacheck        CSS     5358</span></span>
+<span><span class="co">#&gt; 8  scienceverse/metacheck      Typst     5329</span></span>
+<span><span class="co">#&gt; 9  scienceverse/metacheck   Makefile     1407</span></span>
+<span><span class="co">#&gt; 10 scienceverse/metacheck Dockerfile     1201</span></span>
+<span><span class="co">#&gt; 11 scienceverse/metacheck JavaScript     1018</span></span>
+<span><span class="co">#&gt; 12 scienceverse/metacheck       SCSS      639</span></span>
+<span><span class="co">#&gt; 13 scienceverse/metacheck      Shell       17</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="github_files">github_files<a class="anchor" aria-label="anchor" href="#github_files"></a>
@@ -263,26 +286,26 @@ directory, non-recursively.</p>
 <span><span class="co">#&gt; 1    462        rproj config</span></span>
 <span><span class="co">#&gt; 2      0                 dir</span></span>
 <span><span class="co">#&gt; 3      0       github    dir</span></span>
-<span><span class="co">#&gt; 4    380    gitignore config</span></span>
-<span><span class="co">#&gt; 5    331 rbuildignore   file</span></span>
+<span><span class="co">#&gt; 4    385    gitignore config</span></span>
+<span><span class="co">#&gt; 5    362 rbuildignore   file</span></span>
 <span><span class="co">#&gt; 6    177           md   text</span></span>
 <span><span class="co">#&gt; 7   5240           md   text</span></span>
 <span><span class="co">#&gt; 8    134          yml config</span></span>
-<span><span class="co">#&gt; 9   4768           md   text</span></span>
+<span><span class="co">#&gt; 9   4850           md   text</span></span>
 <span><span class="co">#&gt; 10   133           md   text</span></span>
 <span><span class="co">#&gt; 11     0                 dir</span></span>
 <span><span class="co">#&gt; 12     0                 dir</span></span>
-<span><span class="co">#&gt; 13  2243                file</span></span>
+<span><span class="co">#&gt; 13  2196                file</span></span>
 <span><span class="co">#&gt; 14     0                 dir</span></span>
 <span><span class="co">#&gt; 15     0                 dir</span></span>
 <span><span class="co">#&gt; 16 34303           md   text</span></span>
 <span><span class="co">#&gt; 17  1407                file</span></span>
 <span><span class="co">#&gt; 18     0                 dir</span></span>
-<span><span class="co">#&gt; 19  2895                file</span></span>
-<span><span class="co">#&gt; 20 18431           md   text</span></span>
+<span><span class="co">#&gt; 19  2762                file</span></span>
+<span><span class="co">#&gt; 20 18875           md   text</span></span>
 <span><span class="co">#&gt; 21     0                 dir</span></span>
 <span><span class="co">#&gt; 22     0                 dir</span></span>
-<span><span class="co">#&gt; 23   995           md   text</span></span>
+<span><span class="co">#&gt; 23  2023           md   text</span></span>
 <span><span class="co">#&gt; 24     0                 dir</span></span>
 <span><span class="co">#&gt; 25     0                 dir</span></span></code></pre></div>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">

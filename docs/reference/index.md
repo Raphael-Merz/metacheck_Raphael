@@ -2,6 +2,8 @@
 
 ## Reading in Papers
 
+- [`metacheck_app()`](https://scienceverse.github.io/metacheck/reference/metacheck_app.md)
+  : Launch Shiny App
 - [`convert()`](https://scienceverse.github.io/metacheck/reference/convert.md)
   : Convert documents
 - [`convert_bibr()`](https://scienceverse.github.io/metacheck/reference/convert_bibr.md)

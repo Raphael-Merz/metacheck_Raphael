@@ -20,6 +20,9 @@ Useful links:
 
 Authors:
 
+- Lisa DeBruine <debruine@gmail.com>
+  ([ORCID](https://orcid.org/0000-0002-7523-5539))
+
 - Daniel Lakens <lakens@gmail.com>
   ([ORCID](https://orcid.org/0000-0002-0247-239X))
 

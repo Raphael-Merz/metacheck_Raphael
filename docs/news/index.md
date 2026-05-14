@@ -1,5 +1,26 @@
 # Changelog
 
+## metacheck 0.0.0.9101
+
+- [`metacheck_app()`](https://scienceverse.github.io/metacheck/reference/metacheck_app.md)
+  the shiny app is back!
+- `grobid_convert()` now reads in the url table more accurately
+- [`extract_urls()`](https://scienceverse.github.io/metacheck/reference/extract_urls.md)
+  uses a simplified regex that seems better at catching full URLs
+- updated FLoRA and rw databases
+- [`osf_links()`](https://scienceverse.github.io/metacheck/reference/osf_links.md),
+  `rb_links()`,
+  [`github_links()`](https://scienceverse.github.io/metacheck/reference/github_links.md)
+  and
+  [`aspredicted_links()`](https://scienceverse.github.io/metacheck/reference/aspredicted_links.md)
+  simplified to use the more accurate url table instead of a full text
+  search.
+
+## metacheck 0.0.0.9100
+
+- So many updates to fix things that broke with the new structure
+- Using httptest2 to mock tests that access external APIs
+
 ## metacheck 0.0.0.9070
 
 - Major updates to replace grobid functions with bibr

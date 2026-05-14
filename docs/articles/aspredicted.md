@@ -39,64 +39,64 @@ sentences at the question mark.
 This function returns a table with a row for each link found that
 indicates the location of the link in each paper. Many papers include
 the same link in multiple places, so we will just show you the unique
-links here, returned in the “text” column.
+links here, returned in the “href” column.
 
 ``` r
 
 links <- aspredicted_links(psychsci)
 
-unique(links$text)
+unique(links$href)
 #>  [1] "https://aspredicted.org/ve2qn.pdf"         
-#>  [2] "https://aspredicted.org/z97us"             
+#>  [2] "https://aspredicted.org/mq97g.pdf"         
 #>  [3] "https://aspredicted.org/4gf64.pdf"         
-#>  [4] "https://aspredicted.org/bj9er"             
-#>  [5] "https://aspredicted.org/qs7zz.pdf"         
-#>  [6] "https://aspredicted.org/4mk6i.pdf"         
-#>  [7] "https://aspredicted.org/z5k26.pdf"         
-#>  [8] "https://aspredicted.org/wd3pm.pdf"         
-#>  [9] "https://aspredicted.org/vh8kg.pdf"         
-#> [10] "https://aspredicted.org/ay3yk.pdf"         
-#> [11] "https://aspredicted.org/jz2nc.pdf"         
-#> [12] "https://aspredicted.org/a2wc9.pdf"         
+#>  [4] "https://aspredicted.org/8a6ta.pdf"         
+#>  [5] "https://aspredicted.org/rz98j.pdf"         
+#>  [6] "https://aspredicted.org/vp4rg.pdf"         
+#>  [7] "https://aspredicted.org/3kq9y.pdf"         
+#>  [8] "https://aspredicted.org/yi5ps.pdf"         
+#>  [9] "https://aspredicted.org/nu5yt.pdf"         
+#> [10] "https://aspredicted.org/z97us.pdf"         
+#> [11] "https://aspredicted.org/h9xm3.pdf"         
+#> [12] "https://aspredicted.org/bj9er.pdf"         
 #> [13] "https://aspredicted.org/my5jk.pdf"         
-#> [14] "https://aspredicted.org/dp8r5.pdf"         
-#> [15] "https://aspredicted.org/sn9xs.pdf"         
-#> [16] "https://aspredicted.org/MPG_T3C"           
-#> [17] "https://aspredicted.org/G68_GBZ"           
-#> [18] "https://aspredicted.org/9SR_7BC"           
-#> [19] "https://aspredicted.org/6D7_FVX"           
-#> [20] "https://aspredicted.org/Y2F_6B7"           
-#> [21] "https://aspredicted.org/LVH_7KX"           
-#> [22] "https://aspredicted.org/8a6ta.pdf"         
-#> [23] "https://aspredicted.org/vp4rg.pdf"         
-#> [24] "https://aspredicted.org/h9xm3.pdf"         
-#> [25] "https://aspredicted.org/mq97g.pdf"         
-#> [26] "https://aspredicted.org/3kq9y.pdf"         
-#> [27] "https://aspredicted.org/iv9tb.pdf"         
-#> [28] "https://aspredicted.org/rz98j.pdf"         
-#> [29] "https://aspredicted.org/z97us.pdf"         
-#> [30] "https://aspredicted.org/h9xm3"             
-#> [31] "https://aspredicted.org/5xe8i.pdf"         
-#> [32] "https://aspredicted.org/4gf64"             
-#> [33] "https://aspredicted.org/yi5ps.pdf"         
-#> [34] "https://aspredicted.org/nu5yt.pdf"         
-#> [35] "https://aspredicted.org/p4ci6.pdf"         
-#> [36] "https://aspredicted.org/LZQ_DXY"           
-#> [37] "https://aspredicted.org/6X6_XZW"           
-#> [38] "https://aspredicted.org/blind.php?x=nq4xa3"
-#> [39] "https://aspredicted.org/blind.php?x=772w3a"
-#> [40] "https://aspredicted.org/blind.php?x=55km72"
-#> [41] "https://aspredicted.org/blind.php?x=yv9c2a"
-#> [42] "https://aspredicted.org/blind.php?x=4xe5ih"
-#> [43] "https://aspredicted.org/blind.php?x=pk8ff3"
-#> [44] "https://aspredicted.org/bj9er.pdf"         
-#> [45] "https://aspredicted.org/sq22k.pdf"         
-#> [46] "https://aspredicted.org/PD5_KKS"           
-#> [47] "https://aspredicted.org/9PG_LTT"           
-#> [48] "https://aspredicted.org/H53_M3P"           
-#> [49] "https://aspredicted.org/CQW_DTT"           
-#> [50] "https://aspredicted.org/PW5_5VT"           
-#> [51] "https://aspredicted.org/KD5_7LF"
+#> [14] "https://aspredicted.org/5xe8i.pdf"         
+#> [15] "https://aspredicted.org/ak97v.pdf"         
+#> [16] "https://aspredicted.org/p4ci6.pdf"         
+#> [17] "https://aspredicted.org/iv9tb.pdf"         
+#> [18] "https://aspredicted.org/dp8r5.pdf"         
+#> [19] "https://aspredicted.org/Y2F_6B7"           
+#> [20] "https://aspredicted.org/2YK_D6R"           
+#> [21] "https://aspredicted.org/MPG_T3C"           
+#> [22] "https://aspredicted.org/G68_GBZ"           
+#> [23] "https://aspredicted.org/9SR_7BC"           
+#> [24] "https://aspredicted.org/6D7_FVX"           
+#> [25] "https://aspredicted.org/KD5_7LF"           
+#> [26] "https://aspredicted.org/qs7zz.pdf"         
+#> [27] "https://aspredicted.org/4mk6i.pdf"         
+#> [28] "https://aspredicted.org/z5k26.pdf"         
+#> [29] "https://aspredicted.org/wd3pm.pdf"         
+#> [30] "https://aspredicted.org/LVH_7KX"           
+#> [31] "https://aspredicted.org/LZQ_DXY"           
+#> [32] "https://aspredicted.org/6X6_XZW"           
+#> [33] "https://aspredicted.org/blind.php?x=nq4xa3"
+#> [34] "https://aspredicted.org/blind.php?x=772w3a"
+#> [35] "https://aspredicted.org/blind.php?x=55km72"
+#> [36] "https://aspredicted.org/blind.php?x=yv9c2a"
+#> [37] "https://aspredicted.org/blind.php?x=4xe5ih"
+#> [38] "https://aspredicted.org/blind.php?x=pk8ff3"
+#> [39] "https://aspredicted.org/sn9xs.pdf"         
+#> [40] "https://aspredicted.org/vh8kg.pdf"         
+#> [41] "https://aspredicted.org/ay3yk.pdf"         
+#> [42] "https://aspredicted.org/jz2nc.pdf"         
+#> [43] "https://aspredicted.org/a2wc9.pdf"         
+#> [44] "https://aspredicted.org/PD5_KKS"           
+#> [45] "https://aspredicted.org/9PG_LTT"           
+#> [46] "https://aspredicted.org/M3P_X3P"           
+#> [47] "https://aspredicted.org/H53_M3P"           
+#> [48] "https://aspredicted.org/CQW_DTT"           
+#> [49] "https://aspredicted.org/PW5_5VT"           
+#> [50] "https://aspredicted.org/sq22k.pdf"         
+#> [51] "https://aspredicted.org/u53e3.pdf"
 ```
 
 ## Retrieve Link Info
@@ -120,7 +120,7 @@ paper <- psychsci$`09567976221082938`
 
 links <- aspredicted_links(paper)
 
-prereg <- aspredicted_retrieve(links, id_col = "text")
+prereg <- aspredicted_retrieve(links, id_col = "href")
 #> Starting AsPredicted retrieval for 1 file...
 #> * Retrieving info from https://aspredicted.org/iv9tb.pdf...
 #> ...AsPredicted retrieval complete!
@@ -351,7 +351,7 @@ the misclassification by the LLM.
 
 paper <- psychsci$`0956797621991548`
 links <- aspredicted_links(paper)
-prereg <- aspredicted_retrieve(links, id_col = "text")
+prereg <- aspredicted_retrieve(links, id_col = "href")
 #> Starting AsPredicted retrieval for 1 file...
 #> * Retrieving info from https://aspredicted.org/p4ci6.pdf...
 #> ...AsPredicted retrieval complete!
@@ -387,8 +387,8 @@ llm_response$answer |> cat("> ", x = _)
 
 > The authors deviated from their preregistration. According to the
 > text, the researchers planned to collect data from 60 participants in
-> each cohort, but they only collected data from 56 participants in
-> cohort B due to the COVID-19 pandemic.
+> each cohort, but they only collected data from 60 participants in
+> cohort A and 56 participants in cohort B due to the COVID-19 pandemic.
 
 ``` r
 
@@ -401,9 +401,9 @@ sample <- search_text(paper, regex_sample,
 sample$text |> cat("> ", x = _)
 ```
 
-> In the present preregistered study (<https://aspre>
-> dicted.org/p4ci6.pdf), we built on this prior work using a
-> novel-timeline (“when”) paradigm (for related methodology, see
+> In the present preregistered study
+> (<https://aspredicted.org/p4ci6.pdf>), we built on this prior work
+> using a novel-timeline (“when”) paradigm (for related methodology, see
 > Montchal et al., 2019). To contextualize our results in the broader
 > emotional-memory literature, we simultaneously tested “what” (item
 > recognition) and in “which” (associative recognition for a spatial
@@ -453,7 +453,7 @@ aspredicted_sample <- function(paper, use_llm = FALSE) {
   if (nrow(links) == 0) return(list())
   
   # get prereg data from AsPredicted
-  prereg <- aspredicted_retrieve(links, id_col = "text")
+  prereg <- aspredicted_retrieve(links, id_col = "href")
   if (nrow(prereg) == 0 | is.null(prereg$AP_sample_size)) {
     return(list())
   }
@@ -529,10 +529,10 @@ and must be fluent in English (to ensure instruction comprehension).
 
 Sample Size Text in Paper:
 
-In the present preregistered study (<https://aspre>
-dicted.org/p4ci6.pdf), we built on this prior work using a
-novel-timeline (“when”) paradigm (for related methodology, see Montchal
-et al., 2019). To contextualize our results in the broader
+In the present preregistered study
+(<https://aspredicted.org/p4ci6.pdf>), we built on this prior work using
+a novel-timeline (“when”) paradigm (for related methodology, see
+Montchal et al., 2019). To contextualize our results in the broader
 emotional-memory literature, we simultaneously tested “what” (item
 recognition) and in “which” (associative recognition for a spatial
 context) memory within the same paradigm, providing a holistic
@@ -587,10 +587,10 @@ and must be fluent in English (to ensure instruction comprehension).
 
 Sample Size Text in Paper:
 
-In the present preregistered study (<https://aspre>
-dicted.org/p4ci6.pdf), we built on this prior work using a
-novel-timeline (“when”) paradigm (for related methodology, see Montchal
-et al., 2019). To contextualize our results in the broader
+In the present preregistered study
+(<https://aspredicted.org/p4ci6.pdf>), we built on this prior work using
+a novel-timeline (“when”) paradigm (for related methodology, see
+Montchal et al., 2019). To contextualize our results in the broader
 emotional-memory literature, we simultaneously tested “what” (item
 recognition) and in “which” (associative recognition for a spatial
 context) memory within the same paradigm, providing a holistic
@@ -626,8 +626,8 @@ LLM Assessment:
 The authors deviated from their preregistration.
 
 According to the text, the researchers planned to collect data from 60
-participants in each cohort, but they only collected data from 60
-participants in cohort A and 56 participants in cohort B.
+participants in each cohort. However, in cohort B, they only collected
+data from 56 participants due to the COVID-19 pandemic.
 
 It fails gracefully if there are no links.
 

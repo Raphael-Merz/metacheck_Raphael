@@ -60,7 +60,7 @@ osf_api_check()
 
 ### Find OSF Links
 
-We start by searching for OSF URLs using the `search_text()` function. OSF links can be tricky to find in PDFs, since they can insert spaces in odd places, and view-only links that contain a ? are often interpreted as being split across sentences. This function is our best attempt at catching and fixing them all.
+We start by searching for OSF URLs using the `osf_links()` function.
 
 ```{r search_osf}
 links <- osf_links(paper)
@@ -70,7 +70,7 @@ links <- osf_links(paper)
 #| echo: false
 
 links |>
-  select(text, section_type) |>
+  select(href) |>
   mytable()
 ```
 
@@ -84,7 +84,7 @@ The function `osf_retrieve()` will also retrieve all child components, files and
 
 ```{r osf_retrieve}
 info <- osf_retrieve(links, 
-                     id_col = "text", 
+                     id_col = "href", 
                      recursive = TRUE, 
                      find_project = TRUE)
 ```
@@ -92,7 +92,7 @@ info <- osf_retrieve(links,
 ```{r tbl-osf_retrieve}
 #| echo: false
 info |>
-  filter(!is.na(text)) |>
+  filter(!is.na(href)) |>
   select(osf_id, name, osf_type, project) |>
   mytable()
 ```
@@ -280,7 +280,7 @@ Let's put everything together in one block of code, and perform all automated ch
 osf_file_check <- function(paper) {
   links <- osf_links(paper)
   info <- osf_retrieve(links, 
-                       id_col = "text", 
+                       id_col = "href", 
                        recursive = TRUE)
   osf_files_summary <- file_category(info)
   report <- osf_report(osf_files_summary)

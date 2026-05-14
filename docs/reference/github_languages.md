@@ -22,19 +22,7 @@ vector of languages
 ## Examples
 
 ``` r
-# \dontrun{
+if (FALSE) { # \dontrun{
 github_languages("scienceverse/metacheck")
-#>                      repo   language    bytes
-#> 1  scienceverse/metacheck       HTML 18689007
-#> 2  scienceverse/metacheck          R  6447012
-#> 3  scienceverse/metacheck        TeX    47751
-#> 4  scienceverse/metacheck       AMPL     7571
-#> 5  scienceverse/metacheck     Python     6986
-#> 6  scienceverse/metacheck        CSS     3358
-#> 7  scienceverse/metacheck   Makefile     1407
-#> 8  scienceverse/metacheck Dockerfile     1201
-#> 9  scienceverse/metacheck JavaScript     1018
-#> 10 scienceverse/metacheck       SCSS      104
-#> 11 scienceverse/metacheck      Shell       17
-# }
+} # }
 ```

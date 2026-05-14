@@ -16,16 +16,16 @@ rbox_links(paper)
 
 ## Value
 
-a table with the ResearchBox url in the first (text) column
+a table with the ResearchBox url in the first (href) column
 
 ## Examples
 
 ``` r
 rbox_links(psychsci)
-#> # A tibble: 2 × 9
-#>   text_id paragraph_id section_id text     page_number paper_id formatted header
-#>     <int>        <int>      <int> <chr>          <int> <chr>    <chr>     <chr> 
-#> 1      48           17          4 https:/…          NA 0956797… NA        State…
-#> 2     309          108         31 https:/…          NA 0956797… NA        Open …
-#> # ℹ 1 more variable: section_type <chr>
+#> # A tibble: 3 × 4
+#>   href                                                link_text text_id paper_id
+#>   <chr>                                               <chr>       <int> <chr>   
+#> 1 https://researchbox.org/801                         NA             48 0956797…
+#> 2 https://researchbox.org/801                         NA            221 0956797…
+#> 3 https://researchbox.org/1150&PEER_REVIEW_passcode=… NA            309 0956797…
 ```

@@ -13,7 +13,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">metacheck</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.9100</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.9101</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -40,6 +40,23 @@
       <small>Source: <a href="https://github.com/scienceverse/metacheck/blob/HEAD/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.0.0.9101" id="metacheck-0009101">metacheck 0.0.0.9101<a class="anchor" aria-label="anchor" href="#metacheck-0009101"></a></h2>
+<ul><li>
+<code><a href="../reference/metacheck_app.html">metacheck_app()</a></code> the shiny app is back!</li>
+<li>
+<code>grobid_convert()</code> now reads in the url table more accurately</li>
+<li>
+<code><a href="../reference/extract_urls.html">extract_urls()</a></code> uses a simplified regex that seems better at catching full URLs</li>
+<li>updated FLoRA and rw databases</li>
+<li>
+<code><a href="../reference/osf_links.html">osf_links()</a></code>, <code>rb_links()</code>, <code><a href="../reference/github_links.html">github_links()</a></code> and <code><a href="../reference/aspredicted_links.html">aspredicted_links()</a></code> simplified to use the more accurate url table instead of a full text search.</li>
+</ul></div>
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.0.0.9100" id="metacheck-0009100">metacheck 0.0.0.9100<a class="anchor" aria-label="anchor" href="#metacheck-0009100"></a></h2>
+<ul><li>So many updates to fix things that broke with the new structure</li>
+<li>Using httptest2 to mock tests that access external APIs</li>
+</ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.0.0.9070" id="metacheck-0009070">metacheck 0.0.0.9070<a class="anchor" aria-label="anchor" href="#metacheck-0009070"></a></h2>
 <ul><li>Major updates to replace grobid functions with bibr</li>

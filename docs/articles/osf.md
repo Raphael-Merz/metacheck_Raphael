@@ -82,28 +82,25 @@ osf_api_check()
 ### Find OSF Links
 
 We start by searching for OSF URLs using the
-[`search_text()`](https://scienceverse.github.io/metacheck/reference/search_text.md)
-function. OSF links can be tricky to find in PDFs, since they can insert
-spaces in odd places, and view-only links that contain a ? are often
-interpreted as being split across sentences. This function is our best
-attempt at catching and fixing them all.
+[`osf_links()`](https://scienceverse.github.io/metacheck/reference/osf_links.md)
+function.
 
 ``` r
 
 links <- osf_links(paper)
 ```
 
-| text          | section_type |
-|:--------------|:-------------|
-| osf .io/hv29w | method       |
-| osf.io/2es6n  | method       |
-| osf.io/jpm5a  | method       |
-| osf.io/aux7s  | method       |
-| osf.io/nw3mc  | method       |
-| osf.io/ks639  | method       |
-| osf.io/y75nu  | method       |
-| OSF.IO/4TYM7  | funding      |
-| OSF.IO/X4T9A  | funding      |
+| href                                    |
+|:----------------------------------------|
+| <https://osf.io/hv29w>                  |
+| <https://osf.io/2es6n>                  |
+| <https://osf.io/jpm5a>                  |
+| <https://osf.io/aux7s>                  |
+| <https://osf.io/nw3mc>                  |
+| <https://osf.io/ks639>                  |
+| <https://osf.io/y75nu>                  |
+| <https://doi.org/10.17605/OSF.IO/4TYM7> |
+| <https://doi.org/10.17605/OSF.IO/X4T9A> |
 
 ### Retrieve Link Info
 
@@ -130,7 +127,7 @@ links (but this requires more API calls).
 ``` r
 
 info <- osf_retrieve(links, 
-                     id_col = "text", 
+                     id_col = "href", 
                      recursive = TRUE, 
                      find_project = TRUE)
 ```
@@ -623,7 +620,7 @@ sessionInfo()
 #>  [1] lubridate_1.9.5      forcats_1.0.1        stringr_1.6.0       
 #>  [4] dplyr_1.2.1          purrr_1.2.2          readr_2.2.0         
 #>  [7] tidyr_1.3.2          tibble_3.3.1         ggplot2_4.0.3       
-#> [10] tidyverse_2.0.0      metacheck_0.0.0.9100
+#> [10] tidyverse_2.0.0      metacheck_0.0.0.9101
 #> 
 #> loaded via a namespace (and not attached):
 #>  [1] rappdirs_0.3.4     sass_0.4.10        generics_0.1.4     stringi_1.8.7     
@@ -737,7 +734,7 @@ automated checks for another open access paper in Psychological Science.
 osf_file_check <- function(paper) {
   links <- osf_links(paper)
   info <- osf_retrieve(links, 
-                       id_col = "text", 
+                       id_col = "href", 
                        recursive = TRUE)
   osf_files_summary <- file_category(info)
   report <- osf_report(osf_files_summary)
@@ -809,7 +806,7 @@ many such field-dependent checks that can be automated, as the ability
 to automatically examine and/or retrieve files that are linked to in a
 paper should be useful for a large range of use-cases.
 
-**These examples were created using papercheck version 0.0.0.9100.**
+**These examples were created using papercheck version 0.0.0.9101.**
 
 ## References
 

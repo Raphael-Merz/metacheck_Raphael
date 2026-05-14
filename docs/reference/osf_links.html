@@ -13,7 +13,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">metacheck</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.9100</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.9101</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -60,27 +60,26 @@
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>a table with the OSF url in the first (text) column</p>
+    <p>a table with the OSF url in the first (href) column</p>
     </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">osf_links</span><span class="op">(</span><span class="va">psychsci</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 674 × 9</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    text_id paragraph_id section_id text    page_number paper_id formatted header</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span>     206           58         15 <span style="color: #949494;">"</span>osf.i…          <span style="color: #BB0000;">NA</span> 0956797… <span style="color: #BB0000;">NA</span>        <span style="color: #949494;">"</span>Open…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span>     209           58         15 <span style="color: #949494;">"</span>osf.i…          <span style="color: #BB0000;">NA</span> 0956797… <span style="color: #BB0000;">NA</span>        <span style="color: #949494;">"</span>Open…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span>     253           73         20 <span style="color: #949494;">"</span>osf.i…          <span style="color: #BB0000;">NA</span> 0956797… <span style="color: #BB0000;">NA</span>        <span style="color: #949494;">""</span>    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span>     226           78         27 <span style="color: #949494;">"</span>osf.i…          <span style="color: #BB0000;">NA</span> 0956797… <span style="color: #BB0000;">NA</span>        <span style="color: #949494;">"</span>Open…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span>     279           82         23 <span style="color: #949494;">"</span>osf .…          <span style="color: #BB0000;">NA</span> 0956797… <span style="color: #BB0000;">NA</span>        <span style="color: #949494;">""</span>    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span>     282           82         23 <span style="color: #949494;">"</span>osf.i…          <span style="color: #BB0000;">NA</span> 0956797… <span style="color: #BB0000;">NA</span>        <span style="color: #949494;">""</span>    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span>      73           28         11 <span style="color: #949494;">"</span>osf.i…          <span style="color: #BB0000;">NA</span> 0956797… <span style="color: #BB0000;">NA</span>        <span style="color: #949494;">"</span>Open…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span>      76           28         11 <span style="color: #949494;">"</span>osf .…          <span style="color: #BB0000;">NA</span> 0956797… <span style="color: #BB0000;">NA</span>        <span style="color: #949494;">"</span>Open…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span>     167           47         14 <span style="color: #949494;">"</span>osf.i…          <span style="color: #BB0000;">NA</span> 0956797… <span style="color: #BB0000;">NA</span>        <span style="color: #949494;">"</span>Open…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span>     243           74         19 <span style="color: #949494;">"</span>osf.i…          <span style="color: #BB0000;">NA</span> 0956797… <span style="color: #BB0000;">NA</span>        <span style="color: #949494;">"</span>Open…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 664 more rows</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 1 more variable: section_type &lt;chr&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 451 × 4</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    href                                               link_text text_id paper_id</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> https://osf.io/e2aks/                              <span style="color: #BB0000;">NA</span>            206 0956797…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> https://osf.io/tvyxz/wiki/view/                    <span style="color: #BB0000;">NA</span>            209 0956797…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> https://osf.io/tvyxz/wiki/view/                    <span style="color: #BB0000;">NA</span>            253 0956797…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> https://osf.io/t9j8e/?view_only=f171281f212f44359… <span style="color: #BB0000;">NA</span>             <span style="color: #BB0000;">NA</span> 0956797…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> https://osf.io/tvyxz/wiki/1.%20View%20the%20Badge… <span style="color: #BB0000;">NA</span>             <span style="color: #BB0000;">NA</span> 0956797…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> https://osf.io/eky4s/                              <span style="color: #BB0000;">NA</span>             73 0956797…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> https://osf.io/tvyxz/wiki/1.%20View%20the%20Badge… <span style="color: #BB0000;">NA</span>             <span style="color: #BB0000;">NA</span> 0956797…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> https://osf.io/tvyxz/wiki/1.%20View%20the%20Badge… <span style="color: #BB0000;">NA</span>             <span style="color: #BB0000;">NA</span> 0956797…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> https://osf.io/xgwhk                               <span style="color: #BB0000;">NA</span>            243 0956797…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> https://osf.io/tvyxz/wiki/1.%20View%20the%20Badge… <span style="color: #BB0000;">NA</span>             <span style="color: #BB0000;">NA</span> 0956797…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 441 more rows</span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

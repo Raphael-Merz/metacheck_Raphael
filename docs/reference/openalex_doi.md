@@ -135,8 +135,8 @@ Root-level fields for the select argument:
 
 ``` r
 doi <- "10.7717/peerj.4375"
-# \dontrun{
+if (FALSE) { # \dontrun{
 oa_info <- openalex_doi(doi)
 oa_info <- openalex_doi(doi, "title")
-# }
+} # }
 ```
