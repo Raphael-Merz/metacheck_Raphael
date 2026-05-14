@@ -27,9 +27,9 @@ a table of the returned data
 
 ``` r
 # get the 20 newest preprints
-# \dontrun{
+if (FALSE) { # \dontrun{
 osf_api <- getOption("metacheck.osf.api")
 url <- sprintf("%s/preprints/?search=date_created-desc", osf_api)
 preprints <- osf_get_all_pages(url, 2)
-# }
+} # }
 ```

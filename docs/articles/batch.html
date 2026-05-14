@@ -34,7 +34,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">metacheck</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.9100</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.9101</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -195,21 +195,23 @@ combine tables from a paper list.</p>
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/paper_table.html">paper_table</a></span><span class="op">(</span><span class="va">papers</span>, <span class="st">"author"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">grepl</a></span><span class="op">(</span><span class="st">"Glasgow"</span>, <span class="va">affiliation</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html" class="external-link">count</a></span><span class="op">(</span><span class="va">given</span>, <span class="va">family</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">#&gt;        given      family n</span></span>
-<span><span class="co">#&gt; 1    Anthony         Lee 1</span></span>
-<span><span class="co">#&gt; 2   Benedict       Jones 2</span></span>
-<span><span class="co">#&gt; 3  Chengyang         Han 1</span></span>
-<span><span class="co">#&gt; 4     Claire      Fisher 1</span></span>
-<span><span class="co">#&gt; 5   Danielle    Morrison 1</span></span>
-<span><span class="co">#&gt; 6     Hongyi        Wang 1</span></span>
-<span><span class="co">#&gt; 7       Iris Holzleitner 1</span></span>
-<span><span class="co">#&gt; 8     Kieran      O'shea 1</span></span>
-<span><span class="co">#&gt; 9       Lisa    Debruine 2</span></span>
-<span><span class="co">#&gt; 10    Martin       Lages 1</span></span>
-<span><span class="co">#&gt; 11    Michal     Kandrik 1</span></span>
-<span><span class="co">#&gt; 12  Philippe      Schyns 1</span></span>
-<span><span class="co">#&gt; 13 Stephanie       Boyle 1</span></span>
-<span><span class="co">#&gt; 14   Vanessa      Fasolt 2</span></span></code></pre>
+<pre><code><span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 14 × 3</span></span></span>
+<span><span class="co">#&gt;    given     family          n</span></span>
+<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> Anthony   Lee             1</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> Benedict  Jones           2</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> Chengyang Han             1</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> Claire    Fisher          1</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> Danielle  Morrison        1</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> Hongyi    Wang            1</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> Iris      Holzleitner     1</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> Kieran    O'shea          1</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> Lisa      Debruine        2</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> Martin    Lages           1</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">11</span> Michal    Kandrik         1</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">12</span> Philippe  Schyns          1</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">13</span> Stephanie Boyle           1</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">14</span> Vanessa   Fasolt          2</span></span></code></pre>
 </div>
 <div class="section level3">
 <h3 id="info">Info<a class="anchor" aria-label="anchor" href="#info"></a>
@@ -233,20 +235,15 @@ cautious about using this.</p>
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/paper_table.html">paper_table</a></span><span class="op">(</span><span class="va">papers</span>, <span class="st">"info"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">doi</span>, <span class="va">title</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">#&gt;                        doi</span></span>
-<span><span class="co">#&gt; 1 10.1177/0956797613520608</span></span>
-<span><span class="co">#&gt; 2 10.1177/0956797614522816</span></span>
-<span><span class="co">#&gt; 3 10.1177/0956797614527830</span></span>
-<span><span class="co">#&gt; 4 10.1177/0956797614557697</span></span>
-<span><span class="co">#&gt; 5 10.1177/0956797614560771</span></span>
-<span><span class="co">#&gt; 6 10.1177/0956797614566469</span></span>
-<span><span class="co">#&gt;                                                                                                                                                                                                                              title</span></span>
-<span><span class="co">#&gt; 1 Mirror neurons, originally discovered in macaque monkeys using single-cell recordings, are active when an animal is either performing a particular action or observing another agent performing the same or a similar action (di</span></span>
-<span><span class="co">#&gt; 2                                                                                                                                         Beyond Gist: Strategic and Incremental Information Accumulation for Scene Categorization</span></span>
-<span><span class="co">#&gt; 3                                                                                      Serotonin and Social Norms: Tryptophan Depletion Impairs Social Comparison and Leads to Resource Depletion in a Multiplayer Harvesting Game</span></span>
-<span><span class="co">#&gt; 4                                                                                                                                                                              Action-Specific Disruption of Perceptual Confidence</span></span>
-<span><span class="co">#&gt; 5                                                                                                                                  Emotional Vocalizations Are Recognized Across Cultures Regardless of the Valence of Distractors</span></span>
-<span><span class="co">#&gt; 6                                                                                                                                       Conspiracist Ideation as a Predictor of Climate-Science Rejection: An Alternative Analysis</span></span></code></pre>
+<pre><code><span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 2</span></span></span>
+<span><span class="co">#&gt;   doi                      title                                                </span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                                </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> 10.1177/0956797613520608 Mirror neurons, originally discovered in macaque mon…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> 10.1177/0956797614522816 Beyond Gist: Strategic and Incremental Information A…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> 10.1177/0956797614527830 Serotonin and Social Norms: Tryptophan Depletion Imp…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> 10.1177/0956797614557697 Action-Specific Disruption of Perceptual Confidence  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> 10.1177/0956797614560771 Emotional Vocalizations Are Recognized Across Cultur…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span> 10.1177/0956797614566469 Conspiracist Ideation as a Predictor of Climate-Scie…</span></span></code></pre>
 </div>
 <div class="section level3">
 <h3 id="bibliography">Bibliography<a class="anchor" aria-label="anchor" href="#bibliography"></a>
@@ -284,7 +281,7 @@ tables.</p>
 <span><span class="co">#&gt;  $ bib_id    : int 0</span></span>
 <span><span class="co">#&gt;  $ service   : chr "crossref"</span></span>
 <span><span class="co">#&gt;  $ service_id: chr NA</span></span>
-<span><span class="co">#&gt;  $ score     : num 96.4</span></span>
+<span><span class="co">#&gt;  $ score     : num 99.7</span></span>
 <span><span class="co">#&gt;  $ bib_type  : chr "article"</span></span>
 <span><span class="co">#&gt;  $ doi       : chr "10.2307/2234133"</span></span>
 <span><span class="co">#&gt;  $ title     : chr "Impure Altruism and Donations to Public Goods: A Theory of Warm-Glow Giving"</span></span>
@@ -293,9 +290,7 @@ tables.</p>
 <span><span class="co">#&gt;   .. ..$ given : chr "James"</span></span>
 <span><span class="co">#&gt;   .. ..$ family: chr "Andreoni"</span></span>
 <span><span class="co">#&gt;  $ editors   :List of 1</span></span>
-<span><span class="co">#&gt;   ..$ :'data.frame': 0 obs. of  2 variables:</span></span>
-<span><span class="co">#&gt;   .. ..$ given : chr </span></span>
-<span><span class="co">#&gt;   .. ..$ family: chr </span></span>
+<span><span class="co">#&gt;   ..$ : list()</span></span>
 <span><span class="co">#&gt;  $ publisher : chr "Oxford University Press (OUP)"</span></span>
 <span><span class="co">#&gt;  $ year      : int 1990</span></span>
 <span><span class="co">#&gt;  $ date      : chr NA</span></span>
@@ -313,20 +308,15 @@ and returns the paper_id, bib_id, DOI, and the text of the
 reference.</p>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/ref_table.html">ref_table</a></span><span class="op">(</span><span class="va">paper</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">#&gt;           paper_id bib_id                                doi</span></span>
-<span><span class="co">#&gt; 1 0956797615588467      0                    10.2307/2234133</span></span>
-<span><span class="co">#&gt; 2 0956797615588467      1                    10.2307/2118508</span></span>
-<span><span class="co">#&gt; 3 0956797615588467      2         10.1037/0022-3514.61.3.413</span></span>
-<span><span class="co">#&gt; 4 0956797615588467      3         10.1037/0022-3514.40.2.290</span></span>
-<span><span class="co">#&gt; 5 0956797615588467      4 10.1016/b978-0-12-374176-9.00009-9</span></span>
-<span><span class="co">#&gt; 6 0956797615588467      5         10.1016/j.jcps.2011.05.001</span></span>
-<span><span class="co">#&gt;                                                                                                                                                                                                                                                                                   text</span></span>
-<span><span class="co">#&gt; 1                                                                                                                                              Andreoni, J. (1990). Impure altruism and donations to pub- lic goods: A theory of warm-glow giving. The Economic Journal, 100, 464-477.</span></span>
-<span><span class="co">#&gt; 2                                                                                                     Andreoni, J. (1995). Warm-glow versus cold-prickle: The effects of positive and negative framing on cooperation in experi- ments. The Quarterly Journal of Economics, 110, 1-21.</span></span>
-<span><span class="co">#&gt; 3                                                                     Batson, C. D., Batson, J. G., Slingsby, J. K., Harrell, K. L., Peekna, H. M., &amp; Todd, R. M. (1991). Empathic joy and the empathy-altruism hypothesis. Journal of Personality and Social Psychology, 61, 413-426.</span></span>
-<span><span class="co">#&gt; 4                                                                                       Batson, C. D., Duncan, B. D., Ackerman, P., Buckley, T., &amp; Birch, K. (1981). Is empathic emotion a source of altruistic motivation? Journal of Personality and Social Psychology, 40, 290-302.</span></span>
-<span><span class="co">#&gt; 5 Bernheim, B. D. (2008). The psychology and neurobiology of judgment and decision making: What's in it for economists? In P. W. Glimcher, E. Fehr, C. Camerer, &amp; R. A. Poldrack (Eds.), Neuroeconomics: Decision making and the brain (pp. 115-125). London, England: Academic Press.</span></span>
-<span><span class="co">#&gt; 6                                                                                                                       Berns, G. S., &amp; Moore, S. E. (2012). A neural predictor of cul- tural popularity. Journal of Consumer Psychology, 22, 154- 160. doi:10.1016/j.jcps.2011.05.001</span></span></code></pre>
+<pre><code><span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 4</span></span></span>
+<span><span class="co">#&gt;   paper_id         bib_id doi                                text               </span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>              </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> 0956797615588467      0 10.2307/2234133                    Andreoni, J. (1990…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> 0956797615588467      1 10.2307/2118508                    Andreoni, J. (1995…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> 0956797615588467      2 10.1037/0022-3514.61.3.413         Batson, C. D., Bat…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> 0956797615588467      3 10.1037/0022-3514.40.2.290         Batson, C. D., Dun…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> 0956797615588467      4 10.1016/b978-0-12-374176-9.00009-9 Bernheim, B. D. (2…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span> 0956797615588467      5 10.1016/j.jcps.2011.05.001         Berns, G. S., &amp; Mo…</span></span></code></pre>
 </div>
 <div class="section level3">
 <h3 id="cross-references">Cross References<a class="anchor" aria-label="anchor" href="#cross-references"></a>

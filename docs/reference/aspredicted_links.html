@@ -13,7 +13,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">metacheck</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.9100</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.9101</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -60,27 +60,26 @@
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>a table with the AsPredicted url in the first (text) column</p>
+    <p>a table with the AsPredicted url in the first (href) column</p>
     </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">aspredicted_links</span><span class="op">(</span><span class="va">psychsci</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 69 × 9</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    text_id paragraph_id section_id text    page_number paper_id formatted header</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span>      24            8          2 https:…          <span style="color: #BB0000;">NA</span> 0956797… <span style="color: #BB0000;">NA</span>        Short…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span>      30           11          4 https:…          <span style="color: #BB0000;">NA</span> 0956797… <span style="color: #BB0000;">NA</span>        Method</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span>      31           10          3 https:…          <span style="color: #BB0000;">NA</span> 0956797… <span style="color: #BB0000;">NA</span>        Disti…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span>      33           12          4 https:…          <span style="color: #BB0000;">NA</span> 0956797… <span style="color: #BB0000;">NA</span>        Subje…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span>      36           10          2 https:…          <span style="color: #BB0000;">NA</span> 0956797… <span style="color: #BB0000;">NA</span>        Method</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span>      40           12          2 https:…          <span style="color: #BB0000;">NA</span> 0956797… <span style="color: #BB0000;">NA</span>        State…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span>      40           12          2 https:…          <span style="color: #BB0000;">NA</span> 0956797… <span style="color: #BB0000;">NA</span>        State…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span>      40           12          2 https:…          <span style="color: #BB0000;">NA</span> 0956797… <span style="color: #BB0000;">NA</span>        State…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span>      40           12          2 https:…          <span style="color: #BB0000;">NA</span> 0956797… <span style="color: #BB0000;">NA</span>        State…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span>      42           12          3 https:…          <span style="color: #BB0000;">NA</span> 0956797… <span style="color: #BB0000;">NA</span>        Open …</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 59 more rows</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 1 more variable: section_type &lt;chr&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 68 × 4</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    href                              link_text text_id paper_id        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> https://aspredicted.org/ve2qn.pdf <span style="color: #BB0000;">NA</span>             24 0956797619876260</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> https://aspredicted.org/ve2qn.pdf <span style="color: #BB0000;">NA</span>             33 0956797619876260</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> https://aspredicted.org/ve2qn.pdf <span style="color: #BB0000;">NA</span>             95 0956797619876260</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> https://aspredicted.org/mq97g.pdf <span style="color: #BB0000;">NA</span>            107 0956797620927967</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> https://aspredicted.org/4gf64.pdf <span style="color: #BB0000;">NA</span>             31 0956797620948821</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> https://aspredicted.org/8a6ta.pdf <span style="color: #BB0000;">NA</span>             58 0956797620948821</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> https://aspredicted.org/rz98j.pdf <span style="color: #BB0000;">NA</span>            144 0956797620948821</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> https://aspredicted.org/4gf64.pdf <span style="color: #BB0000;">NA</span>            179 0956797620948821</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> https://aspredicted.org/8a6ta.pdf <span style="color: #BB0000;">NA</span>            179 0956797620948821</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> https://aspredicted.org/vp4rg.pdf <span style="color: #BB0000;">NA</span>            179 0956797620948821</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 58 more rows</span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

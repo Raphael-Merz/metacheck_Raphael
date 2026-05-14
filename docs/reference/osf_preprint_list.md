@@ -44,9 +44,9 @@ a table of preprint info
 ## Examples
 
 ``` r
-# \dontrun{
+if (FALSE) { # \dontrun{
 dc <- c("2025-09-01", "2025-10-01")
 pp <- osf_preprint_list("psyarxiv", date_created = dc)
 files <- pp$primary_file
-# }
+} # }
 ```

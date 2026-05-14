@@ -35,6 +35,12 @@ library(metacheck)
 devtools::load_all(".")
 ```
 
+You can launch a shiny app, but this has limited features and is under development.
+
+``` r
+metacheck::metacheck_app()
+```
+
 
 ### Load from PDF
 
@@ -347,13 +353,13 @@ Get any OSF links from a paper or list of papers.
 ```{r}
 links <- osf_links(psychsci)
 
-links$text |> unique() |> head()
+links$href |> unique() |> head()
 ```
 
 You can see that some of them have rogue spaces or view-only links. The function `osf_check_id()` takes most formats of OSF links (with or without https:// and osf.io/, as well as the 25-character waterbutler IDs) and converts them to short IDs. 
 
 ```{r}
-osf_ids <- osf_check_id(links$text) |> unique()
+osf_ids <- osf_check_id(links$href) |> unique()
 
 head(osf_ids)
 ```
@@ -365,9 +371,9 @@ However, all of the `osf_***()` functions fix IDs for you and handle duplicate I
 Get basic information about OSF links, such as the name, description, osf_type (nodes, files, preprints, registrations, users, set to "private" if you don't have authorisation to view it, and "invalid" if the ), whether it is public
 
 ```{r}
-info <- osf_retrieve(links[1:6, "text"])
+info <- osf_retrieve(links[1:6, "href"])
 
-info[, c("text","osf_id", "osf_type", "public", "category")]
+info[, c("href","osf_id", "osf_type", "public", "category")]
 ```
 
 For now, the OSF API does not let us retrieve any information about view-only links. They may be viewable by you in the web browser if the link is still active, but will be listed in the table as public = FALSE and osf_type = "private". 
@@ -376,11 +382,11 @@ You can set the argument `recursive = TRUE` to also retrieve information about a
 
 ```{r}
 osf_api_calls(0)
-all_contents <- osf_retrieve(links$text[1], recursive = TRUE)
+all_contents <- osf_retrieve(links$href[1], recursive = TRUE)
 n_calls <- osf_api_calls()
 ```
 
-The function `osf_api_calls()` lets you reset and retrieve the number of API calls made since the last reset. You can see that the project `r links$text[[1]]` had `r sum(all_contents$osf_type == "nodes")` nodes and `r sum(all_contents$osf_type == "files")` files, which required `r n_calls` API calls. 
+The function `osf_api_calls()` lets you reset and retrieve the number of API calls made since the last reset. You can see that the project `r links$href[[1]]` had `r sum(all_contents$osf_type == "nodes")` nodes and `r sum(all_contents$osf_type == "files")` files, which required `r n_calls` API calls. 
 
 ```{r}
 sum(all_contents$osf_type == "nodes")

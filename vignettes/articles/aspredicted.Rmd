@@ -35,17 +35,17 @@ We will illustrate code that automatically retrieves and presents preregistratio
 
 Extracting links is a bit trickier than just searching for "aspredicted.org", so we provide a convenient function for extracting them from papers: `aspredicted_links()`. It cleans up the links when they are incorrectly formatted, such as splitting "https://aspredicted.org/blind.php?x=nq4xa3" across two sentences at the question mark. 
 
-This function returns a table with a row for each link found that indicates the location of the link in each paper. Many papers include the same link in multiple places, so we will just show you the unique links here, returned in the "text" column.
+This function returns a table with a row for each link found that indicates the location of the link in each paper. Many papers include the same link in multiple places, so we will just show you the unique links here, returned in the "href" column.
 
 ```{r}
 links <- aspredicted_links(psychsci)
 
-unique(links$text)
+unique(links$href)
 ```
 
 ## Retrieve Link Info
 
-We can then use the function `aspredicted_retrieve()` to get structured information from AsPredicted. You can try to run the function on all `r length(unique(links$text))` links above, but AsPredicted will eventually make you complete a captcha before each access (we're working on a way to log into the site to prevent this). But for demonstration purposes, let's just look at one paper.
+We can then use the function `aspredicted_retrieve()` to get structured information from AsPredicted. You can try to run the function on all `r length(unique(links$href))` links above, but AsPredicted will eventually make you complete a captcha before each access (we're working on a way to log into the site to prevent this). But for demonstration purposes, let's just look at one paper.
 
 Below we provide an example where we analyze the paper "[The Evolution of Cognitive Control in Lemurs](https://journals.sagepub.com/doi/10.1177/09567976221082938)", which contains a single preregistration on AsPredicted.
 
@@ -54,7 +54,7 @@ paper <- psychsci$`09567976221082938`
 
 links <- aspredicted_links(paper)
 
-prereg <- aspredicted_retrieve(links, id_col = "text")
+prereg <- aspredicted_retrieve(links, id_col = "href")
 ```
 
 ```{r}
@@ -161,7 +161,7 @@ The use of AI to interpret deviations is convenient, but **can't replace human j
 #| results: 'asis'
 paper <- psychsci$`0956797621991548`
 links <- aspredicted_links(paper)
-prereg <- aspredicted_retrieve(links, id_col = "text")
+prereg <- aspredicted_retrieve(links, id_col = "href")
 
 #sample size
 prereg_sample_size <- unique(prereg$AP_sample_size)
@@ -212,7 +212,7 @@ aspredicted_sample <- function(paper, use_llm = FALSE) {
   if (nrow(links) == 0) return(list())
   
   # get prereg data from AsPredicted
-  prereg <- aspredicted_retrieve(links, id_col = "text")
+  prereg <- aspredicted_retrieve(links, id_col = "href")
   if (nrow(prereg) == 0 | is.null(prereg$AP_sample_size)) {
     return(list())
   }

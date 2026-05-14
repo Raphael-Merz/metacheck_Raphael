@@ -16,6 +16,14 @@ devtools::install_github("scienceverse/metacheck")
 library(metacheck)
 ```
 
+You can launch a shiny app, but this has limited features and is under
+development.
+
+``` r
+
+metacheck::metacheck_app()
+```
+
 ### Load from PDF
 
 The function
@@ -149,18 +157,14 @@ Psychological Science.
 paper_table(psychsci[1:5], "info", c("title", "doi"))
 ```
 
-    #>                                                                                                                                                                                                                              title
-    #> 1 Mirror neurons, originally discovered in macaque monkeys using single-cell recordings, are active when an animal is either performing a particular action or observing another agent performing the same or a similar action (di
-    #> 2                                                                                                                                         Beyond Gist: Strategic and Incremental Information Accumulation for Scene Categorization
-    #> 3                                                                                      Serotonin and Social Norms: Tryptophan Depletion Impairs Social Comparison and Leads to Resource Depletion in a Multiplayer Harvesting Game
-    #> 4                                                                                                                                                                              Action-Specific Disruption of Perceptual Confidence
-    #> 5                                                                                                                                  Emotional Vocalizations Are Recognized Across Cultures Regardless of the Valence of Distractors
-    #>                        doi         paper_id
-    #> 1 10.1177/0956797613520608 0956797613520608
-    #> 2 10.1177/0956797614522816 0956797614522816
-    #> 3 10.1177/0956797614527830 0956797614527830
-    #> 4 10.1177/0956797614557697 0956797614557697
-    #> 5 10.1177/0956797614560771 0956797614560771
+    #> # A tibble: 5 × 3
+    #>   title                                                           doi   paper_id
+    #>   <chr>                                                           <chr> <chr>   
+    #> 1 Mirror neurons, originally discovered in macaque monkeys using… 10.1… 0956797…
+    #> 2 Beyond Gist: Strategic and Incremental Information Accumulatio… 10.1… 0956797…
+    #> 3 Serotonin and Social Norms: Tryptophan Depletion Impairs Socia… 10.1… 0956797…
+    #> 4 Action-Specific Disruption of Perceptual Confidence             10.1… 0956797…
+    #> 5 Emotional Vocalizations Are Recognized Across Cultures Regardl… 10.1… 0956797…
 
 ``` r
 
@@ -168,48 +172,17 @@ paper_table(psychsci[1:5], "bib") |>
   dplyr::filter(!is.na(doi), doi != "")
 ```
 
-    #>   bib_type                           doi
-    #> 1  article 10.3389/fnint.2012.00079/full
-    #> 2  article         10.1037/0033-2909.115
-    #> 3  article      10.1177/0956797613517239
-    #> 4  article   10.1037/0033-2909.115.1.102
-    #> 5  article     10.1080/17470211003721642
-    #> 6  article       10.1073/pnas.0908239106
-    #>                                                                                                      title
-    #> 1                                                  The construction of confidence in a perceptual decision
-    #> 2             Strong evidence for universals in facial expressions: A reply to Russell's mistaken critique
-    #> 3                                             Cultural relativity in perceiving emotion from vocalizations
-    #> 4 Is there universal recognition of emotion from facial expression? A review of the cross-cultural studies
-    #> 5                                               Perceptual cues in non-verbal vocal expressions of emotion
-    #> 6                    Crosscultural recognition of basic emotions through nonverbal emotional vocalizations
-    #>                                                     authors editors publisher
-    #> 1                    Zylberberg, A; Barttfeld, P; Sigman, M                  
-    #> 2                                                  Ekman, P                  
-    #> 3 Gendron, M; Roberson, D; Van Der Vyver, J M; Barrett, L F                  
-    #> 4                                              Russell, J A                  
-    #> 5           Sauter, D A; Eisner, F; Calder, A J; Scott, S K                  
-    #> 6              Sauter, D A; Eisner, F; Ekman, P; Scott, S K                  
-    #>   year volume issue first_page last_page
-    #> 1 2012      6             <NA>      <NA>
-    #> 2 1994    115              268       287
-    #> 3 2014     25              911       920
-    #> 4 1994    115              102       141
-    #> 5 2010     63             2251      2272
-    #> 6 2010    107             2408      2412
-    #>                                          container bib_id year_suffix text_id
-    #> 1            Frontiers in Integrative Neuroscience     40                 276
-    #> 2                           Psychological Bulletin      0                  53
-    #> 3                            Psychological Science      1                  54
-    #> 4                           Psychological Bulletin      2                  55
-    #> 5 The Quarterly Journal of Experimental Psychology      3                  56
-    #> 6  Proceedings of the National Academy of Sciences      4                  57
-    #>           paper_id
-    #> 1 0956797614557697
-    #> 2 0956797614560771
-    #> 3 0956797614560771
-    #> 4 0956797614560771
-    #> 5 0956797614560771
-    #> 6 0956797614560771
+    #> # A tibble: 6 × 16
+    #>   bib_type doi     title authors editors publisher  year volume issue first_page
+    #>   <chr>    <chr>   <chr> <chr>   <chr>   <chr>     <int> <chr>  <chr> <chr>     
+    #> 1 article  10.338… The … Zylber… ""      ""         2012 6      ""    NA        
+    #> 2 article  10.103… Stro… Ekman,… ""      ""         1994 115    ""    268       
+    #> 3 article  10.117… Cult… Gendro… ""      ""         2014 25     ""    911       
+    #> 4 article  10.103… Is t… Russel… ""      ""         1994 115    ""    102       
+    #> 5 article  10.108… Perc… Sauter… ""      ""         2010 63     ""    2251      
+    #> 6 article  10.107… Cros… Sauter… ""      ""         2010 107    ""    2408      
+    #> # ℹ 6 more variables: last_page <chr>, container <chr>, bib_id <int>,
+    #> #   year_suffix <chr>, text_id <int>, paper_id <chr>
 
 ## Search Text
 
@@ -349,10 +322,10 @@ and access a list of the current available models using
 | platform | id | object | owned_by | context_window | max_completion_tokens | created_at |
 |:---|:---|:---|:---|---:|---:|:---|
 | groq | groq/compound | model | Groq | 131072 | 8192 | 2025-09-04 |
-| groq | meta-llama/llama-prompt-guard-2-86m | model | Meta | 512 | 512 | 2025-05-30 |
-| groq | qwen/qwen3-32b | model | Alibaba Cloud | 131072 | 40960 | 2025-05-28 |
-| groq | canopylabs/orpheus-v1-english | model | Canopy Labs | 4000 | 50000 | 2025-12-19 |
 | groq | openai/gpt-oss-safeguard-20b | model | OpenAI | 131072 | 65536 | 2025-10-29 |
+| groq | llama-3.3-70b-versatile | model | Meta | 131072 | 32768 | 2024-12-06 |
+| groq | meta-llama/llama-prompt-guard-2-22m | model | Meta | 512 | 512 | 2025-05-30 |
+| groq | openai/gpt-oss-20b | model | OpenAI | 131072 | 65536 | 2025-08-05 |
 
 When you start metacheck for the first time, it will check for relevant
 API keys in your Renviron and automatically set the model to use. You
@@ -468,12 +441,15 @@ Get any OSF links from a paper or list of papers.
 
 links <- osf_links(psychsci)
 
-links$text |> unique() |> head()
+links$href |> unique() |> head()
 ```
 
-    #> [1] "osf.io/e2aks"                  "osf.io/tvyxz/"                
-    #> [3] "osf.io/t9j8e/? view_only=f171" "osf .io/ideta"                
-    #> [5] "osf.io/tvyxz/ "                "osf.io/eky4s"
+    #> [1] "https://osf.io/e2aks/"                                           
+    #> [2] "https://osf.io/tvyxz/wiki/view/"                                 
+    #> [3] "https://osf.io/t9j8e/?view_only=f171281f212f4435917b16a9e581a73b"
+    #> [4] "https://osf.io/tvyxz/wiki/1.%20View%20the%20Badges/"             
+    #> [5] "https://osf.io/eky4s/"                                           
+    #> [6] "https://osf.io/xgwhk"
 
 You can see that some of them have rogue spaces or view-only links. The
 function
@@ -484,12 +460,12 @@ IDs.
 
 ``` r
 
-osf_ids <- osf_check_id(links$text) |> unique()
+osf_ids <- osf_check_id(links$href) |> unique()
 
 head(osf_ids)
 ```
 
-    #> [1] "e2aks" "tvyxz" "t9j8e" "ideta" "eky4s" "xgwhk"
+    #> [1] "e2aks" "tvyxz" "t9j8e" "eky4s" "xgwhk" "5t0b7"
 
 However, all of the `osf_***()` functions fix IDs for you and handle
 duplicate IDs without making extra API calls, so you don’t need to add
@@ -504,20 +480,20 @@ the ), whether it is public
 
 ``` r
 
-info <- osf_retrieve(links[1:6, "text"])
+info <- osf_retrieve(links[1:6, "href"])
 
-info[, c("text","osf_id", "osf_type", "public", "category")]
+info[, c("href","osf_id", "osf_type", "public", "category")]
 ```
 
     #> # A tibble: 6 × 5
-    #>   text                            osf_id osf_type public category
-    #>   <chr>                           <chr>  <chr>    <lgl>  <chr>   
-    #> 1 "osf.io/e2aks"                  e2aks  nodes    TRUE   project 
-    #> 2 "osf.io/tvyxz/"                 tvyxz  nodes    TRUE   project 
-    #> 3 "osf.io/tvyxz/"                 tvyxz  nodes    TRUE   project 
-    #> 4 "osf.io/t9j8e/? view_only=f171" t9j8e  private  FALSE  NA      
-    #> 5 "osf .io/ideta"                 ideta  nodes    TRUE   project 
-    #> 6 "osf.io/tvyxz/ "                tvyxz  nodes    TRUE   project
+    #>   href                                           osf_id osf_type public category
+    #>   <chr>                                          <chr>  <chr>    <lgl>  <chr>   
+    #> 1 https://osf.io/e2aks/                          e2aks  nodes    TRUE   project 
+    #> 2 https://osf.io/tvyxz/wiki/view/                tvyxz  nodes    TRUE   project 
+    #> 3 https://osf.io/tvyxz/wiki/view/                tvyxz  nodes    TRUE   project 
+    #> 4 https://osf.io/t9j8e/?view_only=f171281f212f4… t9j8e  private  FALSE  NA      
+    #> 5 https://osf.io/tvyxz/wiki/1.%20View%20the%20B… tvyxz  nodes    TRUE   project 
+    #> 6 https://osf.io/eky4s/                          eky4s  nodes    TRUE   project
 
 For now, the OSF API does not let us retrieve any information about
 view-only links. They may be viewable by you in the web browser if the
@@ -530,15 +506,15 @@ about all nodes and files that are contained by the OSF link.
 ``` r
 
 osf_api_calls(0)
-all_contents <- osf_retrieve(links$text[1], recursive = TRUE)
+all_contents <- osf_retrieve(links$href[1], recursive = TRUE)
 n_calls <- osf_api_calls()
 ```
 
 The function
 [`osf_api_calls()`](https://scienceverse.github.io/metacheck/reference/osf_api_calls.md)
 lets you reset and retrieve the number of API calls made since the last
-reset. You can see that the project osf.io/e2aks had 3 nodes and 6
-files, which required 10 API calls.
+reset. You can see that the project <https://osf.io/e2aks/> had 3 nodes
+and 6 files, which required 10 API calls.
 
 ``` r
 

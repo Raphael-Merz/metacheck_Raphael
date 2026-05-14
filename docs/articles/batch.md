@@ -152,21 +152,23 @@ paper_table(papers, "author") |>
   count(given, family)
 ```
 
-    #>        given      family n
-    #> 1    Anthony         Lee 1
-    #> 2   Benedict       Jones 2
-    #> 3  Chengyang         Han 1
-    #> 4     Claire      Fisher 1
-    #> 5   Danielle    Morrison 1
-    #> 6     Hongyi        Wang 1
-    #> 7       Iris Holzleitner 1
-    #> 8     Kieran      O'shea 1
-    #> 9       Lisa    Debruine 2
-    #> 10    Martin       Lages 1
-    #> 11    Michal     Kandrik 1
-    #> 12  Philippe      Schyns 1
-    #> 13 Stephanie       Boyle 1
-    #> 14   Vanessa      Fasolt 2
+    #> # A tibble: 14 × 3
+    #>    given     family          n
+    #>    <chr>     <chr>       <int>
+    #>  1 Anthony   Lee             1
+    #>  2 Benedict  Jones           2
+    #>  3 Chengyang Han             1
+    #>  4 Claire    Fisher          1
+    #>  5 Danielle  Morrison        1
+    #>  6 Hongyi    Wang            1
+    #>  7 Iris      Holzleitner     1
+    #>  8 Kieran    O'shea          1
+    #>  9 Lisa      Debruine        2
+    #> 10 Martin    Lages           1
+    #> 11 Michal    Kandrik         1
+    #> 12 Philippe  Schyns          1
+    #> 13 Stephanie Boyle           1
+    #> 14 Vanessa   Fasolt          2
 
 ### Info
 
@@ -198,20 +200,15 @@ paper_table(papers, "info") |>
   head()
 ```
 
-    #>                        doi
-    #> 1 10.1177/0956797613520608
-    #> 2 10.1177/0956797614522816
-    #> 3 10.1177/0956797614527830
-    #> 4 10.1177/0956797614557697
-    #> 5 10.1177/0956797614560771
-    #> 6 10.1177/0956797614566469
-    #>                                                                                                                                                                                                                              title
-    #> 1 Mirror neurons, originally discovered in macaque monkeys using single-cell recordings, are active when an animal is either performing a particular action or observing another agent performing the same or a similar action (di
-    #> 2                                                                                                                                         Beyond Gist: Strategic and Incremental Information Accumulation for Scene Categorization
-    #> 3                                                                                      Serotonin and Social Norms: Tryptophan Depletion Impairs Social Comparison and Leads to Resource Depletion in a Multiplayer Harvesting Game
-    #> 4                                                                                                                                                                              Action-Specific Disruption of Perceptual Confidence
-    #> 5                                                                                                                                  Emotional Vocalizations Are Recognized Across Cultures Regardless of the Valence of Distractors
-    #> 6                                                                                                                                       Conspiracist Ideation as a Predictor of Climate-Science Rejection: An Alternative Analysis
+    #> # A tibble: 6 × 2
+    #>   doi                      title                                                
+    #>   <chr>                    <chr>                                                
+    #> 1 10.1177/0956797613520608 Mirror neurons, originally discovered in macaque mon…
+    #> 2 10.1177/0956797614522816 Beyond Gist: Strategic and Incremental Information A…
+    #> 3 10.1177/0956797614527830 Serotonin and Social Norms: Tryptophan Depletion Imp…
+    #> 4 10.1177/0956797614557697 Action-Specific Disruption of Perceptual Confidence  
+    #> 5 10.1177/0956797614560771 Emotional Vocalizations Are Recognized Across Cultur…
+    #> 6 10.1177/0956797614566469 Conspiracist Ideation as a Predictor of Climate-Scie…
 
 ### Bibliography
 
@@ -256,7 +253,7 @@ str(bib_match_1)
     #>  $ bib_id    : int 0
     #>  $ service   : chr "crossref"
     #>  $ service_id: chr NA
-    #>  $ score     : num 96.4
+    #>  $ score     : num 99.7
     #>  $ bib_type  : chr "article"
     #>  $ doi       : chr "10.2307/2234133"
     #>  $ title     : chr "Impure Altruism and Donations to Public Goods: A Theory of Warm-Glow Giving"
@@ -265,9 +262,7 @@ str(bib_match_1)
     #>   .. ..$ given : chr "James"
     #>   .. ..$ family: chr "Andreoni"
     #>  $ editors   :List of 1
-    #>   ..$ :'data.frame': 0 obs. of  2 variables:
-    #>   .. ..$ given : chr 
-    #>   .. ..$ family: chr 
+    #>   ..$ : list()
     #>  $ publisher : chr "Oxford University Press (OUP)"
     #>  $ year      : int 1990
     #>  $ date      : chr NA
@@ -289,20 +284,15 @@ paper_id, bib_id, DOI, and the text of the reference.
 ref_table(paper) |> head()
 ```
 
-    #>           paper_id bib_id                                doi
-    #> 1 0956797615588467      0                    10.2307/2234133
-    #> 2 0956797615588467      1                    10.2307/2118508
-    #> 3 0956797615588467      2         10.1037/0022-3514.61.3.413
-    #> 4 0956797615588467      3         10.1037/0022-3514.40.2.290
-    #> 5 0956797615588467      4 10.1016/b978-0-12-374176-9.00009-9
-    #> 6 0956797615588467      5         10.1016/j.jcps.2011.05.001
-    #>                                                                                                                                                                                                                                                                                   text
-    #> 1                                                                                                                                              Andreoni, J. (1990). Impure altruism and donations to pub- lic goods: A theory of warm-glow giving. The Economic Journal, 100, 464-477.
-    #> 2                                                                                                     Andreoni, J. (1995). Warm-glow versus cold-prickle: The effects of positive and negative framing on cooperation in experi- ments. The Quarterly Journal of Economics, 110, 1-21.
-    #> 3                                                                     Batson, C. D., Batson, J. G., Slingsby, J. K., Harrell, K. L., Peekna, H. M., & Todd, R. M. (1991). Empathic joy and the empathy-altruism hypothesis. Journal of Personality and Social Psychology, 61, 413-426.
-    #> 4                                                                                       Batson, C. D., Duncan, B. D., Ackerman, P., Buckley, T., & Birch, K. (1981). Is empathic emotion a source of altruistic motivation? Journal of Personality and Social Psychology, 40, 290-302.
-    #> 5 Bernheim, B. D. (2008). The psychology and neurobiology of judgment and decision making: What's in it for economists? In P. W. Glimcher, E. Fehr, C. Camerer, & R. A. Poldrack (Eds.), Neuroeconomics: Decision making and the brain (pp. 115-125). London, England: Academic Press.
-    #> 6                                                                                                                       Berns, G. S., & Moore, S. E. (2012). A neural predictor of cul- tural popularity. Journal of Consumer Psychology, 22, 154- 160. doi:10.1016/j.jcps.2011.05.001
+    #> # A tibble: 6 × 4
+    #>   paper_id         bib_id doi                                text               
+    #>   <chr>             <int> <chr>                              <chr>              
+    #> 1 0956797615588467      0 10.2307/2234133                    Andreoni, J. (1990…
+    #> 2 0956797615588467      1 10.2307/2118508                    Andreoni, J. (1995…
+    #> 3 0956797615588467      2 10.1037/0022-3514.61.3.413         Batson, C. D., Bat…
+    #> 4 0956797615588467      3 10.1037/0022-3514.40.2.290         Batson, C. D., Dun…
+    #> 5 0956797615588467      4 10.1016/b978-0-12-374176-9.00009-9 Bernheim, B. D. (2…
+    #> 6 0956797615588467      5 10.1016/j.jcps.2011.05.001         Berns, G. S., & Mo…
 
 ### Cross References
 

@@ -10,13 +10,13 @@ osf_info(osf_ids, pb = NULL)
 
 ## Arguments
 
+- osf_ids:
+
+  an vector of OSF IDs or URLs
+
 - pb:
 
   a progress bar passed from another function
-
-- osf_id:
-
-  an OSF ID or URL
 
 ## Value
 

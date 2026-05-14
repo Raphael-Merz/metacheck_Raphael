@@ -6,7 +6,7 @@ testing/demos).
 ## Usage
 
 ``` r
-test_paper(text = LETTERS)
+test_paper(text = LETTERS, url = character(0))
 ```
 
 ## Arguments
@@ -14,6 +14,10 @@ test_paper(text = LETTERS)
 - text:
 
   a vector of text to add
+
+- url:
+
+  a vector of URLs to add
 
 ## Value
 

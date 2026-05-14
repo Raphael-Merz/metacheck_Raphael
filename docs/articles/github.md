@@ -78,12 +78,33 @@ cat(readme)
     #> You can install the development version of metacheck from [GitHub](https://github.com/) with:
     #> 
     #> ``` r
-    #> # install.packages("devtools")
-    #> devtools::install_github("scienceverse/metacheck")
+    #> # install.packages("remotes")
+    #> remotes::install_github("scienceverse/metacheck")
     #> ```
     #> 
     #> ## API (optional)
+    #> 
     #> To run metacheck as a REST API either using plumber or Docker, see [`inst/plumber/README.md`](inst/plumber/README.md) for instructions and documentation.
+    #> 
+    #> ## Notes for Developers
+    #> 
+    #> ### bibr format 
+    #> 
+    #> Metacheck uses bibr format for the paper objects. The schema for this can be found at <https://www.scienceverse.org/schema/paper.json>. If this format changes, or the file returned from bibr changes, the following functions will need checking:
+    #> 
+    #> - `paper()` (R/paper.R)
+    #> - `validate_paper()` (R/paper.R)
+    #> - `paper_write()` (R/paper.R)
+    #> - `platform_bibr()` (R/bibr.R)
+    #> - `convert_bibr()` (R/bibr.R)
+    #> - `read_bibr()` (R/bibr.R) Remove fixes when bibr output conforms to the schema
+    #> - `.grobid_to_bibr()` (R/grobid) Cascades to a bunch of tei_**() functions
+    #> 
+    #> ### tests
+    #> 
+    #> You may not contribute any code unless you also contribute a test of this code.
+    #> 
+    #> Check tests/testthat/helper.R for custom test skip functions. By default, all tests requiring a web connection, LLM, or long tests are skipped or mocked. You can control this globally with the skip functions in this file (e.g., comment out the first `skip()` function in each custom function to run all tests of this type unless on cran/covr).
 
 ## github_languages
 
@@ -94,17 +115,19 @@ languages, as detected and classified by GitHub.
 
 github_languages("scienceverse/metacheck")
 #>                      repo   language    bytes
-#> 1  scienceverse/metacheck       HTML 18689007
-#> 2  scienceverse/metacheck          R  6447012
-#> 3  scienceverse/metacheck        TeX    47751
-#> 4  scienceverse/metacheck       AMPL     7571
-#> 5  scienceverse/metacheck     Python     6986
-#> 6  scienceverse/metacheck        CSS     3358
-#> 7  scienceverse/metacheck   Makefile     1407
-#> 8  scienceverse/metacheck Dockerfile     1201
-#> 9  scienceverse/metacheck JavaScript     1018
-#> 10 scienceverse/metacheck       SCSS      104
-#> 11 scienceverse/metacheck      Shell       17
+#> 1  scienceverse/metacheck          R 49846936
+#> 2  scienceverse/metacheck       HTML 19384087
+#> 3  scienceverse/metacheck        Lua    92710
+#> 4  scienceverse/metacheck        TeX    40040
+#> 5  scienceverse/metacheck       AMPL     7571
+#> 6  scienceverse/metacheck     Python     6986
+#> 7  scienceverse/metacheck        CSS     5358
+#> 8  scienceverse/metacheck      Typst     5329
+#> 9  scienceverse/metacheck   Makefile     1407
+#> 10 scienceverse/metacheck Dockerfile     1201
+#> 11 scienceverse/metacheck JavaScript     1018
+#> 12 scienceverse/metacheck       SCSS      639
+#> 13 scienceverse/metacheck      Shell       17
 ```
 
 ## github_files
@@ -200,26 +223,26 @@ github_files("scienceverse/metacheck")
 #> 1    462        rproj config
 #> 2      0                 dir
 #> 3      0       github    dir
-#> 4    380    gitignore config
-#> 5    331 rbuildignore   file
+#> 4    385    gitignore config
+#> 5    362 rbuildignore   file
 #> 6    177           md   text
 #> 7   5240           md   text
 #> 8    134          yml config
-#> 9   4768           md   text
+#> 9   4850           md   text
 #> 10   133           md   text
 #> 11     0                 dir
 #> 12     0                 dir
-#> 13  2243                file
+#> 13  2196                file
 #> 14     0                 dir
 #> 15     0                 dir
 #> 16 34303           md   text
 #> 17  1407                file
 #> 18     0                 dir
-#> 19  2895                file
-#> 20 18431           md   text
+#> 19  2762                file
+#> 20 18875           md   text
 #> 21     0                 dir
 #> 22     0                 dir
-#> 23   995           md   text
+#> 23  2023           md   text
 #> 24     0                 dir
 #> 25     0                 dir
 ```

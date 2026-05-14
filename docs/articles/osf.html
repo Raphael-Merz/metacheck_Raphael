@@ -34,7 +34,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">metacheck</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.9100</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Unreleased version">0.0.0.9101</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -146,54 +146,41 @@ working.</p>
 <div class="section level3">
 <h3 id="find-osf-links">Find OSF Links<a class="anchor" aria-label="anchor" href="#find-osf-links"></a>
 </h3>
-<p>We start by searching for OSF URLs using the
-<code><a href="../reference/search_text.html">search_text()</a></code> function. OSF links can be tricky to find in
-PDFs, since they can insert spaces in odd places, and view-only links
-that contain a ? are often interpreted as being split across sentences.
-This function is our best attempt at catching and fixing them all.</p>
+<p>We start by searching for OSF URLs using the <code><a href="../reference/osf_links.html">osf_links()</a></code>
+function.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">links</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/osf_links.html">osf_links</a></span><span class="op">(</span><span class="va">paper</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
-<th align="left">text</th>
-<th align="left">section_type</th>
+<th align="left">href</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">osf .io/hv29w</td>
-<td align="left">method</td>
+<td align="left"><a href="https://osf.io/hv29w" class="external-link uri">https://osf.io/hv29w</a></td>
 </tr>
 <tr class="even">
-<td align="left">osf.io/2es6n</td>
-<td align="left">method</td>
+<td align="left"><a href="https://osf.io/2es6n" class="external-link uri">https://osf.io/2es6n</a></td>
 </tr>
 <tr class="odd">
-<td align="left">osf.io/jpm5a</td>
-<td align="left">method</td>
+<td align="left"><a href="https://osf.io/jpm5a" class="external-link uri">https://osf.io/jpm5a</a></td>
 </tr>
 <tr class="even">
-<td align="left">osf.io/aux7s</td>
-<td align="left">method</td>
+<td align="left"><a href="https://osf.io/aux7s" class="external-link uri">https://osf.io/aux7s</a></td>
 </tr>
 <tr class="odd">
-<td align="left">osf.io/nw3mc</td>
-<td align="left">method</td>
+<td align="left"><a href="https://osf.io/nw3mc" class="external-link uri">https://osf.io/nw3mc</a></td>
 </tr>
 <tr class="even">
-<td align="left">osf.io/ks639</td>
-<td align="left">method</td>
+<td align="left"><a href="https://osf.io/ks639" class="external-link uri">https://osf.io/ks639</a></td>
 </tr>
 <tr class="odd">
-<td align="left">osf.io/y75nu</td>
-<td align="left">method</td>
+<td align="left"><a href="https://osf.io/y75nu" class="external-link uri">https://osf.io/y75nu</a></td>
 </tr>
 <tr class="even">
-<td align="left">OSF.IO/4TYM7</td>
-<td align="left">funding</td>
+<td align="left"><a href="https://doi.org/10.17605/OSF.IO/4TYM7" class="external-link uri">https://doi.org/10.17605/OSF.IO/4TYM7</a></td>
 </tr>
 <tr class="odd">
-<td align="left">OSF.IO/X4T9A</td>
-<td align="left">funding</td>
+<td align="left"><a href="https://doi.org/10.17605/OSF.IO/X4T9A" class="external-link uri">https://doi.org/10.17605/OSF.IO/X4T9A</a></td>
 </tr>
 </tbody>
 </table>
@@ -218,7 +205,7 @@ get the contents for each item once. If you set the argument
 project of any links (but this requires more API calls).</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">info</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/osf_retrieve.html">osf_retrieve</a></span><span class="op">(</span><span class="va">links</span>, </span>
-<span>                     id_col <span class="op">=</span> <span class="st">"text"</span>, </span>
+<span>                     id_col <span class="op">=</span> <span class="st">"href"</span>, </span>
 <span>                     recursive <span class="op">=</span> <span class="cn">TRUE</span>, </span>
 <span>                     find_project <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
@@ -2008,7 +1995,7 @@ by:</p>
 <span><span class="co">#&gt;  [1] lubridate_1.9.5      forcats_1.0.1        stringr_1.6.0       </span></span>
 <span><span class="co">#&gt;  [4] dplyr_1.2.1          purrr_1.2.2          readr_2.2.0         </span></span>
 <span><span class="co">#&gt;  [7] tidyr_1.3.2          tibble_3.3.1         ggplot2_4.0.3       </span></span>
-<span><span class="co">#&gt; [10] tidyverse_2.0.0      metacheck_0.0.0.9100</span></span>
+<span><span class="co">#&gt; [10] tidyverse_2.0.0      metacheck_0.0.0.9101</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; loaded via a namespace (and not attached):</span></span>
 <span><span class="co">#&gt;  [1] rappdirs_0.3.4     sass_0.4.10        generics_0.1.4     stringi_1.8.7     </span></span>
@@ -2150,7 +2137,7 @@ Science.</p>
 <span><span class="va">osf_file_check</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">paper</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="va">links</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/osf_links.html">osf_links</a></span><span class="op">(</span><span class="va">paper</span><span class="op">)</span></span>
 <span>  <span class="va">info</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/osf_retrieve.html">osf_retrieve</a></span><span class="op">(</span><span class="va">links</span>, </span>
-<span>                       id_col <span class="op">=</span> <span class="st">"text"</span>, </span>
+<span>                       id_col <span class="op">=</span> <span class="st">"href"</span>, </span>
 <span>                       recursive <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span>  <span class="va">osf_files_summary</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/file_category.html">file_category</a></span><span class="op">(</span><span class="va">info</span><span class="op">)</span></span>
 <span>  <span class="va">report</span> <span class="op">&lt;-</span> <span class="fu">osf_report</span><span class="op">(</span><span class="va">osf_files_summary</span><span class="op">)</span></span>
@@ -2210,7 +2197,7 @@ such field-dependent checks that can be automated, as the ability to
 automatically examine and/or retrieve files that are linked to in a
 paper should be useful for a large range of use-cases.</p>
 <p><strong>These examples were created using papercheck version
-0.0.0.9100.</strong></p>
+0.0.0.9101.</strong></p>
 </div>
 <div class="section level2 unnumbered">
 <h2 class="unnumbered" id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>

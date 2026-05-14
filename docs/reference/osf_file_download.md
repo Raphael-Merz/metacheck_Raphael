@@ -69,7 +69,7 @@ the downloaded column value set to FALSE.
 ## Examples
 
 ``` r
-# \dontrun{
+if (FALSE) { # \dontrun{
 osf_file_download("6nt4v")
-# }
+} # }
 ```
